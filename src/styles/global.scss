@@ -1,0 +1,90 @@
+@use './typography.scss' as *;
+@use './variables.scss' as *;
+@use './mixins.scss' as *;
+
+* {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    // font-family: 'Avenir Next', Arial, Helvetica, sans-serif;
+    // color: $primary-blk;
+    overflow-x: hidden;
+    width: 400px;
+    height: 100vh;
+    border: .2rem solid black;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+li {
+    list-style: none;
+    text-decoration: none;
+}
+
+button {
+    // background-color: $primary-blue;
+    border-radius: 4px;
+    border: none;
+    height: 4rem;
+    // color: $primary-wht;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    // &:hover {
+    //     background-color: $second-blue;
+    // }
+}
+
+button a {
+    // color: $primary-wht;
+    font-size: 1.2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+a {
+    text-decoration: none;
+    // color: $primary-blk;
+
+}
+
+input,
+textarea {
+    // background-color: $second-wht;
+    // color: $primary-blk;
+    border-radius: 4px;
+    // border: 1px solid $second-sil;
+    // font-family: 'Avenir Next', Arial, Helvetica, sans-serif;
+
+    // &:focus {
+    //     border: 1px solid $primary-blue;
+    // }
+
+    &:invalid {
+        border: 1px solid #D22D2D;
+    }
+}
+
+// ::placeholder {
+//     // color: $primary-blk;
+//     // font-family: 'Avenir Next', Arial, Helvetica, sans-serif;
+
+// }
+
+label {
+    text-transform: uppercase;
+}
