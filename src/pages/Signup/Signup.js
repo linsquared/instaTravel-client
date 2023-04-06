@@ -79,7 +79,7 @@ const Signup = () => {
                 <h2>Signup to find your next itinerary</h2>
 
                 <div>
-                    <FormLabel htmlFor={'email'} text={''} />
+                    <FormLabel forfield={'email'} text={''} />
                     <FormInput
                         name={'email'}
                         type={'text'}
@@ -89,7 +89,7 @@ const Signup = () => {
                 </div>
 
                 <div>
-                    <FormLabel htmlFor={'username'} text={''} />
+                    <FormLabel forfield={'username'} text={''} />
                     <FormInput
                         name={'user_name'}
                         type={'text'}
@@ -99,7 +99,7 @@ const Signup = () => {
                 </div>
 
                 <div>
-                    <FormLabel htmlFor={'fullname'} text={''} />
+                    <FormLabel forfield={'fullname'} text={''} />
                     <FormInput
                         name={'author'}
                         type={'text'}
@@ -110,7 +110,7 @@ const Signup = () => {
 
 
                 <div>
-                    <FormLabel htmlFor={'password'} text={''} />
+                    <FormLabel forfield={'password'} text={''} />
                     <FormInput
                         name={'password'}
                         type={'password'}
