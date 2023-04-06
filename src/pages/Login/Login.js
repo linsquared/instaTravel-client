@@ -55,7 +55,7 @@ const Login = () => {
 
             <form onSubmit={loginSubmission}>
                 <div>
-                    <FormLabel htmlFor={'username'} text={''} />
+                    <FormLabel forfield={'username'} text={''} />
                     <FormInput
                         name={'username'}
                         type={'text'}
@@ -66,7 +66,7 @@ const Login = () => {
 
 
                 <div>
-                    <FormLabel htmlFor={'password'} text={''} />
+                    <FormLabel forfield={'password'} text={''} />
                     <FormInput
                         name={'password'}
                         type={'password'}
