@@ -11,9 +11,15 @@ import FormLabel from '../../components/FormLabel/FormInput/FormLabel';
 import FormInput from '../../components/FormInput/FormInput';
 import Buttons from '../../components/Buttons/Buttons';
 
-const Signup = ({ error, setError }) => {
+const Signup = () => {
+
+    const [error, setError] = useState('')
+
     // setting success state
     const [success, setSuccess] = useState(false)
+
+    // err message
+    const [errMsg, setErrMsg] = useState(false)
 
     // setting form state
     const [userInfo, setUserInfo] = useState({
@@ -22,9 +28,6 @@ const Signup = ({ error, setError }) => {
         password: '',
         email: ''
     })
-
-    // err message
-    const [errMsg, setErrMsg] = useState(false)
 
     // form onchage func
     const registerUser = (e) => {
@@ -54,7 +57,6 @@ const Signup = ({ error, setError }) => {
                     setSuccess(true)
                     setError('')
                     e.target.reset()
-
                     console.log(res)
                 })
                 .catch(err => {
@@ -77,7 +79,7 @@ const Signup = ({ error, setError }) => {
                 <h2>Signup to find your next itinerary</h2>
 
                 <div>
-                    <FormLabel forfield={'email'} text={''} />
+                    <FormLabel htmlFor={'email'} text={''} />
                     <FormInput
                         name={'email'}
                         type={'text'}
@@ -87,7 +89,7 @@ const Signup = ({ error, setError }) => {
                 </div>
 
                 <div>
-                    <FormLabel forfield={'username'} text={''} />
+                    <FormLabel htmlFor={'username'} text={''} />
                     <FormInput
                         name={'user_name'}
                         type={'text'}
@@ -97,7 +99,7 @@ const Signup = ({ error, setError }) => {
                 </div>
 
                 <div>
-                    <FormLabel forfield={'fullname'} text={''} />
+                    <FormLabel htmlFor={'fullname'} text={''} />
                     <FormInput
                         name={'author'}
                         type={'text'}
@@ -108,7 +110,7 @@ const Signup = ({ error, setError }) => {
 
 
                 <div>
-                    <FormLabel forfield={'password'} text={''} />
+                    <FormLabel htmlFor={'password'} text={''} />
                     <FormInput
                         name={'password'}
                         type={'password'}
@@ -119,7 +121,7 @@ const Signup = ({ error, setError }) => {
                 <h6>By signing up, you agree to our Terms , Privacy Policy and Cookies Policy.</h6>
                 {errMsg && <p>Please fill out all required fields</p>}
                 <Buttons type={'submit'} value={'Sign up'} />
-
+                {/* need to navigate to user homepage if signed up  */}
                 {success && <div>Signed Up!</div>}
                 {error && <div>{error}</div>}
 

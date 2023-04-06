@@ -3,23 +3,47 @@ import './Login.scss'
 
 // import core stuff
 import { useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // import components & pages
 import logo from '../../assets/logo/logo.png'
 import FormInput from '../../components/FormInput/FormInput'
 import FormLabel from '../../components/FormLabel/FormInput/FormLabel'
 import Buttons from '../../components/Buttons/Buttons';
+import axios from 'axios';
 
-const Login = ({ error, setError }) => {
+const Login = () => {
     const [loginInfo, setLoginInfo] = useState({
         username: '',
         password: ''
     })
 
+    const [loginRes, setLoginRes] = useState('')
+
+    // control userlogin info
     const userLogin = (e) => {
+        const { name, value } = e.target
+
+        setLoginInfo(preval => ({
+            ...preval, [name]: value
+        }))
+    }
+    // navigate
+    const navigate = useNavigate()
+
+    // post the login info
+    const loginSubmission = (e) => {
         e.preventDefault()
-        console.log('submitting login info...')
+        axios.post('http://localhost:8080/users/login', loginInfo)
+            .then(res => {
+                setLoginRes(res.data);
+                sessionStorage.setItem("token", res.data.token);
+                navigate('/')
+            })
+            .catch(err => {
+                setLoginRes(err.response)
+            })
+
     }
 
     return (
@@ -27,10 +51,11 @@ const Login = ({ error, setError }) => {
             <div className="login">
                 <img src={logo} alt='logo icon' />
             </div>
+            {loginRes && <p>{loginRes}</p>}
 
-            <form>
+            <form onSubmit={loginSubmission}>
                 <div>
-                    <FormLabel forfield={'username'} text={''} />
+                    <FormLabel htmlFor={'username'} text={''} />
                     <FormInput
                         name={'username'}
                         type={'text'}
@@ -41,7 +66,7 @@ const Login = ({ error, setError }) => {
 
 
                 <div>
-                    <FormLabel forfield={'password'} text={''} />
+                    <FormLabel htmlFor={'password'} text={''} />
                     <FormInput
                         name={'password'}
                         type={'password'}
