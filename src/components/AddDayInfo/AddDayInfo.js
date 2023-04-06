@@ -5,9 +5,7 @@ import { useState } from 'react'
 import './AddDayInfo.scss'
 import EachDay from '../EachDay/EachDay'
 
-const AddDayInfo = ({ duration, showDay, setShowDay }) => {
-    // NEED to set day 
-    // const [day, setDay] = useState('0')
+const AddDayInfo = ({ duration, showDay }) => {
 
 
     return (
