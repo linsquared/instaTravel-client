@@ -10,23 +10,8 @@ import Buttons from '../Buttons/Buttons';
 import AddDayInfo from '../AddDayInfo/AddDayInfo'
 
 
-const AddBasicInfo = () => {
-
-    // form info usestate
-    const [basicInfo, setBasicInfo] = useState({
-        city: '',
-        views: '',
-        likes: '',
-        ratings: '',
-        duration: '',
-        city_img: '',
-        trip_title: '',
-        date: '',
-        description: ''
-    })
-
-
-
+const AddBasicInfo = ({ basicInfo, setBasicInfo, showDay, setShowDay, setShowBasic, showBasic }) => {
+    // show this component or nah
 
     // form control handler
     const basicInfoHandle = (e) => {
@@ -35,22 +20,25 @@ const AddBasicInfo = () => {
         setBasicInfo(preval => ({
             ...preval, [name]: value
         }))
+        console.log(basicInfo)
     }
 
     // navigate
     const navigate = useNavigate()
 
-    // save this info
+    // save button func
     const saveBasicInfo = (e) => {
         e.preventDefault()
-        // makesure path is right
-        // navigate('/day')
+        setShowBasic(false)
+        setShowDay(true)
 
     }
 
     return (
         <>
-            <form onSubmit={saveBasicInfo}>
+            <form onSubmit={saveBasicInfo} style={{ display: showBasic ? 'block' : 'none' }}>
+                <h1>Let's add some basic informations...</h1>
+
                 {/* location */}
                 <div>
                     <FormLabel forfield={"city"} text={'Where did you go ?'} />
@@ -130,7 +118,6 @@ const AddBasicInfo = () => {
                 <Buttons value={'Save'} type={'submit'} />
             </form>
 
-            {[...Array(basicInfo.duration)].map((day, i) => <AddDayInfo key={i} value={i} />)}
 
         </>
     )
