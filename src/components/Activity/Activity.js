@@ -7,7 +7,7 @@ import FormInput from '../FormInput/FormInput'
 import FormLabel from '../FormLabel/FormInput/FormLabel'
 import Buttons from '../Buttons/Buttons'
 
-const Activity = ({ activityList, setActivityList, addActivity }) => {
+const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, dayWithAct }) => {
     // each activity set state
     const [activity, setActivity] = useState({
         activity_name: '',
@@ -16,12 +16,20 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
         activity_description: '',
         activity_image: '',
     })
-
+    // form control 
     const activityHandle = (e) => {
         const { name, value } = e.target
         setActivity(prevActivity => ({
             ...prevActivity, [name]: value
         }))
+    }
+    // save info btn
+    const saveInfo = (e, item) => {
+        e.preventDefault()
+        setActivity(item)
+        const clickedBtn = e.target
+        clickedBtn.classList.add('eachday__hide')
+
     }
 
     // const handleSubmit = (e) => {
@@ -35,6 +43,8 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
     //         activity_image: '',
     //     })
     // }
+
+
 
     return (
         <form>
@@ -106,8 +116,11 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
             {/* <div>
                             <Buttons value={upload} />
                             </div> */}
+            <div >
+                <Buttons value={'save'} btnfunc={(e) => saveInfo(e, activity)} />
+                <Buttons value={'Add Activity'} btnfunc={(e) => addActivity(e, activity)} />
+            </div>
 
-            <Buttons value={'Add Activity'} btnfunc={(e) => addActivity(e, activity)} />
         </form>
 
     )

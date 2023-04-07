@@ -2,4 +2,11 @@
 @use '../../styles/mixins.scss' as *;
 @use '../../styles/variables.scss' as *;
 
-// .home {}
+.home {
+    background-color: $white;
+    height: 76rem;
+    width: 37rem;
+    margin-left: .5rem;
+    border-bottom-left-radius: 3.5rem;
+    border-bottom-right-radius: 3.5rem;
+}

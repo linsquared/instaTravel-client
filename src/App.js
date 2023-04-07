@@ -1,6 +1,7 @@
 // core stuff
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 // components, pages, styles
 import './App.scss';
@@ -24,12 +25,29 @@ function App() {
   // err message
   const [errMsg, setErrMsg] = useState(false)
 
+  // all itineraries
+  const [allItineraries, setAllItineraries] = useState([])
 
+  // highest rated
+  const [highestRated, setHighestRated] = useState([])
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/itineraries')
+      .then(res => {
+        setAllItineraries(res.data)
+        setHighestRated(res.data.filter(city => city.ratings > 4.5))
+      })
+      .catch(err => console.log(err))
+  }, [])
+
+
+
+  console.log(highestRated)
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home highestRated={highestRated} />} />
         <Route path='/register' element={<Signup
           errMsg={errMsg}
           setErrMsg={setErrMsg}

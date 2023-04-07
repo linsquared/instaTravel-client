@@ -8,7 +8,7 @@ import Header from '../../components/Header/Header';
 import pin from '../../assets/icons/pin.png';
 import GuestHome from '../../components/GuestHome/GuestHome'
 
-const Home = () => {
+const Home = ({ highestRated }) => {
     // set states
     const [user, setUser] = useState('')
     const [failedAuth, setFailedAuth] = useState(false)
@@ -47,12 +47,11 @@ const Home = () => {
     // redirect to log in
     if (failedAuth) {
         return (
-            <>
+            <main className="home">
                 <Header value={'Log in'} />
                 {/* // possibly an icon of the person who logged in */}
-
-                <GuestHome />
-            </>
+                <GuestHome highestRated={highestRated} />
+            </main>
         )
     }
 
@@ -65,11 +64,9 @@ const Home = () => {
     }
 
     return (
-        <>
-            <main className="home">
-                <Header value={'Log out'} func={handleLogout} />
-            </main>
-        </>
+        <main className="home">
+            <Header value={'Log out'} func={handleLogout} />
+        </main>
     )
 }
 
