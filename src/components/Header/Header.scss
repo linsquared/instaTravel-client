@@ -1,0 +1,48 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.header {
+    height: 30rem;
+    background-image: linear-gradient(rgba(255, 255, 255, .25), rgba(50, 97, 137, 0.5)), url('../../assets/images/suitcase.jpg');
+    background-size: 150%;
+    background-position: center;
+    position: absolute;
+    top: 2.5rem;
+    width: 37rem;
+    left: .5rem;
+    border-top-left-radius: 3.5rem;
+    border-top-right-radius: 3.5rem;
+
+    &__nav {
+        height: 10rem;
+        padding: 0 2rem;
+        margin-top: 3rem;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        width: 12rem;
+    }
+
+    &__user {
+        width: 3rem;
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__log {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: black;
+        cursor: pointer;
+    }
+}

@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-// impoer pages and components
+// img,  pages and components
 import './Home.scss'
+import Header from '../../components/Header/Header';
+import pin from '../../assets/icons/pin.png'
 
 const Home = () => {
     // set states
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState('')
     const [failedAuth, setFailedAuth] = useState(false)
 
     useEffect(() => {
@@ -40,13 +42,13 @@ const Home = () => {
         setFailedAuth(true);
     };
 
+
     // redirect to log in
     if (failedAuth) {
         return (
-            <main>
-                <h1>Please log into your account</h1>
-                <p><Link to='/login'>Log in</Link></p>
-            </main>
+            <Header value={'Log in'}
+            // possibly an icon of the person who logged in
+            />
         )
     }
 
@@ -59,12 +61,19 @@ const Home = () => {
     }
 
     return (
-        <main className="main">
-            <h1>Welcome back,{user.username}</h1>
-            <h2>My profeile</h2>
+        <>
+            <main className="home">
+                <Header value={'Log out'} func={handleLogout} />
+                <section className="home__tab">
+                    <div className="home__title-wrapper">
+                        <h1 className='home__title'>City</h1>
+                    </div>
+                    <div className="home__city">
 
-            <button onClick={handleLogout}>Log out</button>
-        </main>
+                    </div>
+                </section>
+            </main>
+        </>
     )
 }
 
