@@ -1,0 +1,27 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+
+.guestHome {
+    &__tab {
+        margin-top: 27rem;
+        position: absolute;
+        top: 0;
+        padding: .6rem;
+    }
+
+    &__title-wrapper {
+        width: 19rem;
+        height: 6rem;
+        background-color: white;
+        border-top-right-radius: 2rem;
+        border-top-left-radius: 2rem;
+        border-bottom-right-radius: -5rem;
+    }
+
+    &__title {
+        color: $blue;
+        text-align: center;
+        padding-top: 2rem;
+    }
+}

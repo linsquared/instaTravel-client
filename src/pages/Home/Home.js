@@ -5,7 +5,8 @@ import axios from 'axios'
 // img,  pages and components
 import './Home.scss'
 import Header from '../../components/Header/Header';
-import pin from '../../assets/icons/pin.png'
+import pin from '../../assets/icons/pin.png';
+import GuestHome from '../../components/GuestHome/GuestHome'
 
 const Home = () => {
     // set states
@@ -46,9 +47,12 @@ const Home = () => {
     // redirect to log in
     if (failedAuth) {
         return (
-            <Header value={'Log in'}
-            // possibly an icon of the person who logged in
-            />
+            <>
+                <Header value={'Log in'} />
+                {/* // possibly an icon of the person who logged in */}
+
+                <GuestHome />
+            </>
         )
     }
 
@@ -64,14 +68,6 @@ const Home = () => {
         <>
             <main className="home">
                 <Header value={'Log out'} func={handleLogout} />
-                <section className="home__tab">
-                    <div className="home__title-wrapper">
-                        <h1 className='home__title'>City</h1>
-                    </div>
-                    <div className="home__city">
-
-                    </div>
-                </section>
             </main>
         </>
     )

@@ -129,6 +129,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
                 </div>
                 {errMsg && <p className='login__errMsg'>Please fill out all required fields</p>}
 
+                {error && <div className='login__errMsg'>{error}</div>}
 
                 <h6 className='signup__legal'>By signing up, you agree to our Terms , Privacy Policy and Cookies Policy.</h6>
 
@@ -138,8 +139,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
                 </div>
 
                 {/* need to navigate to user homepage if signed up  */}
-                {success && <div>Signed Up!</div>}
-                {error && <div>{error}</div>}
+                {/* {success && navigate('/')} */}
 
             </form>
             <p className='signup__footer'>Have an account? <Link to='/login' className='login__redirect'>Log in </Link></p>
