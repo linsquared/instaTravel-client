@@ -19,14 +19,17 @@ html {
 }
 
 body {
-    // font-family: 'Avenir Next', Arial, Helvetica, sans-serif;
-    // color: $primary-blk;
-    overflow-x: hidden;
-    width: 400px;
-    height: 100vh;
-    border: .2rem solid black;
-    border-radius: 8px;
     margin: 0 auto;
+    background-image: url("../assets/images/iphone.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 38rem;
+    height: 85.1rem;
+    // overflow: auto;
+    padding-top: 6rem;
+    position: relative;
+    font-family: Helvetica, sans-serif;
 }
 
 li {
@@ -35,11 +38,9 @@ li {
 }
 
 button {
-    // background-color: $primary-blue;
     border-radius: 4px;
     border: none;
     height: 4rem;
-    // color: $primary-wht;
     font-size: 1.2rem;
     text-transform: uppercase;
     cursor: pointer;
@@ -64,11 +65,13 @@ a {
 
 input,
 textarea {
-    // background-color: $second-wht;
-    // color: $primary-blk;
+    background-color: $background-gray;
     border-radius: 4px;
-    // border: 1px solid $second-sil;
-    // font-family: 'Avenir Next', Arial, Helvetica, sans-serif;
+    border: 1px solid rgb(235, 235, 235);
+    font-family: Helvetica, sans-serif;
+    height: 4rem;
+    text-indent: 1rem;
+
 
     // &:focus {
     //     border: 1px solid $primary-blue;
@@ -79,11 +82,10 @@ textarea {
     }
 }
 
-// ::placeholder {
-//     // color: $primary-blk;
-//     // font-family: 'Avenir Next', Arial, Helvetica, sans-serif;
-
-// }
+::placeholder {
+    color: $label-gray;
+    font-family: Helvetica, sans-serif;
+}
 
 label {
     text-transform: uppercase;

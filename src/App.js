@@ -1,5 +1,6 @@
 // core stuff
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
 
 // components, pages, styles
 import './App.scss';
@@ -13,12 +14,36 @@ import AddDayInfo from './components/AddDayInfo/AddDayInfo';
 import Activity from './components/Activity/Activity';
 
 function App() {
+  // set err state
+  const [error, setError] = useState('')
+
+  // setting success state
+  const [success, setSuccess] = useState(false)
+
+  // err message
+  const [errMsg, setErrMsg] = useState(false)
+
+
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/register' element={<Signup />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Signup
+          errMsg={errMsg}
+          setErrMsg={setErrMsg}
+          error={error}
+          setError={setError}
+          success={success}
+          setSuccess={setSuccess} />} />
+        <Route path='/login' element={<Login
+          errMsg={errMsg}
+          setErrMsg={setErrMsg}
+          error={error}
+          setError={setError}
+          success={success}
+          setSuccess={setSuccess} />} />
+
         {/* TEMP ROUTE */}
         <Route path='add' element={<AddItinerary />} />
         <Route path='day' element={<AddDayInfo />} />

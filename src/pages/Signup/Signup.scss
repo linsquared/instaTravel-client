@@ -1,0 +1,50 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.signup {
+    position: relative;
+    height: 78rem;
+
+    &__logo-wrapper {
+        display: flex;
+        justify-content: center;
+        padding-top: 12rem;
+        position: relative;
+    }
+
+    &__catch {
+        margin-top: 3.5rem;
+        color: $label-gray;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    &__form {
+        padding-left: 2rem;
+        margin-top: 2rem;
+    }
+
+    &__legal {
+        color: $word-grey;
+        font-size: 1.4rem;
+        font-weight: 400;
+        text-align: center;
+        width: 33rem;
+        margin-top: 3rem;
+    }
+
+    &__btn-wrapper {
+        margin-top: 3rem;
+    }
+
+    &__footer {
+        text-align: center;
+        color: $label-gray;
+        font-size: 1.2rem;
+        margin: 7rem 1rem 0;
+        font-weight: 500;
+        border-top: 1px solid rgb(235, 235, 235);
+        padding-top: 4.5rem;
+        color: $word-grey;
+    }
+}

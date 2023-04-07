@@ -1,5 +1,7 @@
-// import style
+// import style, imgs
 import './Login.scss'
+import close from '../../assets/icons/close.png'
+import nosee from '../../assets/icons/cant_see.png'
 
 // import core stuff
 import { useState } from 'react';
@@ -12,7 +14,7 @@ import FormLabel from '../../components/FormLabel/FormInput/FormLabel'
 import Buttons from '../../components/Buttons/Buttons';
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
     const [loginInfo, setLoginInfo] = useState({
         username: '',
         password: ''
@@ -31,42 +33,65 @@ const Login = () => {
     // navigate
     const navigate = useNavigate()
 
+    // form validation 
+    const validLogin = () => {
+        if (!loginInfo.username ||
+            !loginInfo.password) {
+            setErrMsg(true)
+            return false
+        } return true
+    }
+
     // post the login info
     const loginSubmission = (e) => {
-        e.preventDefault()
-        axios.post('http://localhost:8080/users/login', loginInfo)
-            .then(res => {
-                setLoginRes(res.data);
-                sessionStorage.setItem("token", res.data.token);
-                navigate('/')
-            })
-            .catch(err => {
-                setLoginRes(err.response)
-            })
+        if (validLogin()) {
+            e.preventDefault()
+            axios.post('http://localhost:8080/users/login', loginInfo)
+                .then(res => {
+                    setLoginRes(res.data);
+                    sessionStorage.setItem("token", res.data.token);
+                    setSuccess(true)
+                    setError('')
+                    e.target.reset()
+                    navigate('/')
+                })
+                .catch(err => {
+                    setLoginRes(err.response)
+                    setSuccess(false)
+                    setError(err.response.data)
 
+                })
+        } else {
+            console.log('please fill out all required field')
+        }
+    }
+
+    const backHome = () => {
+        navigate('/')
     }
 
     return (
-        <main>
-            <div className="login">
-                <img src={logo} alt='logo icon' />
+        <main className='login'>
+            <img onClick={backHome} src={close} alt='close icon' className='login__close' />
+            <div className="login__logo-wrapper">
+                <img className='login__logo' src={logo} alt='logo icon' />
             </div>
             {loginRes && <p>{loginRes}</p>}
 
-            <form onSubmit={loginSubmission}>
-                <div>
-                    <FormLabel forfield={'username'} text={''} />
+            <form onSubmit={loginSubmission} className='login__form'>
+                <div className='login__user-wrapper'>
+                    <img src={nosee} alt='cant see password icon' className='login__nosee' />
                     <FormInput
+                        className="login__user"
                         name={'username'}
                         type={'text'}
-                        placeholder={'username'}
+                        placeholder={'Username'}
                         value={loginInfo.username}
                         onchange={userLogin} />
                 </div>
 
 
-                <div>
-                    <FormLabel forfield={'password'} text={''} />
+                <div className='login__password'>
                     <FormInput
                         name={'password'}
                         type={'password'}
@@ -74,10 +99,14 @@ const Login = () => {
                         value={loginInfo.password}
                         onchange={userLogin} />
                 </div>
-                <Buttons type={'submit'} value={'Login'} />
+                {/* error message */}
+                {errMsg && <p className='login__errMsg'>Please fill out all required fields</p>}
+                <div className='login__btn-wrapper'><Buttons type={'submit'} value={'Login'} /></div>
+                {error && <div>{error}</div>}
 
             </form>
-            <p>Need an account? <Link to='/signup'>Sign Up</Link></p>
+
+            <p className='login__footer'>Don't have an account? <Link to='/register' className='login__redirect'>Sign Up.</Link></p>
 
         </main>
     )

@@ -1,9 +1,11 @@
-// stylesheet
-import './Signup.scss'
+// stylesheet, img
+import './Signup.scss';
+import close from '../../assets/icons/close.png';
+
 // core stuff
 import { useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // components and pages
 import logo from '../../assets/logo/logo.png';
@@ -11,15 +13,15 @@ import FormLabel from '../../components/FormLabel/FormInput/FormLabel';
 import FormInput from '../../components/FormInput/FormInput';
 import Buttons from '../../components/Buttons/Buttons';
 
-const Signup = () => {
+const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => {
+    // set err state
+    // const [error, setError] = useState('')
 
-    const [error, setError] = useState('')
+    // // setting success state
+    // const [success, setSuccess] = useState(false)
 
-    // setting success state
-    const [success, setSuccess] = useState(false)
-
-    // err message
-    const [errMsg, setErrMsg] = useState(false)
+    // // err message
+    // const [errMsg, setErrMsg] = useState(false)
 
     // setting form state
     const [userInfo, setUserInfo] = useState({
@@ -69,14 +71,21 @@ const Signup = () => {
 
     }
 
-    return (
-        <>
-            <div className="login">
-                <img src={logo} alt='logo icon' />
-            </div>
+    const navigate = useNavigate()
 
-            <form onSubmit={signupRequest}>
-                <h2>Signup to find your next itinerary</h2>
+    const backHome = () => {
+        navigate('/')
+    }
+
+    return (
+        <main className='signup'>
+            <img onClick={backHome} src={close} alt='close icon' className='login__close' />
+            <div className="signup__logo-wrapper">
+                <img className='login__logo' src={logo} alt='logo icon' />
+            </div>
+            <h2 className='signup__catch'>Signup to find your next itinerary</h2>
+
+            <form onSubmit={signupRequest} className='signup__form'>
 
                 <div>
                     <FormLabel forfield={'email'} text={''} />
@@ -118,16 +127,23 @@ const Signup = () => {
                         value={userInfo.password}
                         onchange={registerUser} />
                 </div>
-                <h6>By signing up, you agree to our Terms , Privacy Policy and Cookies Policy.</h6>
-                {errMsg && <p>Please fill out all required fields</p>}
-                <Buttons type={'submit'} value={'Sign up'} />
+                {errMsg && <p className='login__errMsg'>Please fill out all required fields</p>}
+
+
+                <h6 className='signup__legal'>By signing up, you agree to our Terms , Privacy Policy and Cookies Policy.</h6>
+
+
+                <div className='signup__btn-wrapper'>
+                    <Buttons type={'submit'} value={'Sign up'} />
+                </div>
+
                 {/* need to navigate to user homepage if signed up  */}
                 {success && <div>Signed Up!</div>}
                 {error && <div>{error}</div>}
 
             </form>
-            <p>Have an account? <Link to='/login'>Log in </Link></p>
-        </>
+            <p className='signup__footer'>Have an account? <Link to='/login' className='login__redirect'>Log in </Link></p>
+        </main>
     )
 }
 
