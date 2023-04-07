@@ -1,1 +1,8 @@
 @use '../../styles/global.scss' as *;
+
+.eachday {
+
+    &__hide {
+        display: none;
+    }
+}

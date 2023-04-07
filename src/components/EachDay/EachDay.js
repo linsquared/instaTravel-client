@@ -14,17 +14,22 @@ const EachDay = ({ dayValue }) => {
 
     const [activityList, setActivityList] = useState([])
 
-    const addActivity = (e) => {
-        console.log('clicked')
+    const addActivity = (e, activity) => {
         e.preventDefault()
-        setActivityList([...activityList, <Activity key={activityList.length} />])
+        // setActivityList([...activityList, <Activity key={activityList.length} />])
+        setActivityList([...activityList, activity])
+        const clickedBtn = e.target
+        clickedBtn.classList.add('eachday__hide')
     }
 
+
+    console.log(activityList)
 
     return (
         <>
             <h2> On day {dayValue} </h2>
             {activityList.map((eachActivity, index) => {
+
                 return (
                     <Activity
                         key={index}
@@ -33,7 +38,7 @@ const EachDay = ({ dayValue }) => {
                         addActivity={addActivity} />
                 )
             })}
-            <Buttons value={'Add Activity'} btnfunc={addActivity} />
+            <Buttons value={'Add Activity'} btnfunc={(e) => addActivity(e)} />
         </>
 
     )

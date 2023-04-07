@@ -8,6 +8,7 @@ import FormLabel from '../FormLabel/FormInput/FormLabel'
 import Buttons from '../Buttons/Buttons'
 
 const Activity = ({ activityList, setActivityList, addActivity }) => {
+    // each activity set state
     const [activity, setActivity] = useState({
         activity_name: '',
         activity_type: '',
@@ -23,17 +24,17 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
         }))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        addActivity(activity)
-        setActivity({
-            activity_name: '',
-            activity_type: '',
-            cost: '',
-            activity_description: '',
-            activity_image: '',
-        })
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     addActivity(activity)
+    //     setActivity({
+    //         activity_name: '',
+    //         activity_type: '',
+    //         cost: '',
+    //         activity_description: '',
+    //         activity_image: '',
+    //     })
+    // }
 
     return (
         <form>
@@ -106,7 +107,7 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
                             <Buttons value={upload} />
                             </div> */}
 
-            <Buttons value={'Add Activity'} btnfunc={addActivity} />
+            <Buttons value={'Add Activity'} btnfunc={(e) => addActivity(e, activity)} />
         </form>
 
     )
