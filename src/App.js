@@ -29,25 +29,22 @@ function App() {
   const [allItineraries, setAllItineraries] = useState([])
 
   // highest rated
-  const [highestRated, setHighestRated] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:8080/itineraries')
       .then(res => {
         setAllItineraries(res.data)
-        setHighestRated(res.data.filter(city => city.ratings > 4.5))
       })
       .catch(err => console.log(err))
   }, [])
 
 
 
-  console.log(highestRated)
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home highestRated={highestRated} />} />
+        <Route path='/' element={<Home allItineraries={allItineraries} />} />
         <Route path='/register' element={<Signup
           errMsg={errMsg}
           setErrMsg={setErrMsg}
@@ -68,6 +65,7 @@ function App() {
         <Route path='day' element={<AddDayInfo />} />
         <Route path='activity' element={<Activity />} />
         <Route path='head' element={<Header />} />
+
 
 
 

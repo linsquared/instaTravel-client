@@ -8,7 +8,7 @@ import Header from '../../components/Header/Header';
 import pin from '../../assets/icons/pin.png';
 import GuestHome from '../../components/GuestHome/GuestHome'
 
-const Home = ({ highestRated }) => {
+const Home = ({ allItineraries }) => {
     // set states
     const [user, setUser] = useState('')
     const [failedAuth, setFailedAuth] = useState(false)
@@ -50,7 +50,7 @@ const Home = ({ highestRated }) => {
             <main className="home">
                 <Header value={'Log in'} />
                 {/* // possibly an icon of the person who logged in */}
-                <GuestHome highestRated={highestRated} />
+                <GuestHome allItineraries={allItineraries} />
             </main>
         )
     }
