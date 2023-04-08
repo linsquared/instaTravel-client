@@ -53,6 +53,7 @@ function App() {
           setError={setError}
           success={success}
           setSuccess={setSuccess} />} />
+
         <Route path='/login' element={<Login
           errMsg={errMsg}
           setErrMsg={setErrMsg}
@@ -61,12 +62,14 @@ function App() {
           success={success}
           setSuccess={setSuccess} />} />
 
+        <Route path='city' element={<CityResults allItineraries={allItineraries} />} />
+
+
         {/* TEMP ROUTE */}
         <Route path='add' element={<AddItinerary />} />
         <Route path='day' element={<AddDayInfo />} />
         <Route path='activity' element={<Activity />} />
         <Route path='head' element={<Header />} />
-        <Route path='city' element={<CityResults />} />
 
 
 

@@ -10,4 +10,121 @@
     background-color: $background-gray;
     border-radius: 3.5rem;
 
+    &__results {
+        overflow-x: scroll;
+        height: 55rem;
+    }
+
+    &__card {
+        width: 28rem;
+        padding-top: 2rem;
+        border-radius: 1rem;
+        position: relative;
+        height: 20rem;
+
+        &-wrapper {
+            margin: 2rem auto;
+            width: 31.5rem;
+            background-color: white;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            height: 31rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+        }
+    }
+
+    &__total {
+        margin-left: 3rem;
+        color: $blue;
+        margin-bottom: 1rem;
+    }
+
+    &__img {
+        width: 100%;
+        height: 20rem;
+        background-position: center;
+        background-size: cover;
+        border-radius: 1rem;
+        // box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)
+    }
+
+    &__heart {
+        width: 3.5rem;
+        position: absolute;
+        top: 3.5rem;
+        right: 1.5rem;
+    }
+
+    &__pin {
+        width: 1.8rem;
+    }
+
+    &__location-info {
+        padding-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__city,
+    &__money {
+        font-size: 1.4rem;
+        color: $word-grey;
+    }
+
+    &__location {
+        display: flex;
+        align-items: center;
+    }
+
+    &__city {
+        margin-left: .5rem;
+    }
+
+    &__money {
+        letter-spacing: 1.5px;
+        margin-right: .5rem;
+        font-weight: 600;
+    }
+
+    &__user {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &__user-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+        align-items: center;
+    }
+
+    &__icon-wrapper {
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        background-color: grey;
+    }
+
+    &__user-img {
+        border-radius: 50%;
+    }
+
+    &__username,
+    &__rating {
+        font-size: 1.5rem;
+    }
+
+    &__rating-info {
+        display: flex;
+        align-items: flex-end;
+        gap: .2rem;
+        margin-right: .5rem;
+    }
+
+    &__star {
+        width: 1.8rem;
+    }
 }

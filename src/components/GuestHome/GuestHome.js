@@ -49,7 +49,6 @@ const GuestHome = ({ allItineraries }) => {
     // state to track the duration 
     const [selectedDuration, setSelectedDuration] = useState('');
 
-    console.log(searchInput);
 
     return (
 

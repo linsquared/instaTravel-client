@@ -13,7 +13,7 @@ const SearchBar = ({ searchInput, searchHandle }) => {
 
     // func to send search result to result page 
     const sendResults = () => {
-        console.log('liifa');
+        navigate('/city', { state: { searchInput } })
     }
 
     return (
@@ -25,7 +25,7 @@ const SearchBar = ({ searchInput, searchHandle }) => {
                 value={searchInput}
                 placeholder={'Search destination...'}
                 onchange={searchHandle} />
-            <img src={search} onSubmit={sendResults} alt='search icon' className='search__icon' />
+            <img src={search} onClick={sendResults} alt='search icon' className='search__icon' />
         </div>
 
     )
