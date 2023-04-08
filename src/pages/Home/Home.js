@@ -49,6 +49,7 @@ const Home = ({ allItineraries }) => {
         return (
             <main className="home">
                 <Header value={'Log in'} />
+
                 {/* // possibly an icon of the person who logged in */}
                 <GuestHome allItineraries={allItineraries} />
             </main>

@@ -13,36 +13,4 @@
     border-top-left-radius: 3.5rem;
     border-top-right-radius: 3.5rem;
 
-    &__nav {
-        height: 10rem;
-        padding: 0 2rem;
-        margin-top: 3rem;
-    }
-
-    &__list {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    &__logo {
-        width: 12rem;
-    }
-
-    &__user {
-        width: 3rem;
-    }
-
-    &__right {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    &__log {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: black;
-        cursor: pointer;
-    }
 }

@@ -14,6 +14,7 @@ import AddBasicInfo from './components/AddBasicInfo/AddBasicInfo';
 import AddDayInfo from './components/AddDayInfo/AddDayInfo';
 import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
+import CityResults from './pages/CityResults/CityResults';
 
 function App() {
   // set err state
@@ -65,6 +66,8 @@ function App() {
         <Route path='day' element={<AddDayInfo />} />
         <Route path='activity' element={<Activity />} />
         <Route path='head' element={<Header />} />
+        <Route path='city' element={<CityResults />} />
+
 
 
 

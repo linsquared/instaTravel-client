@@ -30,20 +30,20 @@
         text-transform: uppercase;
     }
 
-    &__search-wrapper {
-        width: 34rem;
-        padding: 1.5rem 3rem;
-        text-align: center;
-        margin: 0 auto;
-        position: relative;
-    }
+    // &__search-wrapper {
+    //     width: 34rem;
+    //     padding: 1.5rem 3rem;
+    //     text-align: center;
+    //     margin: 0 auto;
+    //     position: relative;
+    // }
 
-    &__search {
-        width: 2.5rem;
-        position: absolute;
-        right: 4rem;
-        top: 2.8rem;
-    }
+    // &__search {
+    //     width: 2.5rem;
+    //     position: absolute;
+    //     right: 4rem;
+    //     top: 2.8rem;
+    // }
 
     &__input {
         border-radius: 50%;
@@ -157,11 +157,11 @@
     }
 
     &__dropdown {
-        background-color: rgba(149, 206, 249, 0.925);
+        background-color: rgb(149, 206, 249);
         width: 27.8rem;
         height: 19rem;
         margin-left: 4rem;
-        border-radius: 1rem;
+        // border-radius: 1rem;
         z-index: 5;
         position: absolute;
         margin-top: 2rem;

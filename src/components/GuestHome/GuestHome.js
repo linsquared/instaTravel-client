@@ -3,26 +3,17 @@ import { useState } from 'react'
 
 // styles, pages, components
 import './GuestHome.scss'
-import OtherFormIn from '../OtherFormIn/OtherFormIn'
-import search from '../../assets/icons/isearch.png'
 import sun from '../../assets/icons/sun.png'
 import money from '../../assets/icons/money.png'
 import emptyHeart from '../../assets/icons/emptyHeart.png'
 import pin from '../../assets/icons/pin.png'
 import Buttons from '../Buttons/Buttons'
 import dollar from '../../assets/icons/dollar.png'
+import SearchBar from '../SearchBar/SearchBar'
 
 
 
 const GuestHome = ({ allItineraries }) => {
-    // searchbar
-    const [searchInput, setSearchInput] = useState('')
-
-    // form control 
-    const searchHandle = (e) => {
-        setSearchInput(e.target.value)
-    }
-
     // open filter state 
     const [openFilter, setOpenFilter] = useState(false)
 
@@ -45,22 +36,19 @@ const GuestHome = ({ allItineraries }) => {
     //     setFilterOptions({ ...filterOptions, [name]: value })
     // }
 
+    // state to track the dollar signs
+    const [selectedDollarOption, setSelectedDollarOption] = useState('');
+
+    // state to track the duration 
+    const [selectedDuration, setSelectedDuration] = useState('');
+
     return (
 
         <section className="guestHome__tab">
             <div className="guestHome__title-wrapper">
                 <h1 className='guestHome__title'>Trip</h1>
             </div>
-
-            <div className="guestHome__search-wrapper">
-                <OtherFormIn
-                    name={'searchInput'}
-                    type={'text'}
-                    value={searchInput}
-                    placeholder={'Search destination...'}
-                    onchange={searchHandle} />
-                <img src={search} alt='search icon' className='guestHome__search' />
-            </div>
+            <SearchBar />
 
             <div className='guestHome__filters'>
                 <div className='guestHome__criteria guestHome__criteria--budget' onClick={openOptions}>
@@ -76,34 +64,35 @@ const GuestHome = ({ allItineraries }) => {
             <section className='guestHome__dropdown' style={{ display: openFilter ? 'block' : 'none' }}>
                 <ul className='guestHome__dollar-list'>
                     <li className='guestHome__items guestHome__items-one'>
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
+                        <img className='guestHome__dollar' src={dollar} alt='$' onClick={() => setSelectedDollarOption('$')} />
                     </li>
 
                     <li className='guestHome__items guestHome__items-two'>
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
+                        <img className='guestHome__dollar' src={dollar} alt='$$' onClick={() => setSelectedDollarOption('$$')} />
+                        <img className='guestHome__dollar' src={dollar} alt='$$' onClick={() => setSelectedDollarOption('$$')} />
                     </li>
 
                     <li className='guestHome__items guestHome__items-tre'>
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
+                        <img className='guestHome__dollar' src={dollar} alt='$$$' onClick={() => setSelectedDollarOption('$$$')} />
+                        <img className='guestHome__dollar' src={dollar} alt='$$$' onClick={() => setSelectedDollarOption('$$$')} />
+                        <img className='guestHome__dollar' src={dollar} alt='$$$' onClick={() => setSelectedDollarOption('$$$')} />
 
                     </li>
 
                     <li className='guestHome__items guestHome__items-four'>
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
-                        <img className='guestHome__dollar' src={dollar} alt='dollar icon' />
+                        <img className='guestHome__dollar' src={dollar} alt='$$$$' onClick={() => setSelectedDollarOption('$$$$')} />
+                        <img className='guestHome__dollar' src={dollar} alt='$$$$' onClick={() => setSelectedDollarOption('$$$$')} />
+                        <img className='guestHome__dollar' src={dollar} alt='$$$$' onClick={() => setSelectedDollarOption('$$$$')} />
+                        <img className='guestHome__dollar' src={dollar} alt='$$$$' onClick={() => setSelectedDollarOption('$$$$')} />
                     </li>
 
                 </ul>
+
                 <ul className='guestHome__duration-list'>
-                    <li className='guestHome__day-item'>1-3D</li>
-                    <li className='guestHome__day-item'>4-6D</li>
-                    <li className='guestHome__day-item'>7-10D</li>
-                    <li className='guestHome__day-item'>10+D</li>
+                    <li className='guestHome__day-item' onClick={() => setSelectedDuration(1)} >1-3D</li>
+                    <li className='guestHome__day-item' onClick={() => setSelectedDuration(4)}>4-6D</li>
+                    <li className='guestHome__day-item' onClick={() => setSelectedDuration(7)}>7-10D</li>
+                    <li className='guestHome__day-item' onClick={() => setSelectedDuration(11)}>10+D</li>
 
                 </ul>
                 <div className='guestHome__btn-wrapper'>
@@ -114,11 +103,11 @@ const GuestHome = ({ allItineraries }) => {
             <h3 className='guestHome__subtitle'>Recommended</h3>
 
             <div className='guestHome__recom'>
-                {highestRated.map(item => {
+                {highestRated.map((item, i) => {
 
                     return (
                         <>
-                            <div className='guestHome__card-wrapper'>
+                            <div className='guestHome__card-wrapper' key={i}>
                                 <div className='guestHome__card'>
                                     <img src={item.city_img} alt='vacation image' className='guestHome__img' />
                                     <img src={emptyHeart} alt='empty heart icon' className='guestHome__heart' />
