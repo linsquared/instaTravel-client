@@ -31,7 +31,6 @@ const GuestHome = ({ allItineraries }) => {
         setOpenFilter(!openFilter)
     }
 
-    console.log(openFilter)
 
     const highestRated = allItineraries.filter(item => item.ratings > 4.5)
 
