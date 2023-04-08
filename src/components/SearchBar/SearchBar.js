@@ -1,5 +1,5 @@
 // core stuff 
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 // pages, componetn stye
 import './SearchBar.scss'
@@ -8,14 +8,12 @@ import search from '../../assets/icons/isearch.png'
 
 
 
-const SearchBar = () => {
+const SearchBar = ({ searchInput, searchHandle }) => {
+    const navigate = useNavigate()
 
-    // searchbar
-    const [searchInput, setSearchInput] = useState('')
-
-    // form control 
-    const searchHandle = (e) => {
-        setSearchInput(e.target.value)
+    // func to send search result to result page 
+    const sendResults = () => {
+        console.log('liifa');
     }
 
     return (
@@ -27,7 +25,7 @@ const SearchBar = () => {
                 value={searchInput}
                 placeholder={'Search destination...'}
                 onchange={searchHandle} />
-            <img src={search} alt='search icon' className='search__icon' />
+            <img src={search} onSubmit={sendResults} alt='search icon' className='search__icon' />
         </div>
 
     )

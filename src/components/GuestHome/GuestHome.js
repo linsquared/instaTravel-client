@@ -14,6 +14,14 @@ import SearchBar from '../SearchBar/SearchBar'
 
 
 const GuestHome = ({ allItineraries }) => {
+    // searchbar
+    const [searchInput, setSearchInput] = useState('')
+
+    // form control 
+    const searchHandle = (e) => {
+        setSearchInput(e.target.value)
+    }
+
     // open filter state 
     const [openFilter, setOpenFilter] = useState(false)
 
@@ -21,7 +29,6 @@ const GuestHome = ({ allItineraries }) => {
     const openOptions = () => {
         setOpenFilter(!openFilter)
     }
-
 
     const highestRated = allItineraries.filter(item => item.ratings > 4.5)
 
@@ -42,13 +49,15 @@ const GuestHome = ({ allItineraries }) => {
     // state to track the duration 
     const [selectedDuration, setSelectedDuration] = useState('');
 
+    console.log(searchInput);
+
     return (
 
         <section className="guestHome__tab">
             <div className="guestHome__title-wrapper">
                 <h1 className='guestHome__title'>Trip</h1>
             </div>
-            <SearchBar />
+            <SearchBar searchInput={searchInput} searchHandle={searchHandle} setSearchInput={setSearchInput} />
 
             <div className='guestHome__filters'>
                 <div className='guestHome__criteria guestHome__criteria--budget' onClick={openOptions}>
