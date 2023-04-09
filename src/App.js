@@ -37,9 +37,18 @@ function App() {
   // searchbar
   const [searchInput, setSearchInput] = useState('')
 
-  // form control 
+  // user searchbar
+  const [searchUser, setSearchUser] = useState('')
+
+  // searchbar form control 
   const searchHandle = (e) => {
     setSearchInput(e.target.value)
+  }
+
+  // usersearch form control
+  const searchUserHandle = (e) => {
+    setSearchUser(e.target.value)
+    console.log(searchUser)
   }
 
   useEffect(() => {
@@ -67,7 +76,10 @@ function App() {
           searchInput={searchInput}
           setSearchInput={setSearchInput}
           searchHandle={searchHandle}
-          allUsers={allUsers} />} />
+          allUsers={allUsers}
+          searchUser={searchUser}
+          setSearchUser={setSearchUser}
+          searchUserHandle={searchUserHandle} />} />
 
         <Route path='/register' element={<Signup
           errMsg={errMsg}

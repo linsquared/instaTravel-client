@@ -13,7 +13,7 @@ import SearchBar from '../SearchBar/SearchBar'
 
 
 
-const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, setUsersTab, tripsTab, setTripsTab }) => {
+const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, tripsTab }) => {
 
     // open filter state 
     const [openFilter, setOpenFilter] = useState(false)
@@ -47,9 +47,9 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
         <section className="guestHome__tab">
 
             <div className='guestHome__show' style={{ display: tripsTab ? 'block' : 'none' }}>
-                <SearchBar searchInput={searchInput}
-                    searchHandle={searchHandle}
-                    setSearchInput={setSearchInput} />
+                <SearchBar
+                    searchInput={searchInput}
+                    searchHandle={searchHandle} />
 
                 <div className='guestHome__filters'>
                     <div className='guestHome__criteria guestHome__criteria--budget' onClick={openOptions}>

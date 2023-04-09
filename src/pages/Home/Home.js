@@ -9,7 +9,7 @@ import pin from '../../assets/icons/pin.png';
 import GuestHome from '../../components/GuestHome/GuestHome'
 import UserTab from '../../components/UserTab/UserTab';
 
-const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUsers }) => {
+const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUsers, searchUser, setSearchUser, searchUserHandle }) => {
     // set states
     const [user, setUser] = useState('')
     const [failedAuth, setFailedAuth] = useState(false)
@@ -44,20 +44,18 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
         setFailedAuth(true);
     };
 
+    // set two tabs on homepage
     const [tripsTab, setTripsTab] = useState(true)
     const [usersTab, setUsersTab] = useState(false)
 
     // two tab click function
     const tripTabClicked = () => {
-        console.log('clicked')
         setUsersTab(false)
         setTripsTab(true)
     }
     const userTabClick = () => {
         setTripsTab(false)
         setUsersTab(true)
-        console.log('clicked')
-
     }
 
     // redirect to log in
@@ -80,15 +78,14 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
                     setSearchInput={setSearchInput}
                     searchInput={searchInput}
                     searchHandle={searchHandle}
-                    setTripsTab={setTripsTab}
-                    tripsTab={tripsTab}
-                    setUsersTab={setUsersTab} />
+                    tripsTab={tripsTab} />
 
 
                 <UserTab allUsers={allUsers}
-                    setTripsTab={setTripsTab}
                     usersTab={usersTab}
-                    setUsersTab={setUsersTab} />
+                    searchUser={searchUser}
+                    setSearchUser={setSearchUser}
+                    searchUserHandle={searchUserHandle} />
 
 
             </main>

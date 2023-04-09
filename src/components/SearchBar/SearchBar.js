@@ -8,7 +8,7 @@ import search from '../../assets/icons/isearch.png'
 
 
 
-const SearchBar = ({ searchInput, searchHandle, setSearchInput }) => {
+const SearchBar = ({ searchInput, searchHandle }) => {
 
     const navigate = useNavigate()
 

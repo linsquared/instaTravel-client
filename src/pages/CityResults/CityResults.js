@@ -50,9 +50,9 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
             </div>
             <section className='cityR__results'>
 
-                {searchResults.map(result => {
+                {searchResults.map((result, i) => {
                     return (
-                        <div className='cityR__card-wrapper' >
+                        <div className='cityR__card-wrapper' key={i}>
                             <div className='cityR__card'>
                                 <img src={result.city_img} alt='vacation image' className='cityR__img' />
                                 <img src={unlikeHeart} alt='empty heart icon' className='cityR__heart' />
