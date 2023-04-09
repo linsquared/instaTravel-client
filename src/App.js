@@ -15,6 +15,7 @@ import AddDayInfo from './components/AddDayInfo/AddDayInfo';
 import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
 import CityResults from './pages/CityResults/CityResults';
+import UserTab from './components/UserTab/UserTab';
 
 function App() {
   // set err state
@@ -29,7 +30,17 @@ function App() {
   // all itineraries
   const [allItineraries, setAllItineraries] = useState([])
 
-  // highest rated
+  // all users
+  const [allUsers, setAllUsers] = useState([])
+
+
+  // searchbar
+  const [searchInput, setSearchInput] = useState('')
+
+  // form control 
+  const searchHandle = (e) => {
+    setSearchInput(e.target.value)
+  }
 
   useEffect(() => {
     axios.get('http://localhost:8080/itineraries')
@@ -39,13 +50,25 @@ function App() {
       .catch(err => console.log(err))
   }, [])
 
-
+  useEffect(() => {
+    axios.get('http://localhost:8080/users')
+      .then(res => {
+        setAllUsers(res.data)
+      })
+      .catch(err => console.log(err))
+  }, [])
 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home allItineraries={allItineraries} />} />
+        <Route path='/' element={<Home
+          allItineraries={allItineraries}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          searchHandle={searchHandle}
+          allUsers={allUsers} />} />
+
         <Route path='/register' element={<Signup
           errMsg={errMsg}
           setErrMsg={setErrMsg}
@@ -62,7 +85,14 @@ function App() {
           success={success}
           setSuccess={setSuccess} />} />
 
-        <Route path='city' element={<CityResults allItineraries={allItineraries} />} />
+        <Route path='city' element={<CityResults
+          allItineraries={allItineraries}
+          searchInput={searchInput}
+          setSearchInput={setSearchInput}
+          searchHandle={searchHandle} />} />
+
+        <Route path='users' element={<UserTab />} />
+
 
 
         {/* TEMP ROUTE */}

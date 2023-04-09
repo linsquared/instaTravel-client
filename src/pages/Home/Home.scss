@@ -9,4 +9,31 @@
     margin-left: .5rem;
     border-bottom-left-radius: 3.5rem;
     border-bottom-right-radius: 3.5rem;
+
+    &__tabs {
+        padding-top: 24rem;
+        display: flex;
+        border: 1px solid black;
+    }
+
+    &__title-wrapper {
+        width: 18.4rem;
+        height: 5rem;
+        position: absolute;
+        background-color: $white;
+        border-top-right-radius: 2rem;
+        border-top-left-radius: 2rem;
+    }
+
+    &__title {
+        color: $blue;
+        text-align: center;
+        padding-top: 2rem;
+        font-size: 2rem;
+        text-transform: uppercase;
+    }
+
+    &__userTab {
+        right: .5rem;
+    }
 }

@@ -19,7 +19,7 @@ const Nav = ({ value, func }) => {
         <nav className='nav'>
             <ul className='nav__list'>
                 <li className='nav__nav-item'>
-                    <img src={logo} alt='logo' className='nav__logo' />
+                    <Link to={'/'}><img src={logo} alt='logo' className='nav__logo' /></Link>
                 </li>
                 <li className='nav__nav-item'>
                     <div className='nav__right'>
