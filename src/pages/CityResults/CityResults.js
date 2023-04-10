@@ -1,6 +1,7 @@
 // core stuff 
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import axios from 'axios'
 
 // pages, styles, components
 import Nav from '../../components/Nav/Nav'
@@ -28,6 +29,22 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
     // click to drop down sort options
     const sortHandle = () => {
         setOpenSort(!openSort)
+    }
+
+    const itineraryId = useParams
+    const navigate = useNavigate()
+    // onclick func for each card 
+    const sendItinerary = (e, itinerary) => {
+        let detailItinerary;
+        axios.get(`http://localhost:8080/itineraries/id/${itinerary.itinerary_id}`)
+            .then(res => {
+                console.log(res.data)
+                detailItinerary = res.data
+                navigate(`/itinerary/:${itineraryId}`, { state: { itinerary, detailItinerary } })
+
+            })
+            .catch(err => console.log(err))
+
     }
 
     // unpack duration and budget selections from previous page
@@ -170,7 +187,8 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
                             ratings={result.ratings}
                             icon={result.user_icon}
                             city={result.city}
-                            budget={result.budget} />
+                            budget={result.budget}
+                            clickFunc={(e) => sendItinerary(e, result)} />
                     )
                 })
                 }

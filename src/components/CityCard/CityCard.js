@@ -5,9 +5,9 @@ import locationPin from '../../assets/icons/location.png'
 
 
 
-const CityCard = ({ img, username, ratings, icon, city, budget }) => {
+const CityCard = ({ img, username, ratings, icon, city, budget, clickFunc }) => {
     return (
-        <div className='citycard__card-wrapper'>
+        <div className='citycard__card-wrapper' onClick={clickFunc}>
             <div className='citycard__card'>
                 <img src={img} alt='vacation image' className='citycard__img' />
                 <img src={unlikeHeart} alt='empty heart icon' className='citycard__heart' />

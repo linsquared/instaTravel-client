@@ -114,8 +114,7 @@ function App() {
           setUserId={setUserId}
           allUsers={allUsers} />} />
 
-        <Route path='itinerary' element={<Itinerary />} />
-
+        <Route path='/itinerary/:itineraryId' element={<Itinerary />} />
 
         {/* TEMP ROUTE */}
         <Route path='add' element={<AddItinerary />} />
