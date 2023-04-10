@@ -7,7 +7,7 @@
     &__tab {
         position: absolute;
         top: 35rem;
-        padding: .6rem;
+        padding: 0 .6rem .6rem .6rem;
         width: 37rem;
     }
 
@@ -37,11 +37,25 @@
         &:hover {
             background-color: rgb(218, 240, 248);
         }
+
+        &--duration {
+            background-color: $blue;
+            border: none;
+
+            &:hover {
+                background-color: rgb(79, 176, 250);
+
+            }
+        }
     }
 
     &__text {
         font-size: 1.5rem;
         text-align: right;
+
+        &-duration {
+            color: white;
+        }
     }
 
     &__icons {

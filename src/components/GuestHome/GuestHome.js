@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 // styles, pages, components
 import './GuestHome.scss'
-import sun from '../../assets/icons/sun.png'
+import sun from '../../assets/icons/whiteSun.png'
 import money from '../../assets/icons/money.png'
 import emptyHeart from '../../assets/icons/emptyHeart.png'
 import pin from '../../assets/icons/pin.png'
@@ -24,17 +24,6 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
     }
 
     const highestRated = allItineraries.filter(item => item.ratings > 4.5)
-
-    // const [filterOptions, setFilterOptions] = useState({
-    //     budget: '$',
-    //     duration: ''
-    // })
-
-    // // form control
-    // const filterHandle = (e) => {
-    //     const { name, value } = e.target
-    //     setFilterOptions({ ...filterOptions, [name]: value })
-    // }
 
     // state to track the dollar signs
     const [selectedDollarOption, setSelectedDollarOption] = useState('');
@@ -58,7 +47,7 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
                     </div>
                     <div className='guestHome__criteria guestHome__criteria--duration' onClick={openOptions}>
                         <img src={sun} alt='sun icon' className='guestHome__icons' />
-                        <h5 className='guestHome__text' >Duration</h5>
+                        <h5 className='guestHome__text guestHome__text-duration' >Duration</h5>
                     </div>
                 </div>
 

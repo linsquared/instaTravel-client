@@ -33,7 +33,6 @@ function App() {
   // all users
   const [allUsers, setAllUsers] = useState([])
 
-
   // searchbar
   const [searchInput, setSearchInput] = useState('')
 

@@ -5,12 +5,12 @@ import { useState } from 'react'
 import Nav from '../../components/Nav/Nav'
 import SearchBar from '../../components/SearchBar/SearchBar'
 import './CityResults.scss'
-import unlikeHeart from '../../assets/icons/emptyHeart.png'
-import star from '../../assets/icons/star.png'
-import locationPin from '../../assets/icons/location.png'
 import sortIcon from '../../assets/icons/sort.png'
-import starup from '../../assets/icons/startup.png'
-
+import starup from '../../assets/icons/starup.png'
+import starDown from '../../assets/icons/stardown.png'
+import moneyUp from '../../assets/icons/moneyup.png'
+import moneyDown from '../../assets/icons/moneydown.png'
+import CityCard from '../../components/CityCard/CityCard'
 
 
 const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle }) => {
@@ -21,72 +21,71 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
 
     const [sort, setSort] = useState('')
 
-    const sortHandle = (e) => {
-        console.log(e);
+    // opening sorting function
+    const [openSort, setOpenSort] = useState(false)
+
+    // click to drop down sort options
+    const sortHandle = () => {
+        setOpenSort(!openSort)
     }
+
+    let sortedResults = searchResults;
+    if (sort === 'lowest') {
+        sortedResults = searchResults.sort((a, b) => a.ratings - b.ratings);
+    } else if (sort === 'highest') {
+        sortedResults = searchResults.sort((a, b) => b.ratings - a.ratings);
+    } else if (sort === 'cheapest') {
+        sortedResults = searchResults.sort((a, b) => a.budget.length - b.budget.length);
+    } else if (sort === 'expensive') {
+        sortedResults = searchResults.sort((a, b) => b.budget.length - a.budget.length);
+    }
+
     return (
         <main className='cityR'>
             <Nav />
             <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} searchHandle={searchHandle} />
+
             <div className='cityR__bar'>
                 <h2 className='cityR__total'> {searchResults.length} Results</h2>
-                <form>
-                    {/* <select
-                        // className=""
-                        // name="sort"
-                        // value={sort}
-                        // onChange={sortHandle} >
-                        // <option value=''>Sort <img src={sortIcon} alt='sort icon' className='cityR__sort-icon' /></option>
-                        // <option value='up'
-                        //     className='cityR__starUp'>
-                        //     <img src={starup} alt='star icon' />
-                        // </option>
-                        // <option value='down'>Sights & Landmarks</option>
-                        // <option value='expensive'>Museums</option>
-                        // <option value='cheap'>Observation Deck</option>
-                    </select> */}
 
-                </form>
+                <div className="cityR__sort" onClick={sortHandle}>
+                    <img className="cityR__sortIcon" src={sortIcon} alt='sort icon' />
+                </div>
+
+                <ul className="cityR__sort-list" style={{ display: openSort ? 'block' : 'none' }}>
+                    <li className="cityR__sort-item">
+                        <img src={starup} alt="star up icons" className="cityR__rating--up " onClick={() => setSort('lowest')} />
+                    </li>
+
+                    <li className="cityR__sort-item">
+                        <img src={starDown} alt="star down icons" className="cityR__rating cityR__rating-down" onClick={() => setSort('highest')} />
+                    </li>
+
+                    <li className="cityR__sort-item">
+                        <img src={moneyUp} alt="money up icons" className="cityR__rating" onClick={() => setSort('cheapest')} />
+                    </li>
+
+                    <li className="cityR__sort-item">
+                        <img src={moneyDown} alt="money down icons" className="cityR__rating" onClick={() => setSort('expensive')} />
+                    </li>
+
+                </ul>
+
             </div>
             <section className='cityR__results'>
 
-                {searchResults.map((result, i) => {
+                {sortedResults.map((result, i) => {
                     return (
-                        <div className='cityR__card-wrapper' key={i}>
-                            <div className='cityR__card'>
-                                <img src={result.city_img} alt='vacation image' className='cityR__img' />
-                                <img src={unlikeHeart} alt='empty heart icon' className='cityR__heart' />
-
-                                <div className='cityR__user-info'>
-
-                                    <div className='cityR__user'>
-                                        <div className='cityR__icon-wrapper'>
-                                            <img src={result.user_icon} alt='user image' className='cityR__user-img' />
-                                        </div>
-                                        <span className='cityR__username'>@{result.user_name}</span>
-                                    </div>
-
-                                    <div className='cityR__rating-info'>
-                                        <img src={star} alt='star icon' className='cityR__star' />
-                                        <span className='cityR__rating'>{result.ratings.toFixed(1)}</span>
-                                    </div>
-                                </div>
-
-                                <div className='cityR__location-info'>
-                                    <div className='cityR__location'>
-                                        <img className='cityR__pin' src={locationPin} alt='pin icon' />
-                                        <span className='cityR__city'>{result.city}</span>
-                                    </div>
-
-                                    <span className='cityR__money'>{result.budget}</span>
-                                </div>
-
-                            </div>
-                        </div>
-
+                        <CityCard key={i}
+                            img={result.city_img}
+                            username={result.user_name}
+                            ratings={result.ratings}
+                            icon={result.user_icon}
+                            city={result.city}
+                            budget={result.budget} />
                     )
-                })}
-
+                })
+                }
             </section>
         </main>)
 }
