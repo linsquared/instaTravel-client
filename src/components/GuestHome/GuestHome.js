@@ -47,7 +47,8 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
             <div className='guestHome__show' style={{ display: tripsTab ? 'block' : 'none' }}>
                 <SearchBar
                     searchInput={searchInput}
-                    searchHandle={searchHandle} />
+                    searchHandle={searchHandle}
+                    setSearchInput={setSearchInput} />
 
                 <div className='guestHome__filters'>
                     <div className='guestHome__criteria guestHome__criteria--budget' onClick={openOptions}>

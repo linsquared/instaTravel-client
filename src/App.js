@@ -17,6 +17,7 @@ import Header from './components/Header/Header';
 import CityResults from './pages/CityResults/CityResults';
 import UserTab from './components/UserTab/UserTab';
 import UserProfile from './pages/UserProfile/UserProfile';
+import Itinerary from './pages/Itinerary/Itinerary';
 
 function App() {
   // set err state
@@ -113,6 +114,7 @@ function App() {
           setUserId={setUserId}
           allUsers={allUsers} />} />
 
+        <Route path='itinerary' element={<Itinerary />} />
 
 
         {/* TEMP ROUTE */}
