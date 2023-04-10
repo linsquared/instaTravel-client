@@ -1,9 +1,10 @@
 // core stuff
+import { useNavigate, useParams } from 'react-router-dom'
 // styles, pages, components 
 import UserSearch from '../SearchBar/UserSearch/UserSearch'
 import './UserTab.scss'
 
-const UserTab = ({ allUsers, usersTab, searchUser, searchUserHandle }) => {
+const UserTab = ({ allUsers, usersTab, searchUser, searchUserHandle, setUserId }) => {
 
     // need to find a better way to sort this
     const sortedUsers = allUsers?.sort((a, b) => b.itinerary_count - a.itinerary_count)
@@ -12,6 +13,14 @@ const UserTab = ({ allUsers, usersTab, searchUser, searchUserHandle }) => {
     const findUserByAuthor = allUsers.filter(person => person.author.toLowerCase().includes(searchUser.toLowerCase()))
     const findByUserName = allUsers.filter(person => person.user_name.toLowerCase().includes(searchUser.toLowerCase()))
     const filteredUser = [...new Set(findByUserName.concat(findUserByAuthor))]
+
+    const navigate = useNavigate()
+    const profileId = useParams()
+
+    const toUserProfile = (id) => {
+        setUserId(id)
+        navigate(`/user/${id}`)
+    }
 
     return (
         <div className='userTab' >
@@ -31,7 +40,7 @@ const UserTab = ({ allUsers, usersTab, searchUser, searchUserHandle }) => {
                             <ul className='userTab__list'>
                                 {sortedUsers.map((user, i) => {
                                     return (
-                                        <li className='userTab__item' key={i}>
+                                        <li className='userTab__item' key={i} onClick={() => toUserProfile(user.user_id)}>
                                             <div className='userTab__left'>
                                                 <div className='userTab__icon-wrapper'>
                                                     <img src={user.user_icon} alt='user image' className='userTab__icon' />
@@ -62,7 +71,7 @@ const UserTab = ({ allUsers, usersTab, searchUser, searchUserHandle }) => {
                             <ul className='userTab__list'>
                                 {filteredUser.map((user, i) => {
                                     return (
-                                        <li className='userTab__item' key={i}>
+                                        <li className='userTab__item' key={i} onClick={() => setUserId(user.user_id)}>
                                             <div className='userTab__left'>
                                                 <div className='userTab__icon-wrapper'>
                                                     <img src={user.user_icon} alt='user image' className='userTab__icon' />

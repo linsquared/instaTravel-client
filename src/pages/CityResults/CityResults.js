@@ -32,8 +32,8 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
 
     // unpack duration and budget selections from previous page
     const location = useLocation()
-    const selectedDuration = location.state.selectedDuration
-    const selectedBudget = location.state.selectedDollarOption
+    const selectedDuration = location.state?.selectedDuration
+    const selectedBudget = location.state?.selectedDollarOption
 
     let initalResult;
 

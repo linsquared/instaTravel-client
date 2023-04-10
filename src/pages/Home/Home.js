@@ -9,7 +9,7 @@ import pin from '../../assets/icons/pin.png';
 import GuestHome from '../../components/GuestHome/GuestHome'
 import UserTab from '../../components/UserTab/UserTab';
 
-const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUsers, searchUser, setSearchUser, searchUserHandle }) => {
+const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUsers, searchUser, setSearchUser, searchUserHandle, userId, setUserId }) => {
     // set states
     const [user, setUser] = useState('')
     const [failedAuth, setFailedAuth] = useState(false)
@@ -85,7 +85,8 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
                     usersTab={usersTab}
                     searchUser={searchUser}
                     setSearchUser={setSearchUser}
-                    searchUserHandle={searchUserHandle} />
+                    searchUserHandle={searchUserHandle}
+                    userId={userId} setUserId={setUserId} />
 
 
             </main>

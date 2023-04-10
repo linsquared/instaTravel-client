@@ -16,6 +16,7 @@ import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
 import CityResults from './pages/CityResults/CityResults';
 import UserTab from './components/UserTab/UserTab';
+import UserProfile from './pages/UserProfile/UserProfile';
 
 function App() {
   // set err state
@@ -50,6 +51,10 @@ function App() {
     console.log(searchUser)
   }
 
+  // select an user state
+  const [userId, setUserId] = useState('')
+
+
   useEffect(() => {
     axios.get('http://localhost:8080/itineraries')
       .then(res => {
@@ -66,7 +71,6 @@ function App() {
       .catch(err => console.log(err))
   }, [])
 
-
   return (
     <BrowserRouter>
       <Routes>
@@ -78,7 +82,8 @@ function App() {
           allUsers={allUsers}
           searchUser={searchUser}
           setSearchUser={setSearchUser}
-          searchUserHandle={searchUserHandle} />} />
+          searchUserHandle={searchUserHandle}
+          userId={userId} setUserId={setUserId} />} />
 
         <Route path='/register' element={<Signup
           errMsg={errMsg}
@@ -102,7 +107,11 @@ function App() {
           setSearchInput={setSearchInput}
           searchHandle={searchHandle} />} />
 
-        <Route path='users' element={<UserTab />} />
+        <Route path='/user/:profileId' element={<UserProfile
+          allItineraries={allItineraries}
+          userId={userId}
+          setUserId={setUserId}
+          allUsers={allUsers} />} />
 
 
 
@@ -111,9 +120,7 @@ function App() {
         <Route path='day' element={<AddDayInfo />} />
         <Route path='activity' element={<Activity />} />
         <Route path='head' element={<Header />} />
-
-
-
+        <Route path='home' element={<UserProfile />} />
 
 
       </Routes>

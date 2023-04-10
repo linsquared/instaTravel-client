@@ -1,0 +1,160 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.userProfile {
+    width: 37rem;
+    margin: 0 auto;
+    background-color: rgba(237, 245, 248, 0.957);
+    height: 80rem;
+    border-radius: 3.5rem;
+
+    &__username {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &__info {
+        display: flex;
+        padding: 1.5rem;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    &__img {
+        width: 100%;
+        height: 8rem;
+        border-radius: 50%;
+
+        &-wrapper {
+            width: 8rem;
+            height: 8rem;
+        }
+    }
+
+    &__statistics {
+        display: flex;
+        gap: 3rem;
+    }
+
+    &__itinerary,
+    &__followers {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+    }
+
+    &__count,
+    &__text {
+        width: 100%;
+        text-align: center;
+    }
+
+    &__count {
+        font-weight: bold;
+        font-size: 1.7rem;
+    }
+
+    &__text {
+        font-size: 1.3rem;
+    }
+
+    &__user {
+        padding: .5rem 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__name {
+        width: 100%;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &__link-icon {
+        width: 1.5rem;
+        margin-right: .7rem;
+    }
+
+    &__email {
+        font-size: 1.3rem;
+        margin-top: .8rem;
+        cursor: pointer;
+        color: rgb(52, 51, 51);
+        display: flex;
+        align-items: center;
+    }
+
+    &__btn {
+        width: 16.5rem;
+
+        &-wrapper {
+            display: flex;
+            padding-left: 1rem 1.5rem 0 1.5rem;
+            width: 37rem;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        &-share {
+            background-color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(22, 22, 22, 0.1);
+        }
+    }
+
+    &__item {
+        position: relative;
+    }
+
+    &__card {
+        height: 18rem;
+        width: 34rem;
+        margin-bottom: 3rem;
+
+        &-wrapper {
+            padding: 1.5rem;
+            height: 41rem;
+            width: 37rem;
+            overflow-y: scroll;
+            margin-top: 1.5rem;
+        }
+
+        &-text {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            height: 3.5rem;
+            background-color: rgba(255, 255, 255, 0.667);
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            position: absolute;
+            width: 34rem;
+            bottom: 0rem;
+        }
+
+    }
+
+    &__city-img {
+        width: 34rem;
+        height: 18rem;
+        border-radius: 10px;
+    }
+
+    &__pin {
+        width: 1.5rem;
+        margin-right: .8rem;
+    }
+
+    &__location,
+    &__duration {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+}
