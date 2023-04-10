@@ -163,6 +163,7 @@
         display: flex;
         justify-content: center;
         background-color: $white;
+        cursor: pointer;
 
         &:hover {
             border: .2rem solid rgb(203, 232, 243);
@@ -200,6 +201,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
 
         &:hover {
             border: .2rem solid $blue;

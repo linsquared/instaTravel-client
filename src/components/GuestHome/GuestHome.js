@@ -1,5 +1,6 @@
 // core stuff 
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // styles, pages, components
 import './GuestHome.scss'
@@ -30,6 +31,14 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
 
     // state to track the duration 
     const [selectedDuration, setSelectedDuration] = useState('');
+
+    const navigate = useNavigate()
+
+    // func to send all filters into city result page
+    const sendFilters = () => {
+
+        navigate('/city', { state: { selectedDollarOption, selectedDuration } })
+    }
 
     return (
 
@@ -79,14 +88,14 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
                     </ul>
 
                     <ul className='guestHome__duration-list'>
-                        <li className='guestHome__day-item' onClick={() => setSelectedDuration(1)} >1-3D</li>
+                        <li className='guestHome__day-item' onClick={() => setSelectedDuration(3)} >1-3D</li>
                         <li className='guestHome__day-item' onClick={() => setSelectedDuration(4)}>4-6D</li>
                         <li className='guestHome__day-item' onClick={() => setSelectedDuration(7)}>7-10D</li>
                         <li className='guestHome__day-item' onClick={() => setSelectedDuration(11)}>10+D</li>
 
                     </ul>
                     <div className='guestHome__btn-wrapper'>
-                        <Buttons value={'Search'} />
+                        <Buttons value={'Search'} btnfunc={sendFilters} />
                     </div>
                 </section>
 

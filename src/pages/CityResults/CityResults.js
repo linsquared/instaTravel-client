@@ -1,4 +1,5 @@
 // core stuff 
+import { useLocation } from 'react-router-dom'
 import { useState } from 'react'
 
 // pages, styles, components
@@ -29,15 +30,102 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
         setOpenSort(!openSort)
     }
 
-    let sortedResults = searchResults;
+    // unpack duration and budget selections from previous page
+    const location = useLocation()
+    const selectedDuration = location.state.selectedDuration
+    const selectedBudget = location.state.selectedDollarOption
+
+    let initalResult;
+
+    const sortByBudgetAndDuration = () => {
+        // filter entire list by budget selection
+        const filteredBudget = selectedBudget && allItineraries.filter(item => item.budget === selectedBudget)
+        const filteredBudgetWithCity = selectedBudget && searchResults.filter(item => item.budget === selectedBudget)
+
+        // NO particular city, YES budget and YES duration
+        if (!searchInput && selectedBudget && selectedDuration) {
+            return initalResult = filteredBudget.filter(item => {
+                if (selectedDuration === 3) {
+                    return item.duration <= 3
+                } else if (selectedDuration === 4) {
+                    return item.duration > 3 && item.duration <= 6
+                } else if (selectedDuration === 7) {
+                    return item.duration > 6 && item.duration <= 10
+                } else if (selectedDuration === 11) {
+                    return item.duration > 10
+                }
+            })
+            // NO particular city, NO budget and YES duration
+        } else if (!searchInput && !selectedBudget && selectedDuration) {
+            return initalResult = allItineraries.filter(item => {
+                if (selectedDuration === 3) {
+                    return item.duration <= 3
+                } else if (selectedDuration === 4) {
+                    return item.duration > 3 && item.duration <= 6
+                } else if (selectedDuration === 7) {
+                    return item.duration > 6 && item.duration <= 10
+                } else if (selectedDuration === 11) {
+                    return item.duration > 10
+                }
+            })
+            // NO particular city, YES budget and NO duration
+        } else if (!searchInput && selectedBudget && !selectedDuration) {
+            return initalResult = filteredBudget
+
+            // YES particular city, NO budget and NO duration
+        } else if (searchInput && !selectedBudget && !selectedDuration) {
+            return initalResult = searchResults
+
+            // YES particular city, YES budget and NO duration
+        } else if (searchInput && selectedBudget && !selectedDuration) {
+            return initalResult = filteredBudgetWithCity
+        }    // YES particular city, NO budget and YES duration
+        else if (searchInput && !selectedBudget && selectedDuration) {
+            return initalResult = searchResults.filter(item => {
+                if (selectedDuration === 3) {
+                    return item.duration <= 3
+                } else if (selectedDuration === 4) {
+                    return item.duration > 3 && item.duration <= 6
+                } else if (selectedDuration === 7) {
+                    return item.duration > 6 && item.duration <= 10
+                } else if (selectedDuration === 11) {
+                    return item.duration > 10
+                }
+            })
+        }    // YES particular city, YES budget and YES duration
+        else if (searchInput && selectedBudget && selectedDuration) {
+            return initalResult = filteredBudgetWithCity.filter(item => {
+                if (selectedDuration === 3) {
+                    return item.duration <= 3
+                } else if (selectedDuration === 4) {
+                    return item.duration > 3 && item.duration <= 6
+                } else if (selectedDuration === 7) {
+                    return item.duration > 6 && item.duration <= 10
+                } else if (selectedDuration === 11) {
+                    return item.duration > 10
+                }
+            })
+            // NO particular city, NO budget and NO duration
+        } else if (!searchInput && !selectedBudget && !selectedDuration) {
+            initalResult = searchResults
+        }
+
+        return initalResult
+    }
+
+    sortByBudgetAndDuration()
+
+    // sort results
+    let sortedResults = initalResult;
+
     if (sort === 'lowest') {
-        sortedResults = searchResults.sort((a, b) => a.ratings - b.ratings);
+        sortedResults = initalResult.sort((a, b) => a.ratings - b.ratings);
     } else if (sort === 'highest') {
-        sortedResults = searchResults.sort((a, b) => b.ratings - a.ratings);
+        sortedResults = initalResult.sort((a, b) => b.ratings - a.ratings);
     } else if (sort === 'cheapest') {
-        sortedResults = searchResults.sort((a, b) => a.budget.length - b.budget.length);
+        sortedResults = initalResult.sort((a, b) => a.budget.length - b.budget.length);
     } else if (sort === 'expensive') {
-        sortedResults = searchResults.sort((a, b) => b.budget.length - a.budget.length);
+        sortedResults = initalResult.sort((a, b) => b.budget.length - a.budget.length);
     }
 
     return (
@@ -46,7 +134,7 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
             <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} searchHandle={searchHandle} />
 
             <div className='cityR__bar'>
-                <h2 className='cityR__total'> {searchResults.length} Results</h2>
+                <h2 className='cityR__total'> {sortedResults ? sortedResults.length : initalResult.length} Results</h2>
 
                 <div className="cityR__sort" onClick={sortHandle}>
                     <img className="cityR__sortIcon" src={sortIcon} alt='sort icon' />
