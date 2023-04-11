@@ -13,7 +13,7 @@ const EachDay = ({ dayValue }) => {
     const [onDay, setOnDay] = useState(dayValue)
 
     // set up counter for activity IDs
-    const [activityCount, setActivityCount] = useState(0);
+    const [activityCount, setActivityCount] = useState(1);
 
     // setup activitylist per day
     const [activityList, setActivityList] = useState([])
@@ -24,9 +24,7 @@ const EachDay = ({ dayValue }) => {
         // activities: activityList,
     })
 
-    console.log(dayWithAct)
-
-    // adding additional activity 
+    // adding additional activity
     const addActivity = (e, activity) => {
         e.preventDefault()
         // update activity ID counter
@@ -36,13 +34,16 @@ const EachDay = ({ dayValue }) => {
         // add new activity with unique ID to activity list
         setActivityList([...activityList, { activity_id: activityId, ...activity }])
         setDayWithAct({ ...dayWithAct, activityList })
+
         const clickedBtn = e.target
-        clickedBtn.classList.add('eachday__hide')
+        clickedBtn.classList.add('eachDay__hide')
     }
 
+
     return (
-        <>
-            <h2> On day {dayValue} </h2>
+        <section className='eachDay'>
+            <h2 className='eachDay__title'> On Day {dayValue} </h2>
+
             {activityList.map((eachActivity, index) => {
                 return (
                     <Activity
@@ -51,11 +52,16 @@ const EachDay = ({ dayValue }) => {
                         setActivityList={setActivityList}
                         addActivity={addActivity}
                         setDayWithAct={setDayWithAct}
-                        dayWithAct={dayWithAct} />
+                        dayWithAct={dayWithAct}
+                        activityCount={activityCount}
+                        setActivityCount={setActivityCount}
+                    />
                 )
             })}
-            <Buttons value={'Add Activity'} btnfunc={(e) => addActivity(e)} />
-        </>
+            <div className='eachDay__btn'>
+                <Buttons value={'Add Activity'} name={'buttons'} btnfunc={(e) => addActivity(e)} />
+            </div>
+        </section>
 
     )
 }

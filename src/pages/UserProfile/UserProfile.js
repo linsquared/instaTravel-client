@@ -1,5 +1,6 @@
 // core stuff 
-import { Link } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 // styles, pages, components
 import './UserProfile.scss'
 import Nav from '../../components/Nav/Nav'
@@ -12,6 +13,22 @@ const UserProfile = ({ allItineraries, userId, setUserId, allUsers }) => {
 
     const userItineraries = allItineraries.filter(item => item.user_id === userId)
     const targetUser = allUsers?.find(item => item.user_id === userId)
+
+    const navigate = useNavigate()
+    const itineraryId = useParams
+    // onclick func for each card 
+    const sendItinerary = (e, itinerary) => {
+        let detailItinerary;
+        axios.get(`http://localhost:8080/itineraries/id/${itinerary.itinerary_id}`)
+            .then(res => {
+                console.log(res.data)
+                detailItinerary = res.data
+                navigate(`/itinerary/:${itineraryId}`, { state: { itinerary, detailItinerary } })
+
+            })
+            .catch(err => console.log(err))
+    }
+
     return (
         <main className='userProfile'>
             <header className='userProfile__header'>
@@ -46,14 +63,15 @@ const UserProfile = ({ allItineraries, userId, setUserId, allUsers }) => {
             </section>
 
             <div className='userProfile__btn-wrapper'>
-                <div className='userProfile__btn follow'><Buttons value={'Follow'} /></div>
-                <button className='userProfile__btn userProfile__btn-share'>Share</button>
+                <div className='userProfile__btn follow'><Buttons value={'Follow'} name={'buttons'} /></div>
+                <div className='userProfile__btn share'><Buttons value={'Share'} name={'buttons-white'} /></div>
             </div>
+
             <ul className='userProfile__card-wrapper' >
 
                 {userItineraries.map((itinerary, i) => {
                     return (
-                        <li className='userProfile__item' key={i}>
+                        <li className='userProfile__item' key={i} onClick={(e) => { sendItinerary(e, itinerary) }}>
                             <div className='userProfile__card' >
                                 <img src={itinerary.city_img} alt='city image' className='userProfile__city-img' />
                             </div>

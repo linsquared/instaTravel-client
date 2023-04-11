@@ -48,4 +48,11 @@
         padding-top: 4.5rem;
         color: $word-grey;
     }
+
+    &__email,
+    &__username,
+    &__author,
+    &__password {
+        width: 34rem;
+    }
 }

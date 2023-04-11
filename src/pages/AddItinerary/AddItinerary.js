@@ -5,6 +5,7 @@ import { useState } from 'react'
 import AddBasicInfo from '../../components/AddBasicInfo/AddBasicInfo'
 import AddDayInfo from '../../components/AddDayInfo/AddDayInfo'
 import './AddItinerary.scss'
+import Nav from '../../components/Nav/Nav'
 
 // core stuff
 
@@ -27,7 +28,10 @@ const AddItinerary = () => {
 
 
     return (
-        <>
+        <main className='addItinerary'>
+            <header>
+                <Nav />
+            </header>
             <AddBasicInfo
                 basicInfo={basicInfo}
                 setBasicInfo={setBasicInfo}
@@ -40,7 +44,7 @@ const AddItinerary = () => {
                 duration={basicInfo.duration}
                 showDay={showDay}
                 setShowDay={setShowDay} />
-        </>
+        </main>
     )
 }
 

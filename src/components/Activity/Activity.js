@@ -6,9 +6,14 @@ import './Activity.scss'
 import FormInput from '../FormInput/FormInput'
 import FormLabel from '../FormLabel/FormInput/FormLabel'
 import Buttons from '../Buttons/Buttons'
+import flag from '../../assets/icons/flag.png'
+import city from '../../assets/icons/city.png'
+import cash from '../../assets/icons/cash.png'
+import essay from '../../assets/icons/essay.png'
 
-const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, dayWithAct }) => {
-    // each activity set state
+
+const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, dayWithAct, activityCount, setActivityCount }) => {
+    // // each activity set state
     const [activity, setActivity] = useState({
         activity_name: '',
         activity_type: '',
@@ -25,12 +30,20 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
     }
     // save info btn
     const saveInfo = (e, item) => {
+        console.log(item)
         e.preventDefault()
         setActivity(item)
-        const clickedBtn = e.target
-        clickedBtn.classList.add('eachday__hide')
 
+        setActivityCount(activityCount + 1);
+        // concatenate counter with string to form activity ID
+        const activityId = 'activity_id' + activityCount;
+        // add new activity with unique ID to activity list
+        setActivityList([...activityList, { activity_id: activityId, ...activity }])
+        setDayWithAct({ ...dayWithAct, activityList })
+        const clickedBtn = e.target
+        clickedBtn.classList.add('eachDay__hide')
     }
+
 
     // const handleSubmit = (e) => {
     //     e.preventDefault()
@@ -47,10 +60,11 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
 
 
     return (
-        <form>
+        <form className='activity' >
             {/* activity name */}
-            <div>
+            <div className='activity__name'>
                 <FormLabel forfield={"activity_name"} text={'Name of attraction'} />
+                <img src={flag} alt='flag icon' className='activity__icon' />
                 <FormInput
                     name={'activity_name'}
                     type={'text'}
@@ -61,10 +75,11 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
             </div>
 
             {/* activity type  */}
-            <div>
+            <div className='activity__type'>
                 <FormLabel forfield={"activity_type"} text={'Please specify an activity category'} />
+                <img src={city} alt='city icon' className=' activity__icon' />
                 <select
-                    className=""
+                    className='activity__select'
                     name="activity_type"
                     value={activity.activity_type}
                     onChange={activityHandle} >
@@ -88,8 +103,9 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
             </div>
 
             {/* activity cost */}
-            <div>
+            <div className='activity__cost'>
                 <FormLabel forfield={"cost"} text={'Any entrance fee?'} />
+                <img src={cash} alt='cash icon' className='activity__icon-cash activity__icon' />
                 <FormInput
                     name={'cost'}
                     type={'text'}
@@ -100,8 +116,9 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
             </div>
 
             {/* activity description */}
-            <div>
+            <div className='activity__description'>
                 <FormLabel forfield={"activity_description"} text={'Your description'} />
+                <img src={essay} alt='essay icon' className='activity__icon' />
                 <FormInput
                     name={'activity_description'}
                     type={'text'}
@@ -116,9 +133,10 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
             {/* <div>
                             <Buttons value={upload} />
                             </div> */}
-            <div >
-                <Buttons value={'save'} btnfunc={(e) => saveInfo(e, activity)} />
-                <Buttons value={'Add Activity'} btnfunc={(e) => addActivity(e, activity)} />
+
+            <div className='activity__btn-wrapper'>
+                <Buttons value={'save'} name={'buttons-white'} btnfunc={(e) => saveInfo(e, activity)} />
+                <Buttons value={'Add Activity'} name={'buttons'} btnfunc={(e) => addActivity(e, activity)} />
             </div>
 
         </form>

@@ -43,6 +43,31 @@ const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
     }
 
     // post the login info
+    // const loginSubmission = (e) => {
+    //     if (validLogin()) {
+    //         e.preventDefault()
+    //         axios.post('http://localhost:8080/users/login', loginInfo)
+    //             .then(res => {
+    //                 console.log(res.data)
+    //                 setLoginRes(res.data);
+    //                 sessionStorage.setItem("token", res.data.token);
+    //                 setSuccess(true)
+    //                 setError('')
+    //                 e.target.reset()
+    //                 navigate('/')
+    //             })
+    //             .catch(err => {
+    //                 setLoginRes(err.response)
+    //                 setSuccess(false)
+    //                 setError(err.response.data)
+
+    //             })
+    //     } else {
+    //         console.log('please fill out all required field')
+    //     }
+    // }
+
+    // post the login info
     const loginSubmission = (e) => {
         if (validLogin()) {
             e.preventDefault()
@@ -54,17 +79,23 @@ const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
                     setError('')
                     e.target.reset()
                     navigate('/')
+                    console.log(res.data)
                 })
                 .catch(err => {
-                    setLoginRes(err.response)
-                    setSuccess(false)
-                    setError(err.response.data)
-
+                    if (err.response.status === 404) {
+                        setErrMsg(true)
+                        setError(err.response.data)
+                    } else {
+                        setLoginRes(err.response)
+                        setSuccess(false)
+                        setError(err.response.data)
+                    }
                 })
         } else {
             console.log('please fill out all required field')
         }
     }
+
 
     const backHome = () => {
         navigate('/')
@@ -100,9 +131,10 @@ const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
                         onchange={userLogin} />
                 </div>
                 {/* error message */}
-                {errMsg && <p className='login__errMsg'>Please fill out all required fields</p>}
-                <div className='login__btn-wrapper'><Buttons type={'submit'} value={'Login'} /></div>
-                {error && <div>{error}</div>}
+                {/* {errMsg && <p className='login__errMsg'>{error}</p>} */}
+                {error && <div className='login__errMsg'>{error}</div>}
+                <div className='login__btn-wrapper'><Buttons type={'submit'} name={'buttons'} value={'Login'} /></div>
+
 
             </form>
 

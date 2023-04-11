@@ -1,8 +1,19 @@
 @use '../../styles/global.scss' as *;
 
-.eachday {
+.eachDay {
+    width: 34rem;
 
     &__hide {
         display: none;
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+    }
+
+    &__btn {
+        margin: 0 auto;
+        margin-bottom: 1rem;
+        width: 20rem;
     }
 }

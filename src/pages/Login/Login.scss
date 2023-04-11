@@ -33,16 +33,19 @@
         padding-left: 2rem;
     }
 
-    &__user {
-        width: 30rem;
+
+    &__user-wrapper,
+    &__password {
+        width: 34rem;
     }
+
 
     &__nosee {
         width: 2.3rem;
         opacity: .2;
         position: absolute;
         right: 3rem;
-        top: 39rem;
+        top: 40.5rem;
     }
 
     &__btn-wrapper {

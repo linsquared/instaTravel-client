@@ -68,22 +68,24 @@ textarea {
     border: 1px solid rgb(235, 235, 235);
     font-family: Helvetica, sans-serif;
     height: 4rem;
-    text-indent: 1rem;
-
-
-    // &:focus {
-    //     border: 1px solid $primary-blue;
-    // }
+    text-indent: 2.8rem;
 
     &:invalid {
         border: 1px solid #D22D2D;
     }
 }
 
+textarea {
+    height: 10rem;
+    width: 100%;
+    padding-top: 1rem;
+}
+
 ::placeholder {
     color: $label-gray;
     font-family: Helvetica, sans-serif;
 }
+
 
 label {
     text-transform: uppercase;

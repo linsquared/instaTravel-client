@@ -88,9 +88,9 @@ const Itinerary = () => {
                         <article className='itinerary__day-card' key={i}>
                             <h2 className='itinerary__day-title'>Day {day.day}</h2>
 
-                            {day.activities.map(activity => {
+                            {day.activities.filter(item => item.activity_id != null).map((activity, i) => {
                                 return (
-                                    <div className='itinerary__activity-card'>
+                                    <div className='itinerary__activity-card' key={i}>
                                         <div className='itinerary__sight'>
                                             <h4 className='itinerary__sight-location'>{activity.activity_name}</h4>
                                             <h6 className='itinerary__sight-type'>Activity type:
@@ -117,8 +117,10 @@ const Itinerary = () => {
             </section>
 
             <div className='itinerary__btn-wrapper'>
-                <button className='itinerary__btn-back' onClick={goBack}>Back</button>
-                <div className='itinerary__btn-save'><Buttons value={'Save'} /></div>
+                <div className='itinerary__btn-save'>
+                    <Buttons value={'Back'} name={'buttons-white'} btnfunc={goBack} />
+                </div>
+                <div className='itinerary__btn-save'><Buttons value={'Save'} name={'buttons'} /></div>
             </div>
         </main>
     )

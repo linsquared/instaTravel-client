@@ -15,7 +15,6 @@ import AddDayInfo from './components/AddDayInfo/AddDayInfo';
 import Activity from './components/Activity/Activity';
 import Header from './components/Header/Header';
 import CityResults from './pages/CityResults/CityResults';
-import UserTab from './components/UserTab/UserTab';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Itinerary from './pages/Itinerary/Itinerary';
 
@@ -121,7 +120,6 @@ function App() {
         <Route path='day' element={<AddDayInfo />} />
         <Route path='activity' element={<Activity />} />
         <Route path='head' element={<Header />} />
-        <Route path='home' element={<UserProfile />} />
 
 
       </Routes>

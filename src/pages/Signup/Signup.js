@@ -14,15 +14,6 @@ import FormInput from '../../components/FormInput/FormInput';
 import Buttons from '../../components/Buttons/Buttons';
 
 const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => {
-    // set err state
-    // const [error, setError] = useState('')
-
-    // // setting success state
-    // const [success, setSuccess] = useState(false)
-
-    // // err message
-    // const [errMsg, setErrMsg] = useState(false)
-
     // setting form state
     const [userInfo, setUserInfo] = useState({
         user_name: '',
@@ -49,6 +40,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
             return false
         } return true
     }
+    const navigate = useNavigate()
 
     // form submit
     const signupRequest = (e) => {
@@ -59,7 +51,9 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
                     setSuccess(true)
                     setError('')
                     e.target.reset()
+                    navigate('/login')
                     console.log(res)
+
                 })
                 .catch(err => {
                     setSuccess(false)
@@ -70,9 +64,6 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
         }
 
     }
-
-    const navigate = useNavigate()
-
     const backHome = () => {
         navigate('/')
     }
@@ -87,7 +78,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
 
             <form onSubmit={signupRequest} className='signup__form'>
 
-                <div>
+                <div className='signup__email'>
                     <FormLabel forfield={'email'} text={''} />
                     <FormInput
                         name={'email'}
@@ -97,7 +88,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
                         onchange={registerUser} />
                 </div>
 
-                <div>
+                <div className='signup__username'>
                     <FormLabel forfield={'username'} text={''} />
                     <FormInput
                         name={'user_name'}
@@ -107,7 +98,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
                         onchange={registerUser} />
                 </div>
 
-                <div>
+                <div className='signup__author'>
                     <FormLabel forfield={'fullname'} text={''} />
                     <FormInput
                         name={'author'}
@@ -118,7 +109,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
                 </div>
 
 
-                <div>
+                <div className='signup__password'>
                     <FormLabel forfield={'password'} text={''} />
                     <FormInput
                         name={'password'}
@@ -135,7 +126,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
 
 
                 <div className='signup__btn-wrapper'>
-                    <Buttons type={'submit'} value={'Sign up'} />
+                    <Buttons type={'submit'} value={'Sign up'} name={'buttons'} />
                 </div>
 
                 {/* need to navigate to user homepage if signed up  */}

@@ -1,6 +1,7 @@
 // core stuff 
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import axios from 'axios'
 
 // styles, pages, components
 import './GuestHome.scss'
@@ -34,10 +35,24 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
 
     const navigate = useNavigate()
 
+    const itineraryId = useParams
+    // onclick func for each card 
+    const sendItinerary = (e, itinerary) => {
+        let detailItinerary;
+        axios.get(`http://localhost:8080/itineraries/id/${itinerary.itinerary_id}`)
+            .then(res => {
+                console.log(res.data)
+                detailItinerary = res.data
+                navigate(`/itinerary/:${itineraryId}`, { state: { itinerary, detailItinerary } })
+
+            })
+            .catch(err => console.log(err))
+    }
+
     // func to send all filters into city result page
     const sendFilters = () => {
 
-        navigate('/city', { state: { selectedDollarOption, selectedDuration } })
+        navigate('/city', { state: { selectedDollarOption, selectedDuration, sendItinerary } })
     }
 
     return (
@@ -96,7 +111,7 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
 
                     </ul>
                     <div className='guestHome__btn-wrapper'>
-                        <Buttons value={'Search'} btnfunc={sendFilters} />
+                        <Buttons value={'Search'} name={'buttons'} btnfunc={sendFilters} />
                     </div>
                 </section>
 
@@ -107,7 +122,7 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
 
                         return (
                             <>
-                                <div className='guestHome__card-wrapper' key={i}>
+                                <div className='guestHome__card-wrapper' key={i} onClick={(e) => { sendItinerary(e, item) }}>
                                     <div className='guestHome__card'>
                                         <img src={item.city_img} alt='vacation image' className='guestHome__img' />
                                         <img src={emptyHeart} alt='empty heart icon' className='guestHome__heart' />

@@ -71,7 +71,7 @@ const UserTab = ({ allUsers, usersTab, searchUser, searchUserHandle, setUserId }
                             <ul className='userTab__list'>
                                 {filteredUser.map((user, i) => {
                                     return (
-                                        <li className='userTab__item' key={i} onClick={() => setUserId(user.user_id)}>
+                                        <li className='userTab__item' key={i} onClick={() => toUserProfile(user.user_id)}>
                                             <div className='userTab__left'>
                                                 <div className='userTab__icon-wrapper'>
                                                     <img src={user.user_icon} alt='user image' className='userTab__icon' />
