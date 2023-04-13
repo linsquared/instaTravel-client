@@ -6,8 +6,14 @@ import './Activity.scss'
 import FormInput from '../FormInput/FormInput'
 import FormLabel from '../FormLabel/FormInput/FormLabel'
 import Buttons from '../Buttons/Buttons'
+import flag from '../../assets/icons/flag.png'
+import city from '../../assets/icons/city.png'
+import cash from '../../assets/icons/cash.png'
+import essay from '../../assets/icons/essay.png'
 
-const Activity = ({ activityList, setActivityList, addActivity }) => {
+
+const Activity = ({ setDayWithAct, dayWithAct, setAllDayAndActivities, allDayAndActivities, onDay, day }) => {
+    // // // each activity set state
     const [activity, setActivity] = useState({
         activity_name: '',
         activity_type: '',
@@ -15,31 +21,77 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
         activity_description: '',
         activity_image: '',
     })
-
+    // form control 
     const activityHandle = (e) => {
         const { name, value } = e.target
         setActivity(prevActivity => ({
             ...prevActivity, [name]: value
         }))
     }
+    // save info btn
+    // const saveInfo = (e, activity) => {
 
-    const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     // capture activity in state
+    //     setActivity(activity)
+
+    //     // add the activity to dayWithAct
+    //     setDayWithAct({ ...dayWithAct, day: day, activity })
+
+    //     // setAllDayAndActivities([...allDayAndActivities, dayWithAct])
+
+    //     setAllDayAndActivities([...allDayAndActivities, { ...dayWithAct }])
+
+    //     const clickedBtn = e.target
+    //     clickedBtn.classList.add('eachDay__hide')
+    // }
+    const saveInfo = (e, activity) => {
         e.preventDefault()
-        addActivity(activity)
-        setActivity({
-            activity_name: '',
-            activity_type: '',
-            cost: '',
-            activity_description: '',
-            activity_image: '',
+        // capture activity in state
+        setActivity(activity)
+
+        // add the activity to dayWithAct
+        setDayWithAct({ ...dayWithAct, day: day, activity })
+
+        // update allDayAndActivities array with the updated dayWithAct
+        setAllDayAndActivities(prevAllDayAndActivities => {
+            const updatedAllDayAndActivities = prevAllDayAndActivities.map(eachDayWithAct => {
+                if (eachDayWithAct.day === day) {
+                    return { ...dayWithAct }
+                }
+                return eachDayWithAct
+            })
+            return updatedAllDayAndActivities
         })
+
+        const clickedBtn = e.target
+        clickedBtn.classList.add('eachDay__hide')
     }
 
+
+
+    console.log(dayWithAct)
+    console.log(allDayAndActivities)
+
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     addActivity(activity)
+    //     setActivity({
+    //         activity_name: '',
+    //         activity_type: '',
+    //         cost: '',
+    //         activity_description: '',
+    //         activity_image: '',
+    //     })
+    // }
+
+
     return (
-        <form>
+        < >
             {/* activity name */}
-            <div>
+            <div className='activity__name'>
                 <FormLabel forfield={"activity_name"} text={'Name of attraction'} />
+                <img src={flag} alt='flag icon' className='activity__icon' />
                 <FormInput
                     name={'activity_name'}
                     type={'text'}
@@ -50,10 +102,11 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
             </div>
 
             {/* activity type  */}
-            <div>
+            <div className='activity__type'>
                 <FormLabel forfield={"activity_type"} text={'Please specify an activity category'} />
+                <img src={city} alt='city icon' className=' activity__icon' />
                 <select
-                    className=""
+                    className='activity__select'
                     name="activity_type"
                     value={activity.activity_type}
                     onChange={activityHandle} >
@@ -77,8 +130,9 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
             </div>
 
             {/* activity cost */}
-            <div>
+            <div className='activity__cost'>
                 <FormLabel forfield={"cost"} text={'Any entrance fee?'} />
+                <img src={cash} alt='cash icon' className='activity__icon-cash activity__icon' />
                 <FormInput
                     name={'cost'}
                     type={'text'}
@@ -89,8 +143,9 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
             </div>
 
             {/* activity description */}
-            <div>
+            <div className='activity__description'>
                 <FormLabel forfield={"activity_description"} text={'Your description'} />
+                <img src={essay} alt='essay icon' className='activity__icon' />
                 <FormInput
                     name={'activity_description'}
                     type={'text'}
@@ -106,8 +161,12 @@ const Activity = ({ activityList, setActivityList, addActivity }) => {
                             <Buttons value={upload} />
                             </div> */}
 
-            <Buttons value={'Add Activity'} btnfunc={addActivity} />
-        </form>
+            <div className='activity__btn-wrapper'>
+                <Buttons value={'save'} name={'buttons-white'} btnfunc={(e) => saveInfo(e, activity)} />
+                {/* <Buttons value={'Add Activity'} name={'buttons'} btnfunc={(e) => addActivity(e, activity)} /> */}
+            </div>
+
+        </>
 
     )
 }

@@ -1,3 +1,38 @@
 @use '../../styles/global.scss' as *;
 @use '../../styles/mixins.scss' as *;
 @use '../../styles/variables.scss' as *;
+
+.home {
+    background-color: $white;
+    height: 79rem;
+    width: 37rem;
+    margin-left: .5rem;
+    border-radius: 3.5rem;
+
+    &__tabs {
+        padding-top: 28rem;
+        display: flex;
+    }
+
+    &__title-wrapper {
+        width: 18.4rem;
+        height: 5rem;
+        position: absolute;
+        background-color: $white;
+        border-top-right-radius: 2rem;
+        border-top-left-radius: 2rem;
+    }
+
+    &__title {
+        color: $blue;
+        text-align: center;
+        padding-top: 2rem;
+        font-size: 2rem;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+
+    &__userTab {
+        right: .5rem;
+    }
+}

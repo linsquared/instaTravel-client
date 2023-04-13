@@ -3,16 +3,20 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 // styles, pages, components
-import './AddBasicInfo';
+import './AddBasicInfo.scss';
 import FormInput from '../FormInput/FormInput';
 import FormLabel from '../FormLabel/FormInput/FormLabel';
 import Buttons from '../Buttons/Buttons';
 import AddDayInfo from '../AddDayInfo/AddDayInfo'
+import city from '../../assets/icons/earth.png'
+import money from '../../assets/icons/moneyBag.png'
+import sun from '../../assets/icons/sun.png'
+import title from '../../assets/icons/message.png'
+import essay from '../../assets/icons/essay.png'
+import calender from '../../assets/icons/calender.png'
 
 
-const AddBasicInfo = ({ basicInfo, setBasicInfo, showDay, setShowDay, setShowBasic, showBasic }) => {
-    // show this component or nah
-
+const AddBasicInfo = ({ basicInfo, setBasicInfo, setShowDay, setShowBasic, showBasic }) => {
     // form control handler
     const basicInfoHandle = (e) => {
         const { name, value } = e.target
@@ -20,28 +24,50 @@ const AddBasicInfo = ({ basicInfo, setBasicInfo, showDay, setShowDay, setShowBas
         setBasicInfo(preval => ({
             ...preval, [name]: value
         }))
-        console.log(basicInfo)
     }
 
     // navigate
     const navigate = useNavigate()
 
+    // validation
+    const validForm = () => {
+        if (!basicInfo.city ||
+            !basicInfo.duration ||
+            !basicInfo.city ||
+            !basicInfo.date ||
+            !basicInfo.budget ||
+            !basicInfo.trip_title ||
+            !basicInfo.description) {
+            return false
+        } return true
+    }
+    // err state
+    const [err, setErr] = useState(false)
+
     // save button func
     const saveBasicInfo = (e) => {
-        e.preventDefault()
-        setShowBasic(false)
-        setShowDay(true)
-
+        if (validForm()) {
+            e.preventDefault()
+            setShowBasic(false)
+            setShowDay(true)
+            console.log(basicInfo)
+        } else {
+            e.preventDefault()
+            setErr(true)
+        }
     }
 
     return (
         <>
-            <form onSubmit={saveBasicInfo} style={{ display: showBasic ? 'block' : 'none' }}>
-                <h1>Let's add some basic informations...</h1>
+            <form onSubmit={saveBasicInfo}
+                className='basicInfo'
+                style={{ display: showBasic ? 'block' : 'none' }}>
+                <h1 className='basicInfo__title'>Let's add some basic informations...</h1>
 
                 {/* location */}
-                <div>
-                    <FormLabel forfield={"city"} text={'Where did you go ?'} />
+                <div className='basicInfo__city'>
+                    <FormLabel forfield={"city"} text={'Where did you travel to?'} />
+                    <img src={city} alt='earth icon' className='basicInfo__icon basicInfo__icon-city' />
                     <FormInput
                         name={'city'}
                         type={'text'}
@@ -51,9 +77,11 @@ const AddBasicInfo = ({ basicInfo, setBasicInfo, showDay, setShowDay, setShowBas
                 </div>
 
                 {/* date of your trip */}
-                <div>
-                    <FormLabel forfield={"city"} text={'When was your trip ?'} />
+                <div className='basicInfo__date'>
+                    <FormLabel forfield={"city"} text={'When was your trip? (ok to estimate)'} />
+                    <img src={calender} alt='calendar icon' className='basicInfo__icon basicInfo__icon-calender' />
                     <FormInput
+                        className="basicInfo__calender"
                         name={'date'}
                         type={'date'}
                         placeholder={'Add date'}
@@ -62,10 +90,11 @@ const AddBasicInfo = ({ basicInfo, setBasicInfo, showDay, setShowDay, setShowBas
                 </div>
 
                 {/* budget */}
-                <div>
-                    <FormLabel forfield={"budget"} text={'Travel expense per day'} />
+                <div className='basicInfo__budget'>
+                    <FormLabel forfield={"budget"} text={'Travel expenses per day'} />
+                    <img src={money} alt='money icon' className='basicInfo__icon basicInfo__icon-budget' />
                     <select
-                        className=""
+                        className="basicInfo__select"
                         name="budget"
                         value={basicInfo.budget}
                         onChange={basicInfoHandle} >
@@ -79,22 +108,26 @@ const AddBasicInfo = ({ basicInfo, setBasicInfo, showDay, setShowDay, setShowBas
                 </div>
 
                 {/* duration */}
-                <div>
-                    <FormLabel forfield={"duration"} text={'How long was your trip'} />
-                    <FormInput
-                        name={'duration'}
-                        type={'number'}
-                        placeholder={'Add trip duration'}
-                        value={basicInfo.duration}
-                        onchange={basicInfoHandle} />
+                <div className='basicInfo__duration'>
+                    <FormLabel forfield={"duration"} text={'Your trip Length in days'} />
+                    <img src={sun} alt='sun icon' className='basicInfo__icon basicInfo__icon-sun' />
+                    <div className='basicInfo__duration-num'>
+                        <FormInput
+                            name={'duration'}
+                            type={'number'}
+                            placeholder={'Add trip duration'}
+                            value={basicInfo.duration}
+                            onchange={basicInfoHandle} />
+                    </div>
                 </div>
 
                 {/* destination image */}
                 <div></div>
 
                 {/* title */}
-                <div>
+                <div className='basicInfo__trip-title'>
                     <FormLabel forfield={"trip_title"} text={"Create a captivating itinerary title"} />
+                    <img src={title} alt='message icon' className='basicInfo__icon basicInfo__icon-message' />
                     <FormInput
                         name={'trip_title'}
                         type={'text'}
@@ -104,18 +137,19 @@ const AddBasicInfo = ({ basicInfo, setBasicInfo, showDay, setShowDay, setShowBas
                 </div>
 
                 {/* brief description */}
-                <div>
+                <div className='basicInfo__description'>
                     <FormLabel forfield={"description"} text={"Describe your trip in a few sentences"} />
+                    <img src={essay} alt='essay icon' className='basicInfo__icon basicInfo__icon-essay' />
                     <textarea
-                        className=""
+                        className='basicInfo__textarea'
                         name='description'
                         type='text'
                         placeholder='Add description'
                         value={basicInfo.description}
                         onChange={basicInfoHandle} />
                 </div>
-
-                <Buttons value={'Save'} type={'submit'} />
+                {err && <p className='basicInfo__err'>Please fill out all fields.</p>}
+                <Buttons name={'buttons'} value={'Save'} type={'submit'} />
             </form>
 
 

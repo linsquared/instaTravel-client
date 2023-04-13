@@ -10,31 +10,66 @@ import Buttons from '../Buttons/Buttons'
 const EachDay = ({ dayValue }) => {
 
     // set up day value 
-    const [day, setDay] = useState(dayValue)
+    const [onDay, setOnDay] = useState('')
 
-    const [activityList, setActivityList] = useState([])
+    // state to hold each activity with the day is on
+    const [dayWithAct, setDayWithAct] = useState([])
+    // state to hold the all the day together
+    const [allDayAndActivities, setAllDayAndActivities] = useState([])
 
-    const addActivity = (e) => {
-        console.log('clicked')
-        e.preventDefault()
-        setActivityList([...activityList, <Activity key={activityList.length} />])
-    }
+    // set each activity count
+    const [activityCount, setActivityCount] = useState(1);
+    const handleAddActivity = () => {
+        setActivityCount(activityCount + 1);
+    };
+
+
+    // func to see how many activity to add 
+    const renderActivities = (day) => {
+        const activities = [];
+        for (let i = 0; i < activityCount; i++) {
+            activities.push(
+                <Activity
+                    key={i}
+                    setDayWithAct={setDayWithAct}
+                    dayWithAct={dayWithAct}
+                    dayValue={dayValue}
+                    setAllDayAndActivities={setAllDayAndActivities}
+                    allDayAndActivities={allDayAndActivities}
+                    setOnDay={setOnDay}
+                    onDay={onDay}
+                    day={day}
+                />
+            );
+        }
+        console.log(day)
+
+        return activities;
+    };
 
 
     return (
-        <>
-            <h2> On day {dayValue} </h2>
-            {activityList.map((eachActivity, index) => {
-                return (
-                    <Activity
-                        key={index}
-                        activityList={activityList}
-                        setActivityList={setActivityList}
-                        addActivity={addActivity} />
-                )
-            })}
-            <Buttons value={'Add Activity'} btnfunc={addActivity} />
-        </>
+        <section className='eachDay'>
+
+            <form className='activity' >
+
+
+                {Array.of(dayValue).map((day, i) => {
+                    return (
+                        <>
+                            <h2 className='eachDay__title' key={i + 1}> On Day {day}</h2>
+                            {renderActivities(day)}
+
+                            <div className='eachDay__btn'>
+                                <Buttons value={'Add Activity'} name={'buttons'} btnfunc={handleAddActivity} />
+                            </div>
+                        </>
+                    )
+                })
+                }
+
+            </form>
+        </section>
 
     )
 }

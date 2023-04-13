@@ -1,1 +1,72 @@
 @use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.basicInfo {
+    width: 37rem;
+    padding: 2rem;
+
+    &__title {
+        color: $blue;
+        margin: 0 2rem 2rem 0;
+    }
+
+    &__budget {
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+    }
+
+    &__select {
+        height: 4rem;
+        width: 20rem;
+        margin-top: .5rem;
+        border-radius: 4px;
+        border: 1px solid rgb(235, 235, 235);
+        background-color: $background-gray;
+        margin-bottom: 1.5rem;
+        padding-left: 2.5rem;
+    }
+
+    &__duration-num {
+        width: 20rem;
+    }
+
+    &__textarea {
+        margin: 1rem 0 1rem 0;
+    }
+
+    &__city,
+    &__duration,
+    &__trip-title,
+    &__description,
+    &__date {
+        position: relative;
+    }
+
+    &__icon {
+        width: 2rem;
+        position: absolute;
+        bottom: 2.5rem;
+        left: .5rem;
+
+        &-essay {
+            position: absolute;
+            top: 3.5rem;
+            width: 1.5rem;
+            left: .8rem;
+        }
+
+        &-calender {
+            bottom: 2.7rem;
+
+        }
+    }
+
+    &__err {
+        font-size: 1.4rem;
+        margin-bottom: .5rem;
+        color: rgb(173, 2, 2);
+    }
+
+
+}

@@ -1,0 +1,273 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.itinerary {
+    width: 37rem;
+    margin: 0 auto;
+    background-color: rgba(237, 245, 248, 0.957);
+    height: 80rem;
+    border-radius: 3.5rem;
+
+    &__main {
+        height: 63rem;
+        overflow-x: scroll;
+    }
+
+    &__hero {
+        position: relative;
+        width: 37rem;
+        height: 34rem;
+
+        &-title {
+            width: 33rem;
+            height: 5rem;
+            background-color: rgba(255, 255, 255, 0.607);
+            position: absolute;
+            bottom: 0;
+            border-bottom-right-radius: 1.2rem;
+            border-bottom-left-radius: 1.2rem;
+            left: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    &__img-wrapper {
+        padding: 2rem;
+        width: 37rem;
+        height: 32rem;
+    }
+
+    &__city-img {
+        width: 100%;
+        height: 32rem;
+        border-radius: 1.2rem;
+        box-shadow: 0px 0px 5px 2px rgba(128, 128, 128, 0.5);
+    }
+
+    &__list {
+        width: 37rem;
+        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid rgb(211, 211, 211);
+    }
+
+    &__icon {
+
+        width: 3.5rem;
+
+
+        &-wrapper {
+            width: 6rem;
+            height: 6rem;
+            border: 2px solid rgb(181, 181, 181);
+            background-color: rgb(235, 246, 252);
+            border-radius: 50%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &-text {
+            width: 100%;
+            text-align: center;
+            margin-top: .5rem;
+            color: $word-grey;
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+
+        &--star {
+            width: 2rem;
+        }
+
+    }
+
+    &__basic {
+
+        &-info {
+            padding: 0 2rem;
+        }
+
+        &-top {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &__city {
+        font-size: 2.5rem;
+    }
+
+    &__star {
+        &-wrapper {
+            display: flex;
+            gap: .5rem;
+            align-items: center;
+        }
+
+        &-text {
+            font-size: 1.4rem;
+            color: $word-grey;
+        }
+    }
+
+    &__user {
+        margin-left: 1rem;
+
+        &-info {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        &-wrapper {
+            width: 5rem;
+            height: 5rem;
+            margin-top: .8rem;
+        }
+
+    }
+
+    &__username {
+        font-size: 1.4rem;
+        margin-bottom: .5rem;
+        // color: $word-grey;
+    }
+
+    &__date {
+        font-size: 1.2rem;
+        color: $word-grey;
+        font-weight: 400;
+    }
+
+    &__icon--user {
+        width: 100%;
+        height: 5rem;
+        border-radius: 50%;
+    }
+
+    &__city {
+
+        &-subtitle,
+        &-description {
+            width: 100%;
+        }
+
+        &-subtitle {
+            margin: 1rem 0;
+            font-size: 1.5rem;
+        }
+
+        &-description {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__day {
+        &-card {
+            margin: 2rem 1.5rem;
+        }
+
+        &-title {
+            font-size: 1.8rem;
+            padding-bottom: 1rem;
+            width: 3em;
+            border-bottom: 3px solid $blue;
+            text-align: center;
+
+        }
+
+    }
+
+    &__activity-card {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-top: 1.5rem;
+
+    }
+
+    &__sight {
+
+        &-text {
+            width: 100%;
+            border-bottom: 1px solid rgba(221, 220, 220, 0.79);
+            padding-bottom: 1rem;
+        }
+
+        &-imgWrapper {
+            width: 15rem;
+            height: 10rem;
+        }
+
+        &-img {
+            width: 100%;
+            height: 10rem;
+            border-radius: 1rem;
+        }
+
+        &-location {
+            font-size: 1.5rem;
+            width: 16rem;
+        }
+
+        &-type,
+        &-cost {
+            font-size: 1.3rem;
+            padding-top: .8rem;
+            color: $word-grey;
+            font-weight: 400;
+            width: 14rem;
+        }
+
+        &-type {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        &-details {
+            color: black;
+            font-weight: bold;
+            padding-left: .2rem;
+        }
+
+        &-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        &-description {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__btn {
+        &-wrapper {
+            display: flex;
+            padding: 1rem 1.5rem;
+            gap: 1rem;
+            width: 37rem;
+        }
+
+        &-back {
+            background-color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(22, 22, 22, 0.1);
+            width: 17rem;
+            color: $blue;
+        }
+
+        &-save {
+            width: 17rem;
+        }
+    }
+}

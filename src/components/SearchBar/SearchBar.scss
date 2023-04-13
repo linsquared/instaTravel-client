@@ -1,0 +1,19 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.search {
+
+    width: 34rem;
+    padding: 1.5rem 3rem;
+    text-align: center;
+    margin: 0 auto;
+    position: relative;
+
+
+    &__icon {
+        width: 2.5rem;
+        position: absolute;
+        right: 4rem;
+        top: 2.8rem;
+    }
+}
