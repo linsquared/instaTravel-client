@@ -17,6 +17,7 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
     // set states
     const [user, setUser] = useState('')
     const [failedAuth, setFailedAuth] = useState(false)
+    const [userItinerary, setUserItinerary] = useState([])
 
     useEffect(() => {
         const token = sessionStorage.getItem("token");
@@ -34,7 +35,10 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
             })
             .then(res => {
                 console.log(res.data[0])
+                // set current user who just logged in
                 setUser(res.data[0]);
+                // set current user's itienraries
+                setUserItinerary(allItineraries.filter(item => item.user_name === res.data[0].user_name))
             })
             .catch(err => {
                 console.log(err);
@@ -63,35 +67,15 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
         setUsersTab(true)
     }
 
-    // tempor current itinerary 
-    const itinerary = {
-        itinerary_id: '2065813795',
-        user_id: '630163fc-69c5-4745-ab50-e65fba71ea22',
-        user_name: 'lintravels',
-        user_icon: 'http://localhost:8080/images/users/sushi.jpg',
-        city: 'New York City, USA',
-        budget: '$$',
-        views: 0,
-        likes: 0,
-        ratings: 0,
-        duration: 3,
-        city_img: 'http://localhost:8080/images/cities/nyc5.jpg',
-        trip_title: "The Big Apple Awaits: Exploring the Best of New York City",
-        date: '06/16/2022',
-        description: "Discover the vibrant energy of NYC, from the iconic landmarks of the Statue of Liberty and the Empire State Building to the world-famous museums and galleries of Museum Mile.",
-
-    }
 
     const navigate = useNavigate()
-    const itineraryId = useParams
+    const { itineraryId } = useParams
     // onclick func for each card 
-    const sendItinerary = (e, id) => {
+    const sendItinerary = (e, itinerary) => {
         let detailItinerary;
-        axios.get(`http://localhost:8080/itineraries/id/${id}`)
+        axios.get(`http://localhost:8080/itineraries/id/${itinerary.itinerary_id}`)
             .then(res => {
-                console.log(res.data)
                 detailItinerary = res.data
-
                 navigate(`/itinerary/:${itineraryId}`, { state: { itinerary, detailItinerary } })
 
             })
@@ -179,21 +163,25 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
                     <Link to="/add"> <Buttons value={'Add'} name={'buttons-white'} /></Link></div>
             </div>
             <ul className='userProfile__card-wrapper' >
+                {userItinerary.map((user, i) => {
+                    return (
+                        <li className='userProfile__item' key={i} onClick={(e) => { sendItinerary(e, user) }}>
+                            <div className='userProfile__card' >
+                                <img src={user.city_img} alt='city image' className='userProfile__city-img' />
+                            </div>
+                            <div className='userProfile__card-text'>
+                                <div className='userProfile__card-info'>
+                                    <img src={pin} alt='pin icon' className='userProfile__pin' />
+                                    <span className='userProfile__location'>{user.city}</span>
+                                </div>
 
+                                <div className='userProfile__duration'>Duration: {user.duration} days</div>
+                            </div>
+                        </li>
 
-                <li className='userProfile__item' onClick={(e) => { sendItinerary(e, user.itinerary_id) }}>
-                    <div className='userProfile__card' >
-                        <img src={user.city_img} alt='city image' className='userProfile__city-img' />
-                    </div>
-                    <div className='userProfile__card-text'>
-                        <div className='userProfile__card-info'>
-                            <img src={pin} alt='pin icon' className='userProfile__pin' />
-                            <span className='userProfile__location'>{user.city}</span>
-                        </div>
+                    )
+                })}
 
-                        <div className='userProfile__duration'>Duration: {user.duration} days</div>
-                    </div>
-                </li>
 
 
             </ul>

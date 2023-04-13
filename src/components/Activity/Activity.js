@@ -12,8 +12,8 @@ import cash from '../../assets/icons/cash.png'
 import essay from '../../assets/icons/essay.png'
 
 
-const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, dayWithAct, activityCount, setActivityCount }) => {
-    // // each activity set state
+const Activity = ({ setDayWithAct, dayWithAct, setAllDayAndActivities, allDayAndActivities, onDay }) => {
+    // // // each activity set state
     const [activity, setActivity] = useState({
         activity_name: '',
         activity_type: '',
@@ -29,21 +29,24 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
         }))
     }
     // save info btn
-    const saveInfo = (e, item) => {
-        console.log(item)
-        e.preventDefault()
-        setActivity(item)
+    const saveInfo = (e, activity) => {
 
-        setActivityCount(activityCount + 1);
-        // concatenate counter with string to form activity ID
-        const activityId = 'activity_id' + activityCount;
-        // add new activity with unique ID to activity list
-        setActivityList([...activityList, { activity_id: activityId, ...activity }])
-        setDayWithAct({ ...dayWithAct, activityList })
+        e.preventDefault()
+        // capture activity in state
+        setActivity(activity)
+
+        // add the activity to dayWithAct
+        setDayWithAct({ ...dayWithAct, activity })
+
+        // setAllDayAndActivities([...allDayAndActivities, dayWithAct])
+
+        setAllDayAndActivities([...allDayAndActivities, { day: onDay, activity }])
+
         const clickedBtn = e.target
         clickedBtn.classList.add('eachDay__hide')
     }
 
+    console.log(allDayAndActivities)
 
     // const handleSubmit = (e) => {
     //     e.preventDefault()
@@ -57,10 +60,19 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
     //     })
     // }
 
+    // adding additional activity
+    // const addActivity = (e, activity) => {
+    //     e.preventDefault()
+    //     // add new activity with unique ID to activity list
+    //     setDayWithAct({ ...dayWithAct, activity })
 
+    //     const clickedBtn = e.target
+    //     clickedBtn.classList.add('eachDay__hide')
+
+    // }
 
     return (
-        <form className='activity' >
+        < >
             {/* activity name */}
             <div className='activity__name'>
                 <FormLabel forfield={"activity_name"} text={'Name of attraction'} />
@@ -136,10 +148,10 @@ const Activity = ({ activityList, setActivityList, addActivity, setDayWithAct, d
 
             <div className='activity__btn-wrapper'>
                 <Buttons value={'save'} name={'buttons-white'} btnfunc={(e) => saveInfo(e, activity)} />
-                <Buttons value={'Add Activity'} name={'buttons'} btnfunc={(e) => addActivity(e, activity)} />
+                {/* <Buttons value={'Add Activity'} name={'buttons'} btnfunc={(e) => addActivity(e, activity)} /> */}
             </div>
 
-        </form>
+        </>
 
     )
 }

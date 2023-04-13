@@ -35,7 +35,7 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
 
     const navigate = useNavigate()
 
-    const itineraryId = useParams
+    const { itineraryId } = useParams
     // onclick func for each card 
     const sendItinerary = (e, itinerary) => {
         let detailItinerary;
@@ -51,8 +51,8 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
 
     // func to send all filters into city result page
     const sendFilters = () => {
+        navigate('/city', { state: { selectedDollarOption, selectedDuration } })
 
-        navigate('/city', { state: { selectedDollarOption, selectedDuration, sendItinerary } })
     }
 
     return (
@@ -78,27 +78,27 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
 
                 <section className='guestHome__dropdown' style={{ display: openFilter ? 'block' : 'none' }}>
                     <ul className='guestHome__dollar-list'>
-                        <li className='guestHome__items guestHome__items-one'>
-                            <img className='guestHome__dollar' src={dollar} alt='$' onClick={() => setSelectedDollarOption('$')} />
+                        <li className='guestHome__items guestHome__items-one' onClick={() => setSelectedDollarOption('$')} >
+                            <img className='guestHome__dollar' src={dollar} alt='$' />
                         </li>
 
-                        <li className='guestHome__items guestHome__items-two'>
-                            <img className='guestHome__dollar' src={dollar} alt='$$' onClick={() => setSelectedDollarOption('$$')} />
-                            <img className='guestHome__dollar' src={dollar} alt='$$' onClick={() => setSelectedDollarOption('$$')} />
+                        <li className='guestHome__items guestHome__items-two' onClick={() => setSelectedDollarOption('$$')}>
+                            <img className='guestHome__dollar' src={dollar} alt='$$' />
+                            <img className='guestHome__dollar' src={dollar} alt='$$' />
                         </li>
 
-                        <li className='guestHome__items guestHome__items-tre'>
-                            <img className='guestHome__dollar' src={dollar} alt='$$$' onClick={() => setSelectedDollarOption('$$$')} />
-                            <img className='guestHome__dollar' src={dollar} alt='$$$' onClick={() => setSelectedDollarOption('$$$')} />
-                            <img className='guestHome__dollar' src={dollar} alt='$$$' onClick={() => setSelectedDollarOption('$$$')} />
+                        <li className='guestHome__items guestHome__items-tre' onClick={() => setSelectedDollarOption('$$$')}>
+                            <img className='guestHome__dollar' src={dollar} alt='$$$' />
+                            <img className='guestHome__dollar' src={dollar} alt='$$$' />
+                            <img className='guestHome__dollar' src={dollar} alt='$$$' />
 
                         </li>
 
-                        <li className='guestHome__items guestHome__items-four'>
-                            <img className='guestHome__dollar' src={dollar} alt='$$$$' onClick={() => setSelectedDollarOption('$$$$')} />
-                            <img className='guestHome__dollar' src={dollar} alt='$$$$' onClick={() => setSelectedDollarOption('$$$$')} />
-                            <img className='guestHome__dollar' src={dollar} alt='$$$$' onClick={() => setSelectedDollarOption('$$$$')} />
-                            <img className='guestHome__dollar' src={dollar} alt='$$$$' onClick={() => setSelectedDollarOption('$$$$')} />
+                        <li className='guestHome__items guestHome__items-four' onClick={() => setSelectedDollarOption('$$$$')} >
+                            <img className='guestHome__dollar' src={dollar} alt='$$$$' />
+                            <img className='guestHome__dollar' src={dollar} alt='$$$$' />
+                            <img className='guestHome__dollar' src={dollar} alt='$$$$' />
+                            <img className='guestHome__dollar' src={dollar} alt='$$$$' />
                         </li>
 
                     </ul>

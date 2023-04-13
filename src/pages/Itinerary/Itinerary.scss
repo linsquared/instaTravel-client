@@ -172,13 +172,16 @@
 
     &__day {
         &-card {
-            margin: 3rem 1.5rem;
+            margin: 2rem 1.5rem;
         }
 
         &-title {
             font-size: 1.8rem;
             padding-bottom: 1rem;
-            border-bottom: 1px solid rgb(181, 181, 181);
+            width: 3em;
+            border-bottom: 3px solid $blue;
+            text-align: center;
+
         }
 
     }

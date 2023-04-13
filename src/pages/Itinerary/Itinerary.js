@@ -88,7 +88,7 @@ const Itinerary = () => {
                         <article className='itinerary__day-card' key={i}>
                             <h2 className='itinerary__day-title'>Day {day.day}</h2>
 
-                            {day.activities.filter(item => item.activity_id != null).map((activity, i) => {
+                            {day.activity.filter(item => item.activity_id != null).map((activity, i) => {
                                 return (
                                     <div className='itinerary__activity-card' key={i}>
                                         <div className='itinerary__sight'>

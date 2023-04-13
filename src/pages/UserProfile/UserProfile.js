@@ -55,7 +55,7 @@ const UserProfile = ({ allItineraries, userId, setUserId, allUsers }) => {
             <section className='userProfile__user'>
                 <span className='userProfile__name'>{targetUser.author}</span>
 
-                <Link href="mailto:example@example.com" ><span className='userProfile__email'>
+                <Link href="mailto:example@example.com"><span className='userProfile__email'>
                     <img src={link} alt='link icon' className='userProfile__link-icon' />
                     {targetUser.email}
                 </span></Link>

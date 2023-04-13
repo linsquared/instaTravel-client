@@ -49,8 +49,9 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
 
     // unpack duration and budget selections from previous page
     const location = useLocation()
-    const selectedDuration = location.state?.selectedDuration
-    const selectedBudget = location.state?.selectedDollarOption
+    const selectedDuration = location?.state?.selectedDuration
+    const selectedBudget = location?.state?.selectedDollarOption
+
 
     let initalResult;
 
@@ -125,6 +126,8 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
             // NO particular city, NO budget and NO duration
         } else if (!searchInput && !selectedBudget && !selectedDuration) {
             initalResult = searchResults
+        } else {
+            initalResult = allItineraries
         }
 
         return initalResult

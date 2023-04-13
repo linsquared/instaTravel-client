@@ -15,7 +15,7 @@ const UserTab = ({ allUsers, usersTab, searchUser, searchUserHandle, setUserId }
     const filteredUser = [...new Set(findByUserName.concat(findUserByAuthor))]
 
     const navigate = useNavigate()
-    const profileId = useParams()
+    const { profileId } = useParams()
 
     const toUserProfile = (id) => {
         setUserId(id)

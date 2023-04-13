@@ -17,6 +17,8 @@ import Header from './components/Header/Header';
 import CityResults from './pages/CityResults/CityResults';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Itinerary from './pages/Itinerary/Itinerary';
+import GuestHome from './components/GuestHome/GuestHome';
+import Footbar from './components/Footbar/Footbar';
 
 function App() {
   // set err state
@@ -118,8 +120,9 @@ function App() {
         {/* TEMP ROUTE */}
         <Route path='add' element={<AddItinerary />} />
         <Route path='day' element={<AddDayInfo />} />
-        <Route path='activity' element={<Activity />} />
-        <Route path='head' element={<Header />} />
+        <Route path='foot' element={<Footbar />} />
+        <Route path='guest' element={<GuestHome />} />
+
 
 
       </Routes>

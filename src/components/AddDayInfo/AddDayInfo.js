@@ -10,7 +10,6 @@ const AddDayInfo = ({ duration, showDay }) => {
 
     const saveEntireItinerary = (e) => {
         e.preventDefault()
-        console.log(e)
     }
     return (
         <main className='day'
