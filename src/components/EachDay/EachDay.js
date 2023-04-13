@@ -25,7 +25,7 @@ const EachDay = ({ dayValue }) => {
 
 
     // func to see how many activity to add 
-    const renderActivities = () => {
+    const renderActivities = (day) => {
         const activities = [];
         for (let i = 0; i < activityCount; i++) {
             activities.push(
@@ -38,9 +38,12 @@ const EachDay = ({ dayValue }) => {
                     allDayAndActivities={allDayAndActivities}
                     setOnDay={setOnDay}
                     onDay={onDay}
+                    day={day}
                 />
             );
         }
+        console.log(day)
+
         return activities;
     };
 
@@ -54,9 +57,8 @@ const EachDay = ({ dayValue }) => {
                 {Array.of(dayValue).map((day, i) => {
                     return (
                         <>
-                            <h2 className='eachDay__title' key={i + 1}> On Day {day}
-                            </h2>
-                            {renderActivities()}
+                            <h2 className='eachDay__title' key={i + 1}> On Day {day}</h2>
+                            {renderActivities(day)}
 
                             <div className='eachDay__btn'>
                                 <Buttons value={'Add Activity'} name={'buttons'} btnfunc={handleAddActivity} />
