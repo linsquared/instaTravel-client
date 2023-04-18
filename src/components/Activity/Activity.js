@@ -29,62 +29,24 @@ const Activity = ({ setDayWithAct, dayWithAct, setAllDayAndActivities, allDayAnd
         }))
     }
     // save info btn
-    // const saveInfo = (e, activity) => {
-
-    //     e.preventDefault()
-    //     // capture activity in state
-    //     setActivity(activity)
-
-    //     // add the activity to dayWithAct
-    //     setDayWithAct({ ...dayWithAct, day: day, activity })
-
-    //     // setAllDayAndActivities([...allDayAndActivities, dayWithAct])
-
-    //     setAllDayAndActivities([...allDayAndActivities, { ...dayWithAct }])
-
-    //     const clickedBtn = e.target
-    //     clickedBtn.classList.add('eachDay__hide')
-    // }
     const saveInfo = (e, activity) => {
-        e.preventDefault()
+        e.preventDefault();
+
         // capture activity in state
-        setActivity(activity)
+        setActivity(activity);
 
         // add the activity to dayWithAct
-        setDayWithAct({ ...dayWithAct, day: day, activity })
+        setDayWithAct({ ...dayWithAct, day: day, activity, activities: dayWithAct.activities || [] });
 
-        // update allDayAndActivities array with the updated dayWithAct
-        setAllDayAndActivities(prevAllDayAndActivities => {
-            const updatedAllDayAndActivities = prevAllDayAndActivities.map(eachDayWithAct => {
-                if (eachDayWithAct.day === day) {
-                    return { ...dayWithAct }
-                }
-                return eachDayWithAct
-            })
-            return updatedAllDayAndActivities
-        })
+        // create a new array with the previous activities for the day along with the new activity
+        const newActivities = [...(dayWithAct.activities || []), activity];
 
-        const clickedBtn = e.target
-        clickedBtn.classList.add('eachDay__hide')
-    }
+        // update the allDayAndActivities state with the new array
+        setAllDayAndActivities(prevState => [...prevState, { day: day, activities: newActivities }]);
 
-
-
-    console.log(dayWithAct)
-    console.log(allDayAndActivities)
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
-    //     addActivity(activity)
-    //     setActivity({
-    //         activity_name: '',
-    //         activity_type: '',
-    //         cost: '',
-    //         activity_description: '',
-    //         activity_image: '',
-    //     })
-    // }
-
+        const clickedBtn = e.target;
+        clickedBtn.classList.add('eachDay__hide');
+    };
 
     return (
         < >

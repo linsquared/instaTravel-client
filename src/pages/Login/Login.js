@@ -20,7 +20,7 @@ const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
         password: ''
     })
 
-    const [loginRes, setLoginRes] = useState('')
+    // const [loginRes, setLoginRes] = useState('')
 
     // control userlogin info
     const userLogin = (e) => {
@@ -73,20 +73,17 @@ const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
             e.preventDefault()
             axios.post('http://localhost:8080/users/login', loginInfo)
                 .then(res => {
-                    setLoginRes(res.data);
                     sessionStorage.setItem("token", res.data.token);
                     setSuccess(true)
                     setError('')
                     e.target.reset()
                     navigate('/')
-                    console.log(res.data)
                 })
                 .catch(err => {
                     if (err.response.status === 404) {
                         setErrMsg(true)
                         setError(err.response.data)
                     } else {
-                        setLoginRes(err.response)
                         setSuccess(false)
                         setError(err.response.data)
                     }
@@ -107,7 +104,7 @@ const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
             <div className="login__logo-wrapper">
                 <img className='login__logo' src={logo} alt='logo icon' />
             </div>
-            {loginRes && <p>{loginRes}</p>}
+            {/* {loginRes && <p></p>} */}
 
             <form onSubmit={loginSubmission} className='login__form'>
                 <div className='login__user-wrapper'>

@@ -7,19 +7,22 @@ import Activity from '../Activity/Activity'
 import Buttons from '../Buttons/Buttons'
 
 
-const EachDay = ({ dayValue }) => {
+const EachDay = ({ dayValue, setAllDayAndActivities, allDayAndActivities }) => {
 
     // set up day value 
     const [onDay, setOnDay] = useState('')
 
     // state to hold each activity with the day is on
     const [dayWithAct, setDayWithAct] = useState([])
-    // state to hold the all the day together
-    const [allDayAndActivities, setAllDayAndActivities] = useState([])
+
+    // // state to hold the all the day together
+    // const [allDayAndActivities, setAllDayAndActivities] = useState([])
 
     // set each activity count
     const [activityCount, setActivityCount] = useState(1);
-    const handleAddActivity = () => {
+
+    const handleAddActivity = (e) => {
+        e.preventDefault()
         setActivityCount(activityCount + 1);
     };
 
@@ -42,8 +45,6 @@ const EachDay = ({ dayValue }) => {
                 />
             );
         }
-        console.log(day)
-
         return activities;
     };
 
@@ -51,7 +52,7 @@ const EachDay = ({ dayValue }) => {
     return (
         <section className='eachDay'>
 
-            <form className='activity' >
+            <div className='activity' >
 
 
                 {Array.of(dayValue).map((day, i) => {
@@ -68,7 +69,7 @@ const EachDay = ({ dayValue }) => {
                 })
                 }
 
-            </form>
+            </div>
         </section>
 
     )
