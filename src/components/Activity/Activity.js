@@ -48,6 +48,7 @@ const Activity = ({ setDayWithAct, dayWithAct, setAllDayAndActivities, allDayAnd
         clickedBtn.classList.add('eachDay__hide');
     };
 
+    console.log(allDayAndActivities)
     return (
         < >
             {/* activity name */}
