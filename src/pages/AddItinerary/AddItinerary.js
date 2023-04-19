@@ -1,5 +1,6 @@
 // core stuff
 import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 // import styles, components, pages
 import AddBasicInfo from '../../components/AddBasicInfo/AddBasicInfo'
@@ -10,8 +11,15 @@ import Nav from '../../components/Nav/Nav'
 // core stuff
 
 const AddItinerary = () => {
+    // retrieving user data
+    const location = useLocation()
+    const currentUser = location?.state?.currentUser
+
     // form info usestate
     const [basicInfo, setBasicInfo] = useState({
+        user_id: currentUser.user_id,
+        user_name: currentUser.user_name,
+        user_icon: currentUser.user_icon,
         city: '',
         views: 0,
         likes: 0,
@@ -25,7 +33,6 @@ const AddItinerary = () => {
     // show day component or nah
     const [showDay, setShowDay] = useState(false)
     const [showBasic, setShowBasic] = useState(true)
-
 
     return (
         <main className='addItinerary'>
@@ -43,7 +50,8 @@ const AddItinerary = () => {
             <AddDayInfo
                 duration={basicInfo.duration}
                 showDay={showDay}
-                setShowDay={setShowDay} />
+                setShowDay={setShowDay}
+                basicInfo={basicInfo} />
         </main>
     )
 }

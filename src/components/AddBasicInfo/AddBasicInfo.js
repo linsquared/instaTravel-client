@@ -39,7 +39,8 @@ const AddBasicInfo = ({ basicInfo, setBasicInfo, setShowDay, setShowBasic, showB
             !basicInfo.trip_title ||
             !basicInfo.description) {
             return false
-        } return true
+        }
+        return true
     }
     // err state
     const [err, setErr] = useState(false)

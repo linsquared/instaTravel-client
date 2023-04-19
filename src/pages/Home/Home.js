@@ -34,7 +34,6 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
                 },
             })
             .then(res => {
-                console.log(res.data[0])
                 // set current user who just logged in
                 setUser(res.data[0]);
                 // set current user's itienraries
@@ -67,8 +66,8 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
         setUsersTab(true)
     }
 
-
     const navigate = useNavigate()
+
     const { itineraryId } = useParams
     // onclick func for each card 
     const sendItinerary = (e, itinerary) => {
@@ -123,6 +122,16 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
         )
 
     }
+    const currentUser = {
+        user_icon: user.user_icon,
+        user_name: user.user_name,
+        user_id: user.user_id
+    }
+
+    const addItin = () => {
+        navigate('/add', { state: { currentUser } })
+
+    }
 
     return (
         <main className='userProfile home'>
@@ -160,7 +169,7 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
             <div className='userProfile__btn-wrapper'>
                 <div className='userProfile__btn follow'><Buttons value={'Edit'} name={'buttons'} /></div>
                 <div className='userProfile__btn share'>
-                    <Link to="/add"> <Buttons value={'Add'} name={'buttons-white'} /></Link></div>
+                    <Buttons value={'Add'} name={'buttons-white'} btnfunc={addItin} /></div>
             </div>
             <ul className='userProfile__card-wrapper' >
                 {userItinerary.map((user, i) => {
