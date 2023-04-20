@@ -42,6 +42,9 @@ function App() {
   // user searchbar
   const [searchUser, setSearchUser] = useState('')
 
+  // check if user is logged in 
+  const [login, setLogin] = useState(false)
+
   // searchbar form control 
   const searchHandle = (e) => {
     setSearchInput(e.target.value)
@@ -73,6 +76,7 @@ function App() {
       .catch(err => console.log(err))
   }, [])
 
+  console.log(allUsers)
   return (
     <BrowserRouter>
       <Routes>
@@ -85,7 +89,9 @@ function App() {
           searchUser={searchUser}
           setSearchUser={setSearchUser}
           searchUserHandle={searchUserHandle}
-          userId={userId} setUserId={setUserId} />} />
+          userId={userId} setUserId={setUserId}
+          login={login} setLogin={setLogin}
+        />} />
 
         <Route path='/register' element={<Signup
           errMsg={errMsg}
@@ -110,10 +116,9 @@ function App() {
           searchHandle={searchHandle} />} />
 
         <Route path='/user/:profileId' element={<UserProfile
-          allItineraries={allItineraries}
           userId={userId}
           setUserId={setUserId}
-          allUsers={allUsers} />} />
+          login={login} />} />
 
         <Route path='/itinerary/:itineraryId' element={<Itinerary />} />
 

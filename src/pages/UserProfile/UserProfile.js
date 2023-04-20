@@ -9,10 +9,11 @@ import Buttons from '../../components/Buttons/Buttons'
 import link from '../../assets/icons/link.png'
 import pin from '../../assets/icons/pin2.png'
 
-const UserProfile = ({ allItineraries, userId, setUserId, allUsers }) => {
+const UserProfile = ({ allItineraries, userId, allUsers, login, handleLogout }) => {
 
-    const userItineraries = allItineraries.filter(item => item.user_id === userId)
+    const userItineraries = allItineraries?.filter(item => item.user_id === userId)
     const targetUser = allUsers?.find(item => item.user_id === userId)
+    console.log(allUsers)
 
     const navigate = useNavigate()
     const itineraryId = useParams
@@ -29,47 +30,68 @@ const UserProfile = ({ allItineraries, userId, setUserId, allUsers }) => {
             .catch(err => console.log(err))
     }
 
+    // to add an itinerary and send user info
+    const currentUser = {
+        user_icon: targetUser.user_icon,
+        user_name: targetUser.user_name,
+        user_id: targetUser.user_id
+    }
+    const addItin = () => {
+        navigate('/add', { state: { currentUser } })
+
+    }
+    console.log(login)
+
     return (
         <main className='userProfile'>
             <header className='userProfile__header'>
-                <Nav />
-                <div className='userProfile__username'>{targetUser.user_name}</div>
+                {login ? <Nav value={'Log out'} func={handleLogout} /> :
+                    <Nav />}
+                <div className='userProfile__username'>{targetUser?.user_name}</div>
             </header>
 
             <section className='userProfile__info'>
                 <div className='userProfile__img-wrapper'>
-                    <img className='userProfile__img' src={targetUser.user_icon} alt='user self icon' />
+                    <img className='userProfile__img' src={targetUser?.user_icon} alt='user self icon' />
                 </div>
                 <div className='userProfile__statistics'>
                     <div className='userProfile__itinerary'>
-                        <span className='userProfile__count'>{targetUser.itinerary_count}</span>
+                        <span className='userProfile__count'>{targetUser?.itinerary_count}</span>
                         <span className='userProfile__text'>Itineraries</span>
                     </div>
                     <div className='userProfile__followers'>
-                        <span className='userProfile__count'>{targetUser.followers}</span>
+                        <span className='userProfile__count'>{targetUser?.followers}</span>
                         <span className='userProfile__text'>Followers</span>
                     </div>
                 </div>
             </section>
 
             <section className='userProfile__user'>
-                <span className='userProfile__name'>{targetUser.author}</span>
+                <span className='userProfile__name'>{targetUser?.author}</span>
 
                 <Link href="mailto:example@example.com"><span className='userProfile__email'>
                     <img src={link} alt='link icon' className='userProfile__link-icon' />
-                    {targetUser.email}
+                    {targetUser?.email}
                 </span></Link>
 
             </section>
 
-            <div className='userProfile__btn-wrapper'>
-                <div className='userProfile__btn follow'><Buttons value={'Follow'} name={'buttons'} /></div>
-                <div className='userProfile__btn share'><Buttons value={'Share'} name={'buttons-white'} /></div>
-            </div>
+            {login ?
+                <div className='userProfile__btn-wrapper'>
+                    <div className='userProfile__btn follow'><Buttons value={'Edit'} name={'buttons'} /></div>
+                    <div className='userProfile__btn share'>
+                        <Buttons value={'Add'} name={'buttons-white'} btnfunc={addItin} /></div>
+                </div>
+                :
+                <div className='userProfile__btn-wrapper'>
+                    <div className='userProfile__btn follow'><Buttons value={'Follow'} name={'buttons'} /></div>
+                    <div className='userProfile__btn share'><Buttons value={'Share'} name={'buttons-white'} /></div>
+                </div>}
+
 
             <ul className='userProfile__card-wrapper' >
 
-                {userItineraries.map((itinerary, i) => {
+                {userItineraries?.map((itinerary, i) => {
                     return (
                         <li className='userProfile__item' key={i} onClick={(e) => { sendItinerary(e, itinerary) }}>
                             <div className='userProfile__card' >

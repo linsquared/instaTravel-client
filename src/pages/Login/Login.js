@@ -42,30 +42,6 @@ const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
         } return true
     }
 
-    // post the login info
-    // const loginSubmission = (e) => {
-    //     if (validLogin()) {
-    //         e.preventDefault()
-    //         axios.post('http://localhost:8080/users/login', loginInfo)
-    //             .then(res => {
-    //                 console.log(res.data)
-    //                 setLoginRes(res.data);
-    //                 sessionStorage.setItem("token", res.data.token);
-    //                 setSuccess(true)
-    //                 setError('')
-    //                 e.target.reset()
-    //                 navigate('/')
-    //             })
-    //             .catch(err => {
-    //                 setLoginRes(err.response)
-    //                 setSuccess(false)
-    //                 setError(err.response.data)
-
-    //             })
-    //     } else {
-    //         console.log('please fill out all required field')
-    //     }
-    // }
 
     // post the login info
     const loginSubmission = (e) => {
