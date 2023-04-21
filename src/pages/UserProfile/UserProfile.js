@@ -1,5 +1,5 @@
 // core stuff 
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams, useNavigate, useLocation } from 'react-router-dom'
 import axios from 'axios'
 // styles, pages, components
 import './UserProfile.scss'
@@ -9,11 +9,11 @@ import Buttons from '../../components/Buttons/Buttons'
 import link from '../../assets/icons/link.png'
 import pin from '../../assets/icons/pin2.png'
 
-const UserProfile = ({ allItineraries, userId, allUsers, login, handleLogout }) => {
-
+const UserProfile = ({ userId, login, handleLogout, allItineraries, allUsers }) => {
+    console.log(allUsers)
+    // find specific itinerary and user
     const userItineraries = allItineraries?.filter(item => item.user_id === userId)
     const targetUser = allUsers?.find(item => item.user_id === userId)
-    console.log(allUsers)
 
     const navigate = useNavigate()
     const itineraryId = useParams
@@ -40,13 +40,13 @@ const UserProfile = ({ allItineraries, userId, allUsers, login, handleLogout }) 
         navigate('/add', { state: { currentUser } })
 
     }
-    console.log(login)
 
+    console.log(login)
     return (
         <main className='userProfile'>
             <header className='userProfile__header'>
-                {login ? <Nav value={'Log out'} func={handleLogout} /> :
-                    <Nav />}
+                {login ? <Nav value={'Log out'} login={login} /> :
+                    <Nav login={login} />}
                 <div className='userProfile__username'>{targetUser?.user_name}</div>
             </header>
 

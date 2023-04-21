@@ -7,14 +7,19 @@ import { useNavigate, Link } from 'react-router-dom'
 
 // styles 
 import './Nav.scss'
-const Nav = ({ value, func }) => {
+const Nav = ({ value, func, login, handleLogout, userId }) => {
 
     const navigate = useNavigate()
-
+    // navigate to login page
     const toLogin = () => {
         navigate('/login')
     }
-
+    // navigate to user home page
+    const userHome = () => {
+        navigate(`/user/${userId}`)
+        console.log(userId)
+    }
+    console.log(login)
     return (
         <nav className='nav'>
             <ul className='nav__list'>
@@ -23,10 +28,20 @@ const Nav = ({ value, func }) => {
                 </li>
                 <li className='nav__nav-item'>
                     <div className='nav__right'>
-                        {func ? <span onClick={func} className='nav__log'>{value}</span> :
-                            <Link to='/login'><span className='nav__log'>{value}</span></Link>}
 
-                        <img src={user} alt='user icon' className='nav__user' onClick={toLogin} />
+                        {login ?
+                            <>
+                                <span onClick={handleLogout} className='nav__log'>Log out</span>
+                                <img src={user} alt='user icon' className='nav__user' onClick={userHome} />
+
+                            </>
+                            :
+                            <>
+                                <Link to='/login'><span className='nav__log'>Log in</span></Link>
+                                <img src={user} alt='user icon' className='nav__user' onClick={toLogin} />
+                            </>
+                        }
+
                     </div>
                 </li>
 

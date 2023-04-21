@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import UserSearch from '../SearchBar/UserSearch/UserSearch'
 import './UserTab.scss'
 
-const UserTab = ({ allUsers, usersTab, searchUser, searchUserHandle, setUserId }) => {
+const UserTab = ({ allUsers, usersTab, searchUser, allItineraries, searchUserHandle, setUserId }) => {
 
     // need to find a better way to sort this
     const sortedUsers = allUsers?.sort((a, b) => b.itinerary_count - a.itinerary_count)

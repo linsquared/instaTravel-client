@@ -56,6 +56,7 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
         setFailedAuth(true);
         setLogin(false)
     };
+
     console.log(login)
     // set two tabs on homepage
     const [tripsTab, setTripsTab] = useState(true)
@@ -73,33 +74,34 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
 
     const navigate = useNavigate()
 
-    const { itineraryId } = useParams
-    // onclick func for each card 
-    const sendItinerary = (e, itinerary) => {
-        let detailItinerary;
-        axios.get(`http://localhost:8080/itineraries/id/${itinerary.itinerary_id}`)
-            .then(res => {
-                detailItinerary = res.data
-                navigate(`/itinerary/:${itineraryId}`, { state: { itinerary, detailItinerary } })
+    // const { itineraryId } = useParams
+    // // onclick func for each card 
+    // const sendItinerary = (e, itinerary) => {
+    //     let detailItinerary;
+    //     axios.get(`http://localhost:8080/itineraries/id/${itinerary.itinerary_id}`)
+    //         .then(res => {
+    //             detailItinerary = res.data
+    //             navigate(`/itinerary/:${itineraryId}`, { state: { itinerary, detailItinerary } })
 
-            })
-            .catch(err => console.log(err))
-    }
+    //         })
+    //         .catch(err => console.log(err))
+    // }
 
-    if (user === null) {
-        return (<main>
-            <h1>Loading...</h1>
-        </main>
-        )
+    // if (user === null) {
+    //     return (<main>
+    //         <h1>Loading...</h1>
+    //     </main>
+    //     )
 
-    }
-    // redirect to log in
-    // if (failedAuth) {
+    // }
+
     return (
         <main className="home">
-            {failedAuth ? <Header value={'Log in'} />
+            {failedAuth ? <Header value={'Log in'} login={login} />
                 :
-                <Header value={'Log out'} />}
+                <Header value={'Log out'} login={login}
+                    handleLogout={handleLogout}
+                    userId={userId} />}
             <div className='home__tabs'>
                 <div className="home__title-wrapper" onClick={tripTabClicked}>
                     <h1 className='home__title'>Trips</h1>
@@ -117,7 +119,9 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
                 tripsTab={tripsTab} />
 
 
-            <UserTab allUsers={allUsers}
+            <UserTab
+                allItineraries={allItineraries}
+                allUsers={allUsers}
                 usersTab={usersTab}
                 searchUser={searchUser}
                 setSearchUser={setSearchUser}
@@ -128,7 +132,6 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
 
         </main>
     )
-    // }
 
 
 

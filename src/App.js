@@ -76,7 +76,6 @@ function App() {
       .catch(err => console.log(err))
   }, [])
 
-  console.log(allUsers)
   return (
     <BrowserRouter>
       <Routes>
@@ -116,6 +115,8 @@ function App() {
           searchHandle={searchHandle} />} />
 
         <Route path='/user/:profileId' element={<UserProfile
+          allItineraries={allItineraries}
+          allUsers={allUsers}
           userId={userId}
           setUserId={setUserId}
           login={login} />} />
