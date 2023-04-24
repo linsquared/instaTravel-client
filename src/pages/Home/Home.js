@@ -44,7 +44,6 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
     // logout func
     const handleLogout = () => {
         sessionStorage.removeItem("token");
-        // setUser(null);
         userLogout(null)
         setFailedAuth(true);
     };
@@ -65,7 +64,7 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
 
     return (
         <main className="home">
-            <Nav handleLogout={handleLogout} />
+            <Nav setFailedAuth={setFailedAuth} />
             <div className='home__image'></div>
             <div className='home__tabs'>
                 <div className="home__title-wrapper" onClick={tripTabClicked}>
@@ -80,7 +79,6 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
             <GuestHome allItineraries={allItineraries}
                 setSearchInput={setSearchInput}
                 searchInput={searchInput}
-                // searchHandle={searchHandle}
                 tripsTab={tripsTab} />
 
 

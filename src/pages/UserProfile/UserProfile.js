@@ -11,7 +11,7 @@ import Buttons from '../../components/Buttons/Buttons'
 import link from '../../assets/icons/link.png'
 import pin from '../../assets/icons/pin2.png'
 
-const UserProfile = ({ userId, handleLogout, allItineraries, allUsers }) => {
+const UserProfile = ({ userId, allItineraries, allUsers }) => {
     // retriving context info
     const { user } = useContext(UserContext)
 
@@ -20,7 +20,8 @@ const UserProfile = ({ userId, handleLogout, allItineraries, allUsers }) => {
     const targetUser = allUsers?.find(item => item.user_id === userId)
 
     const navigate = useNavigate()
-    const itineraryId = useParams
+    const itineraryId = useParams()
+
     // onclick func for each card 
     const sendItinerary = (e, itinerary) => {
         let detailItinerary;
@@ -44,11 +45,10 @@ const UserProfile = ({ userId, handleLogout, allItineraries, allUsers }) => {
         navigate('/add', { state: { currentUser } })
 
     }
-
     return (
         <main className='userProfile'>
             <header className='userProfile__header'>
-                <Nav handleLogout={handleLogout} />
+                <Nav />
                 <div className='userProfile__username'>{targetUser?.user_name}</div>
             </header>
 
@@ -78,7 +78,7 @@ const UserProfile = ({ userId, handleLogout, allItineraries, allUsers }) => {
 
             </section>
 
-            {user ?
+            {targetUser.user_id == user.user_id ?
                 <div className='userProfile__btn-wrapper'>
                     <div className='userProfile__btn follow'><Buttons value={'Edit'} name={'buttons'} /></div>
                     <div className='userProfile__btn share'>

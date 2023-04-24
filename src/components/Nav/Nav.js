@@ -11,17 +11,27 @@ import userIcon from '../../assets/icons/user.png'
 import { UserContext } from '../../context/UserContext'
 
 
-const Nav = ({ handleLogout }) => {
-    const { user, userLogin } = useContext(UserContext)
+const Nav = ({ setFailedAuth }) => {
+    const { user, userLogin, userLogout } = useContext(UserContext)
     const navigate = useNavigate()
     // navigate to login page
     const toLogin = () => {
         navigate('/login')
     }
+
+    // logout
+    const handleLogout = () => {
+        sessionStorage.removeItem("token");
+        userLogout(null)
+        setFailedAuth(true);
+    };
+
     // navigate to user home page
     const userHome = () => {
-        navigate(`/user/${userLogin.user_id}`)
+        navigate(`/user/${user?.user_id}`, { replace: true })
     }
+
+
     return (
         <nav className='nav'>
             <ul className='nav__list'>
