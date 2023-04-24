@@ -1,15 +1,20 @@
 // core stuff 
-import { Link, useParams, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
 import axios from 'axios'
+import { UserContext } from '../../context/UserContext'
+
 // styles, pages, components
 import './UserProfile.scss'
 import Nav from '../../components/Nav/Nav'
-import fake from '../../assets/images/plan3.jpg'
 import Buttons from '../../components/Buttons/Buttons'
 import link from '../../assets/icons/link.png'
 import pin from '../../assets/icons/pin2.png'
 
-const UserProfile = ({ userId, login, handleLogout, allItineraries, allUsers }) => {
+const UserProfile = ({ userId, handleLogout, allItineraries, allUsers }) => {
+    // retriving context info
+    const { user } = useContext(UserContext)
+
     console.log(allUsers)
     // find specific itinerary and user
     const userItineraries = allItineraries?.filter(item => item.user_id === userId)
@@ -32,21 +37,19 @@ const UserProfile = ({ userId, login, handleLogout, allItineraries, allUsers }) 
 
     // to add an itinerary and send user info
     const currentUser = {
-        user_icon: targetUser.user_icon,
-        user_name: targetUser.user_name,
-        user_id: targetUser.user_id
+        user_icon: targetUser?.user_icon,
+        user_name: targetUser?.user_name,
+        user_id: targetUser?.user_id
     }
     const addItin = () => {
         navigate('/add', { state: { currentUser } })
 
     }
 
-    console.log(login)
     return (
         <main className='userProfile'>
             <header className='userProfile__header'>
-                {login ? <Nav value={'Log out'} login={login} /> :
-                    <Nav login={login} />}
+                <Nav handleLogout={handleLogout} />
                 <div className='userProfile__username'>{targetUser?.user_name}</div>
             </header>
 
@@ -76,7 +79,7 @@ const UserProfile = ({ userId, login, handleLogout, allItineraries, allUsers }) 
 
             </section>
 
-            {login ?
+            {user ?
                 <div className='userProfile__btn-wrapper'>
                     <div className='userProfile__btn follow'><Buttons value={'Edit'} name={'buttons'} /></div>
                     <div className='userProfile__btn share'>
@@ -95,7 +98,7 @@ const UserProfile = ({ userId, login, handleLogout, allItineraries, allUsers }) 
                     return (
                         <li className='userProfile__item' key={i} onClick={(e) => { sendItinerary(e, itinerary) }}>
                             <div className='userProfile__card' >
-                                <img src={itinerary.city_img} alt='city image' className='userProfile__city-img' />
+                                <img src={itinerary.city_img} alt='city' className='userProfile__city-img' />
                             </div>
                             <div className='userProfile__card-text'>
                                 <div className='userProfile__card-info'>

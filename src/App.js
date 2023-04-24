@@ -13,7 +13,6 @@ import AddItinerary from './pages/AddItinerary/AddItinerary';
 import AddBasicInfo from './components/AddBasicInfo/AddBasicInfo';
 import AddDayInfo from './components/AddDayInfo/AddDayInfo';
 import Activity from './components/Activity/Activity';
-import Header from './components/Header/Header';
 import CityResults from './pages/CityResults/CityResults';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Itinerary from './pages/Itinerary/Itinerary';
@@ -41,9 +40,6 @@ function App() {
 
   // user searchbar
   const [searchUser, setSearchUser] = useState('')
-
-  // check if user is logged in 
-  const [login, setLogin] = useState(false)
 
   // searchbar form control 
   const searchHandle = (e) => {
@@ -89,7 +85,6 @@ function App() {
           setSearchUser={setSearchUser}
           searchUserHandle={searchUserHandle}
           userId={userId} setUserId={setUserId}
-          login={login} setLogin={setLogin}
         />} />
 
         <Route path='/register' element={<Signup
@@ -118,8 +113,7 @@ function App() {
           allItineraries={allItineraries}
           allUsers={allUsers}
           userId={userId}
-          setUserId={setUserId}
-          login={login} />} />
+          setUserId={setUserId} />} />
 
         <Route path='/itinerary/:itineraryId' element={<Itinerary />} />
 

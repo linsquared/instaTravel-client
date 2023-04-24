@@ -5,12 +5,16 @@
 
 .nav {
 
-    height: 8rem;
+    height: 7rem;
     padding: 0 2rem;
-    padding-top: 3rem;
+    padding-top: 2rem;
     background-color: rgba(237, 245, 248, 0.957);
     border-top-left-radius: 3.5rem;
     border-top-right-radius: 3.5rem;
+    position: absolute;
+    top: 2.5rem;
+    width: 37rem;
+    z-index: 100;
 
     &__list {
         display: flex;
@@ -24,6 +28,13 @@
 
     &__user {
         width: 3rem;
+
+        &--img {
+            height: 4rem;
+            width: 4rem;
+            object-fit: 150%;
+            border-radius: 50%;
+        }
     }
 
     &__right {

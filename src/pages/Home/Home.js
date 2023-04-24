@@ -1,24 +1,20 @@
-import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
+import { UserContext } from '../../context/UserContext'
 
 // img,  pages and components
 import './Home.scss'
-import Header from '../../components/Header/Header';
-import pin from '../../assets/icons/pin.png';
 import GuestHome from '../../components/GuestHome/GuestHome'
 import UserTab from '../../components/UserTab/UserTab';
 import Nav from '../../components/Nav/Nav';
-import Buttons from '../../components/Buttons/Buttons';
-import link from '../../assets/icons/link.png'
-import UserProfile from '../UserProfile/UserProfile';
+// import UserProfile from '../UserProfile/UserProfile';
 
 
-const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUsers, searchUser, setSearchUser, searchUserHandle, userId, setUserId, login, setLogin }) => {
+const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUsers, searchUser, setSearchUser, searchUserHandle, userId, setUserId }) => {
+    // set context
+    const { userLogin, userLogout } = useContext(UserContext)
     // set states
-    const [user, setUser] = useState('')
     const [failedAuth, setFailedAuth] = useState(false)
-    const [userItinerary, setUserItinerary] = useState([])
 
     useEffect(() => {
         const token = sessionStorage.getItem("token");
@@ -35,29 +31,24 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
                 },
             })
             .then(res => {
-                setLogin(true)
                 // set current user who just logged in
-                setUser(res.data[0]);
+                userLogin(res.data[0])
                 setUserId(res.data[0].user_id);
-                // set current user's itienraries
-                setUserItinerary(allItineraries.filter(item => item.user_name === res.data[0].user_name))
             })
             .catch(err => {
                 console.log(err);
                 setFailedAuth(true)
-                setLogin(false)
             })
     }, [])
 
     // logout func
     const handleLogout = () => {
         sessionStorage.removeItem("token");
-        setUser(null);
+        // setUser(null);
+        userLogout(null)
         setFailedAuth(true);
-        setLogin(false)
     };
 
-    console.log(login)
     // set two tabs on homepage
     const [tripsTab, setTripsTab] = useState(true)
     const [usersTab, setUsersTab] = useState(false)
@@ -72,36 +63,10 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
         setUsersTab(true)
     }
 
-    const navigate = useNavigate()
-
-    // const { itineraryId } = useParams
-    // // onclick func for each card 
-    // const sendItinerary = (e, itinerary) => {
-    //     let detailItinerary;
-    //     axios.get(`http://localhost:8080/itineraries/id/${itinerary.itinerary_id}`)
-    //         .then(res => {
-    //             detailItinerary = res.data
-    //             navigate(`/itinerary/:${itineraryId}`, { state: { itinerary, detailItinerary } })
-
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-
-    // if (user === null) {
-    //     return (<main>
-    //         <h1>Loading...</h1>
-    //     </main>
-    //     )
-
-    // }
-
     return (
         <main className="home">
-            {failedAuth ? <Header value={'Log in'} login={login} />
-                :
-                <Header value={'Log out'} login={login}
-                    handleLogout={handleLogout}
-                    userId={userId} />}
+            <Nav handleLogout={handleLogout} />
+            <div className='home__image'></div>
             <div className='home__tabs'>
                 <div className="home__title-wrapper" onClick={tripTabClicked}>
                     <h1 className='home__title'>Trips</h1>
@@ -134,15 +99,6 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
     )
 
 
-
-    // return (
-
-    //     // <UserProfile handleLogout={handleLogout}
-    //     //     userId={userId} login={login}
-    //     //     allItineraries={allItineraries}
-    //     //     allUsers={allUsers} />
-
-    // )
 }
 
 export default Home

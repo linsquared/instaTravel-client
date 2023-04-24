@@ -1,14 +1,19 @@
-import './Nav.scss'
-import logo from '../../assets/logo/logo.png'
-import user from '../../assets/icons/user.png'
-
 // core stuff
 import { useNavigate, Link } from 'react-router-dom'
+import { useContext } from 'react'
 
-// styles 
+
+// styles , pages
 import './Nav.scss'
-const Nav = ({ value, func, login, handleLogout, userId }) => {
+import './Nav.scss'
+import logo from '../../assets/logo/logo.png'
+import userIcon from '../../assets/icons/user.png'
+import { UserContext } from '../../context/UserContext'
 
+
+const Nav = ({ handleLogout }) => {
+    const { user, userLogin } = useContext(UserContext)
+    console.log(user)
     const navigate = useNavigate()
     // navigate to login page
     const toLogin = () => {
@@ -16,10 +21,8 @@ const Nav = ({ value, func, login, handleLogout, userId }) => {
     }
     // navigate to user home page
     const userHome = () => {
-        navigate(`/user/${userId}`)
-        console.log(userId)
+        navigate(`/user/${userLogin.user_id}`)
     }
-    console.log(login)
     return (
         <nav className='nav'>
             <ul className='nav__list'>
@@ -29,16 +32,16 @@ const Nav = ({ value, func, login, handleLogout, userId }) => {
                 <li className='nav__nav-item'>
                     <div className='nav__right'>
 
-                        {login ?
+                        {user ?
                             <>
                                 <span onClick={handleLogout} className='nav__log'>Log out</span>
-                                <img src={user} alt='user icon' className='nav__user' onClick={userHome} />
+                                <img src={user?.user_icon} alt='user icon' className='nav__user  nav__user--img' onClick={userHome} />
 
                             </>
                             :
                             <>
                                 <Link to='/login'><span className='nav__log'>Log in</span></Link>
-                                <img src={user} alt='user icon' className='nav__user' onClick={toLogin} />
+                                <img src={userIcon} alt='user icon' className='nav__user' onClick={toLogin} />
                             </>
                         }
 
