@@ -42,14 +42,13 @@ function App() {
   const [searchUser, setSearchUser] = useState('')
 
   // searchbar form control 
-  const searchHandle = (e) => {
-    setSearchInput(e.target.value)
-  }
+  // const searchHandle = (e) => {
+  //   setSearchInput(e.target.value)
+  // }
 
   // usersearch form control
   const searchUserHandle = (e) => {
     setSearchUser(e.target.value)
-    console.log(searchUser)
   }
 
   // select an user state
@@ -79,7 +78,7 @@ function App() {
           allItineraries={allItineraries}
           searchInput={searchInput}
           setSearchInput={setSearchInput}
-          searchHandle={searchHandle}
+          // searchHandle={searchHandle}
           allUsers={allUsers}
           searchUser={searchUser}
           setSearchUser={setSearchUser}
@@ -103,11 +102,12 @@ function App() {
           success={success}
           setSuccess={setSuccess} />} />
 
-        <Route path='city' element={<CityResults
+        <Route path='/city/:city' element={<CityResults
           allItineraries={allItineraries}
           searchInput={searchInput}
           setSearchInput={setSearchInput}
-          searchHandle={searchHandle} />} />
+        // searchHandle={searchHandle} 
+        />} />
 
         <Route path='/user/:profileId' element={<UserProfile
           allItineraries={allItineraries}

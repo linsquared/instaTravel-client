@@ -15,14 +15,23 @@ import moneyDown from '../../assets/icons/moneydown.png'
 import CityCard from '../../components/CityCard/CityCard'
 
 
-const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle }) => {
+const CityResults = ({ allItineraries, searchInput, setSearchInput }) => {
+    // unpack duration and budget selections from previous page
+    const location = useLocation()
+    const selectedDuration = location?.state?.selectedDuration
+    const selectedBudget = location?.state?.selectedDollarOption
+
+    // console.log(allItineraries)
+
     // search item into lowercase
-    const searchItem = searchInput?.toLowerCase()
+    const searchItem = location.pathname.split('/')[2].toLowerCase()
+    const noCity = searchItem === 'city'
+
+    console.log(noCity)
     // getting the search results
     const searchResults = allItineraries.filter(item => item.city.toLowerCase().includes(searchItem))
 
     const [sort, setSort] = useState('')
-
     // opening sorting function
     const [openSort, setOpenSort] = useState(false)
 
@@ -47,21 +56,16 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
 
     }
 
-    // unpack duration and budget selections from previous page
-    const location = useLocation()
-    const selectedDuration = location?.state?.selectedDuration
-    const selectedBudget = location?.state?.selectedDollarOption
-
-
     let initalResult;
 
     const sortByBudgetAndDuration = () => {
         // filter entire list by budget selection
         const filteredBudget = selectedBudget && allItineraries.filter(item => item.budget === selectedBudget)
         const filteredBudgetWithCity = selectedBudget && searchResults.filter(item => item.budget === selectedBudget)
+        console.log(noCity, !selectedBudget, !selectedDuration)
 
         // NO particular city, YES budget and YES duration
-        if (!searchInput && selectedBudget && selectedDuration) {
+        if (noCity && selectedBudget && selectedDuration) {
             return initalResult = filteredBudget.filter(item => {
                 if (selectedDuration === 3) {
                     return item.duration <= 3
@@ -74,7 +78,7 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
                 }
             })
             // NO particular city, NO budget and YES duration
-        } else if (!searchInput && !selectedBudget && selectedDuration) {
+        } else if (noCity && !selectedBudget && selectedDuration) {
             return initalResult = allItineraries.filter(item => {
                 if (selectedDuration === 3) {
                     return item.duration <= 3
@@ -85,20 +89,22 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
                 } else if (selectedDuration === 11) {
                     return item.duration > 10
                 }
+
             })
             // NO particular city, YES budget and NO duration
-        } else if (!searchInput && selectedBudget && !selectedDuration) {
+        } else if (noCity && selectedBudget && !selectedDuration) {
             return initalResult = filteredBudget
 
             // YES particular city, NO budget and NO duration
-        } else if (searchInput && !selectedBudget && !selectedDuration) {
+        } else if (!noCity && !selectedBudget && !selectedDuration) {
             return initalResult = searchResults
 
             // YES particular city, YES budget and NO duration
-        } else if (searchInput && selectedBudget && !selectedDuration) {
+        } else if (searchItem && selectedBudget && !selectedDuration) {
             return initalResult = filteredBudgetWithCity
-        }    // YES particular city, NO budget and YES duration
-        else if (searchInput && !selectedBudget && selectedDuration) {
+        }
+        // YES particular city, NO budget and YES duration
+        else if (searchItem && !selectedBudget && selectedDuration) {
             return initalResult = searchResults.filter(item => {
                 if (selectedDuration === 3) {
                     return item.duration <= 3
@@ -109,9 +115,10 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
                 } else if (selectedDuration === 11) {
                     return item.duration > 10
                 }
+
             })
         }    // YES particular city, YES budget and YES duration
-        else if (searchInput && selectedBudget && selectedDuration) {
+        else if (searchItem && selectedBudget && selectedDuration) {
             return initalResult = filteredBudgetWithCity.filter(item => {
                 if (selectedDuration === 3) {
                     return item.duration <= 3
@@ -124,11 +131,10 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
                 }
             })
             // NO particular city, NO budget and NO duration
-        } else if (!searchInput && !selectedBudget && !selectedDuration) {
-            initalResult = searchResults
-        } else {
+        } else if (noCity && !selectedBudget && !selectedDuration) {
             initalResult = allItineraries
         }
+
 
         return initalResult
     }
@@ -151,10 +157,10 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput, searchHandle
     return (
         <main className='cityR'>
             <Nav />
-            <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} searchHandle={searchHandle} />
+            <SearchBar searchInput={searchInput} setSearchInput={setSearchInput} />
 
             <div className='cityR__bar'>
-                <h2 className='cityR__total'> {sortedResults ? sortedResults.length : initalResult.length} Results</h2>
+                <h2 className='cityR__total'> {sortedResults ? sortedResults?.length : initalResult?.length} Results</h2>
 
                 <div className="cityR__sort" onClick={sortHandle}>
                     <img className="cityR__sortIcon" src={sortIcon} alt='sort icon' />

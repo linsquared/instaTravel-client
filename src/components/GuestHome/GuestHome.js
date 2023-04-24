@@ -51,7 +51,21 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
 
     // func to send all filters into city result page
     const sendFilters = () => {
-        navigate('/city', { state: { selectedDollarOption, selectedDuration } })
+        if (searchInput.length === 0) {
+            navigate('city/city', {
+                state: { selectedDollarOption, selectedDuration },
+                replace: true
+            })
+            setSearchInput('')
+
+        } else {
+            navigate(`/city/${searchInput}`, {
+                state: { selectedDollarOption, selectedDuration },
+                replace: true
+            })
+            setSearchInput('')
+
+        }
 
     }
 

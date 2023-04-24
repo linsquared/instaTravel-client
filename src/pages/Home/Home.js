@@ -80,7 +80,7 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
             <GuestHome allItineraries={allItineraries}
                 setSearchInput={setSearchInput}
                 searchInput={searchInput}
-                searchHandle={searchHandle}
+                // searchHandle={searchHandle}
                 tripsTab={tripsTab} />
 
 

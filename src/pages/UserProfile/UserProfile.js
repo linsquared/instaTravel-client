@@ -15,7 +15,6 @@ const UserProfile = ({ userId, handleLogout, allItineraries, allUsers }) => {
     // retriving context info
     const { user } = useContext(UserContext)
 
-    console.log(allUsers)
     // find specific itinerary and user
     const userItineraries = allItineraries?.filter(item => item.user_id === userId)
     const targetUser = allUsers?.find(item => item.user_id === userId)

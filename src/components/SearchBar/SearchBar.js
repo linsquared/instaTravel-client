@@ -8,13 +8,23 @@ import search from '../../assets/icons/isearch.png'
 
 
 
-const SearchBar = ({ searchInput, searchHandle, setSearchInput }) => {
+const SearchBar = ({ searchInput, setSearchInput }) => {
 
     const navigate = useNavigate()
 
     // func to send search result to result page 
-    const sendResults = () => {
-        navigate('/city')
+    const sendResults = (e) => {
+        e.preventDefault()
+        if (searchInput.length === 0) {
+            return navigate('city/city', { replace: true })
+        } else {
+            navigate(`/city/${searchInput}`, { replace: true })
+            setSearchInput('')
+        }
+    }
+
+    const searchHandle = (e) => {
+        setSearchInput(e.target.value)
     }
 
     return (

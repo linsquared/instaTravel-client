@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 // styles, pages, components
 import './Itinerary.scss';
 import Nav from '../../components/Nav/Nav';
-import fake from '../../assets/images/plan3.jpg'
 import star from '../../assets/icons/star.png'
 import like from '../../assets/icons/fullHearted.png'
 import share from '../../assets/icons/share.png'

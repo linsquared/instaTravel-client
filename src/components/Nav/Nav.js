@@ -13,7 +13,6 @@ import { UserContext } from '../../context/UserContext'
 
 const Nav = ({ handleLogout }) => {
     const { user, userLogin } = useContext(UserContext)
-    console.log(user)
     const navigate = useNavigate()
     // navigate to login page
     const toLogin = () => {
