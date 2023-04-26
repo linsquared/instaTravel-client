@@ -72,6 +72,7 @@ const Login = ({ error, setError, setSuccess, errMsg, setErrMsg }) => {
 
     const backHome = () => {
         navigate('/')
+        setError('')
     }
 
     return (

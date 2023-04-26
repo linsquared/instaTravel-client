@@ -78,7 +78,7 @@ const UserProfile = ({ userId, allItineraries, allUsers }) => {
 
             </section>
 
-            {targetUser.user_id == user.user_id ?
+            {targetUser?.user_id == user?.user_id ?
                 <div className='userProfile__btn-wrapper'>
                     <div className='userProfile__btn follow'><Buttons value={'Edit'} name={'buttons'} /></div>
                     <div className='userProfile__btn share'>

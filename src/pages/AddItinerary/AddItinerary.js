@@ -14,6 +14,7 @@ const AddItinerary = () => {
     // retrieving user data
     const location = useLocation()
     const currentUser = location?.state?.currentUser
+    // console.log(setPostSuccessful)
 
     // form info usestate
     const [basicInfo, setBasicInfo] = useState({
@@ -51,7 +52,8 @@ const AddItinerary = () => {
                 duration={basicInfo.duration}
                 showDay={showDay}
                 setShowDay={setShowDay}
-                basicInfo={basicInfo} />
+                basicInfo={basicInfo}
+            />
         </main>
     )
 }

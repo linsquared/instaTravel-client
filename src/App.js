@@ -41,15 +41,12 @@ function App() {
   // user searchbar
   const [searchUser, setSearchUser] = useState('')
 
-  // searchbar form control 
-  // const searchHandle = (e) => {
-  //   setSearchInput(e.target.value)
-  // }
-
   // usersearch form control
   const searchUserHandle = (e) => {
     setSearchUser(e.target.value)
   }
+
+  const [isPostSuccessful, setPostSuccessful] = useState(false)
 
   // select an user state
   const [userId, setUserId] = useState('')
@@ -113,7 +110,8 @@ function App() {
           allItineraries={allItineraries}
           allUsers={allUsers}
           userId={userId}
-          setUserId={setUserId} />} />
+          setUserId={setUserId}
+        />} />
 
         <Route path='/itinerary/:itineraryId' element={<Itinerary />} />
 
