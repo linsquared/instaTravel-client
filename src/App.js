@@ -18,6 +18,7 @@ import UserProfile from './pages/UserProfile/UserProfile';
 import Itinerary from './pages/Itinerary/Itinerary';
 import GuestHome from './components/GuestHome/GuestHome';
 import Footbar from './components/Footbar/Footbar';
+import Upload from './pages/Upload/Upload';
 
 function App() {
   // set err state
@@ -114,6 +115,8 @@ function App() {
         />} />
 
         <Route path='/itinerary/:itineraryId' element={<Itinerary />} />
+        <Route path='/upload' element={<Upload />} />
+
 
         {/* TEMP ROUTE */}
         <Route path='add' element={<AddItinerary />} />

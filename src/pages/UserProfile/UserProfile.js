@@ -43,8 +43,13 @@ const UserProfile = ({ userId, allItineraries, allUsers }) => {
     }
     const addItin = () => {
         navigate('/add', { state: { currentUser } })
-
     }
+
+    // redirect to upload icon image
+    const uploadIcon = () => {
+        navigate('/upload')
+    }
+
     return (
         <main className='userProfile'>
             <header className='userProfile__header'>
@@ -54,7 +59,10 @@ const UserProfile = ({ userId, allItineraries, allUsers }) => {
 
             <section className='userProfile__info'>
                 <div className='userProfile__img-wrapper'>
-                    <img className='userProfile__img' src={targetUser?.user_icon} alt='user self icon' />
+                    <img className='userProfile__img'
+                        src={targetUser?.user_icon} alt='user self icon'
+                        onClick={uploadIcon}
+                    />
                 </div>
                 <div className='userProfile__statistics'>
                     <div className='userProfile__itinerary'>
