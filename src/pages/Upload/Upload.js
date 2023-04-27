@@ -8,24 +8,33 @@ import Nav from '../../components/Nav/Nav';
 import Buttons from '../../components/Buttons/Buttons'
 
 
-const Upload = () => {
+const Upload = ({ userId }) => {
     const [userIcon, setUserIcon] = useState(null)
     // img handler
     const uploadImg = (e) => {
         setUserIcon(e.target.files[0])
         console.log(e.target.files[0])
     }
-
+    console.log(userId)
     // photo submit func
     const uploadPhoto = (e) => {
         e.preventDefault()
-        const formData = new FormData()
-        formData.append('image', userIcon)
-        // posted image on cloudinary
-        axios.post('http://localhost:8080/upload', formData)
-            .then(res => console.log(res.data.data.image))
-            .catch(err => console.log(err))
+        if (userIcon) {
+            const formData = new FormData()
+            formData.append('image', userIcon)
+            // posted image on cloudinary
+            axios.post('http://localhost:8080/upload', formData)
+                .then(res => {
+                    const imageUrl = res.data.data.image
+                    console.log(imageUrl)
 
+                    axios.put('')
+                })
+
+                .catch(err => console.log(err))
+        } else {
+            console.log('no pic')
+        }
     }
 
     return (

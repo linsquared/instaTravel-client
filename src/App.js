@@ -115,7 +115,8 @@ function App() {
         />} />
 
         <Route path='/itinerary/:itineraryId' element={<Itinerary />} />
-        <Route path='/upload' element={<Upload />} />
+        <Route path='/upload' element={<Upload
+          userId={userId} />} />
 
 
         {/* TEMP ROUTE */}
