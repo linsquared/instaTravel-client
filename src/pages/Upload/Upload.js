@@ -26,9 +26,10 @@ const Upload = ({ userId }) => {
             axios.post('http://localhost:8080/upload', formData)
                 .then(res => {
                     const imageUrl = res.data.data.image
-                    console.log(imageUrl)
-
-                    axios.put('')
+                    // console.log(imageUrl)
+                    axios.put(`http://localhost:8080/users/${userId}`, imageUrl)
+                        .then(res => console.log(res))
+                        .catch(err => console.log(err))
                 })
 
                 .catch(err => console.log(err))
