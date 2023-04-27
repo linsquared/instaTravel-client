@@ -12,7 +12,6 @@ const AddDayInfo = ({ duration, showDay, basicInfo }) => {
     const [saveTotal, setSaveTotal] = useState([])
     // // state to hold all the activities in one day together
     const [allDayAndActivities, setAllDayAndActivities] = useState([])
-
     const navigate = useNavigate()
     // post itinerary and getting itinerary id back
     const saveEntireItinerary = (e) => {

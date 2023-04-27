@@ -1,6 +1,6 @@
 // core stuff
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 // components, pages, styles
@@ -19,8 +19,12 @@ import Itinerary from './pages/Itinerary/Itinerary';
 import GuestHome from './components/GuestHome/GuestHome';
 import Footbar from './components/Footbar/Footbar';
 import Upload from './pages/Upload/Upload';
+import { UserContext } from './context/UserContext';
 
 function App() {
+  // retrieve user context info
+  const { user } = useContext(UserContext)
+
   // set err state
   const [error, setError] = useState('')
 
@@ -59,7 +63,7 @@ function App() {
         setAllItineraries(res.data)
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [user])
 
   useEffect(() => {
     axios.get('http://localhost:8080/users')
@@ -67,7 +71,7 @@ function App() {
         setAllUsers(res.data)
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [user])
 
   return (
     <BrowserRouter>

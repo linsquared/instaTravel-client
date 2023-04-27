@@ -2,7 +2,6 @@
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import axios from 'axios'
-import { UserContext } from '../../context/UserContext'
 
 // styles, pages, components
 import './UserProfile.scss'
@@ -10,11 +9,12 @@ import Nav from '../../components/Nav/Nav'
 import Buttons from '../../components/Buttons/Buttons'
 import link from '../../assets/icons/link.png'
 import pin from '../../assets/icons/pin2.png'
+import { UserContext } from '../../context/UserContext'
 
 const UserProfile = ({ userId, allItineraries, allUsers }) => {
     // retriving context info
     const { user } = useContext(UserContext)
-
+    console.log('usercontext:', user)
     // find specific itinerary and user
     const userItineraries = allItineraries?.filter(item => item.user_id === userId)
     const targetUser = allUsers?.find(item => item.user_id === userId)

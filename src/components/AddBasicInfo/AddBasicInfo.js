@@ -1,6 +1,7 @@
 // core stuff
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 // styles, pages, components
 import './AddBasicInfo.scss';
@@ -14,12 +15,22 @@ import sun from '../../assets/icons/sun.png'
 import title from '../../assets/icons/message.png'
 import essay from '../../assets/icons/essay.png'
 import calender from '../../assets/icons/calender.png'
+import photo from '../../assets/icons/photo.png'
 
 
 const AddBasicInfo = ({ basicInfo, setBasicInfo, setShowDay, setShowBasic, showBasic }) => {
     // form control handler
     const basicInfoHandle = (e) => {
         const { name, value } = e.target
+
+        if (e.target.type === 'file') {
+            const file = e.target.files[0];
+            setBasicInfo(preval => ({
+                ...preval,
+                [name]: file,
+            }));
+            return
+        }
 
         setBasicInfo(preval => ({
             ...preval, [name]: value
@@ -49,9 +60,22 @@ const AddBasicInfo = ({ basicInfo, setBasicInfo, setShowDay, setShowBasic, showB
     const saveBasicInfo = (e) => {
         if (validForm()) {
             e.preventDefault()
+            // post image to cloudinary
+            const formData = new FormData()
+            formData.append('image', basicInfo.city_img)
+
+            axios.post('http://localhost:8080/upload', formData)
+                .then(res => {
+                    const imageUrl = res.data.data.image
+                    setBasicInfo(preval => ({
+                        ...preval, city_img: imageUrl
+                    }))
+                })
+                .catch(err => console.log(err))
+
             setShowBasic(false)
             setShowDay(true)
-            console.log(basicInfo)
+
         } else {
             e.preventDefault()
             setErr(true)
@@ -148,6 +172,18 @@ const AddBasicInfo = ({ basicInfo, setBasicInfo, setShowDay, setShowBasic, showB
                         placeholder='Add description'
                         value={basicInfo.description}
                         onChange={basicInfoHandle} />
+                </div>
+
+                <div className='basicInfo__upload'>
+                    <FormLabel forfield={'upload'} text={'Upload an image for your itinerary'} />
+                    <img src={photo} alt='photo icon' className='basicInfo__icon basicInfo__icon-photo' />
+                    {/* <label className='basicInfo__upload--label' htmlFor='upload'>Upload Image</label> */}
+                    <input className='basicInfo__upload--input'
+                        type='file'
+                        accept='image/png, image/jpeg'
+                        name='city_img'
+                        onChange={basicInfoHandle}
+                    />
                 </div>
                 {err && <p className='basicInfo__err'>Please fill out all fields.</p>}
                 <Buttons name={'buttons'} value={'Save'} type={'submit'} />
