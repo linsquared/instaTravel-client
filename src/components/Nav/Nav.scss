@@ -4,7 +4,6 @@
 
 
 .nav {
-
     height: 7rem;
     padding: 0 2rem;
     padding-top: 2rem;
@@ -12,9 +11,10 @@
     border-top-left-radius: 3.5rem;
     border-top-right-radius: 3.5rem;
     position: absolute;
-    top: 2.5rem;
-    width: 37rem;
+    top: 2rem;
+    width: 36.9rem;
     z-index: 100;
+    left: .5rem;
 
     &__list {
         display: flex;

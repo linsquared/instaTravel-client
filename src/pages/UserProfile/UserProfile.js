@@ -10,11 +10,11 @@ import Buttons from '../../components/Buttons/Buttons'
 import link from '../../assets/icons/link.png'
 import pin from '../../assets/icons/pin2.png'
 import { UserContext } from '../../context/UserContext'
+import Footbar from '../../components/Footbar/Footbar'
 
 const UserProfile = ({ userId, allItineraries, allUsers }) => {
     // retriving context info
     const { user } = useContext(UserContext)
-    console.log('usercontext:', user)
     // find specific itinerary and user
     const userItineraries = allItineraries?.filter(item => item.user_id === userId)
     const targetUser = allUsers?.find(item => item.user_id === userId)
@@ -119,6 +119,8 @@ const UserProfile = ({ userId, allItineraries, allUsers }) => {
                     )
                 })}
             </ul>
+
+            <Footbar />
         </main>)
 }
 

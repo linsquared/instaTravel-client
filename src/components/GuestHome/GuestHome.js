@@ -7,12 +7,11 @@ import axios from 'axios'
 import './GuestHome.scss'
 import sun from '../../assets/icons/whiteSun.png'
 import money from '../../assets/icons/money.png'
-import emptyHeart from '../../assets/icons/emptyHeart.png'
+// import emptyHeart from '../../assets/icons/emptyHeart.png'
 import pin from '../../assets/icons/pin.png'
 import Buttons from '../Buttons/Buttons'
 import dollar from '../../assets/icons/dollar.png'
 import SearchBar from '../SearchBar/SearchBar'
-
 
 
 const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, tripsTab }) => {
@@ -139,7 +138,6 @@ const GuestHome = ({ allItineraries, setSearchInput, searchInput, searchHandle, 
                                 <div className='guestHome__card-wrapper' key={i} onClick={(e) => { sendItinerary(e, item) }}>
                                     <div className='guestHome__card'>
                                         <img src={item.city_img} alt='vacation image' className='guestHome__img' />
-                                        <img src={emptyHeart} alt='empty heart icon' className='guestHome__heart' />
 
                                         <div className='guestHome__location-info'>
                                             <div className='guestHome__location'>

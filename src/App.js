@@ -10,9 +10,7 @@ import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup';
 import Login from './pages/Login/Login'
 import AddItinerary from './pages/AddItinerary/AddItinerary';
-import AddBasicInfo from './components/AddBasicInfo/AddBasicInfo';
 import AddDayInfo from './components/AddDayInfo/AddDayInfo';
-import Activity from './components/Activity/Activity';
 import CityResults from './pages/CityResults/CityResults';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Itinerary from './pages/Itinerary/Itinerary';
@@ -20,6 +18,7 @@ import GuestHome from './components/GuestHome/GuestHome';
 import Footbar from './components/Footbar/Footbar';
 import Upload from './pages/Upload/Upload';
 import { UserContext } from './context/UserContext';
+import Likes from './pages/Likes/Likes';
 
 function App() {
   // retrieve user context info
@@ -46,12 +45,15 @@ function App() {
   // user searchbar
   const [searchUser, setSearchUser] = useState('')
 
+  // likes itinerary list
+  const [likesItineraryList, setLikesIinteraryList] = useState([])
+
   // usersearch form control
   const searchUserHandle = (e) => {
     setSearchUser(e.target.value)
   }
 
-  const [isPostSuccessful, setPostSuccessful] = useState(false)
+  // const [isPostSuccessful, setPostSuccessful] = useState(false)
 
   // select an user state
   const [userId, setUserId] = useState('')
@@ -108,7 +110,8 @@ function App() {
           allItineraries={allItineraries}
           searchInput={searchInput}
           setSearchInput={setSearchInput}
-        // searchHandle={searchHandle} 
+          setLikesIinteraryList={setLikesIinteraryList}
+          likesItineraryList={likesItineraryList}
         />} />
 
         <Route path='/user/:profileId' element={<UserProfile
@@ -121,7 +124,9 @@ function App() {
         <Route path='/itinerary/:itineraryId' element={<Itinerary />} />
         <Route path='/upload' element={<Upload
           userId={userId} />} />
-
+        <Route path='/likes' element={<Likes
+        // likesItineraryList={likesItineraryList}
+        />} />
 
         {/* TEMP ROUTE */}
         <Route path='add' element={<AddItinerary />} />

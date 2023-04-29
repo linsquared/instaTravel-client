@@ -7,7 +7,7 @@ import './Home.scss'
 import GuestHome from '../../components/GuestHome/GuestHome'
 import UserTab from '../../components/UserTab/UserTab';
 import Nav from '../../components/Nav/Nav';
-// import UserProfile from '../UserProfile/UserProfile';
+import Footbar from '../../components/Footbar/Footbar';
 
 
 const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUsers, searchUser, setSearchUser, searchUserHandle, userId, setUserId }) => {
@@ -92,7 +92,7 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
                 userId={userId} setUserId={setUserId}
             />
 
-
+            <Footbar />
         </main>
     )
 

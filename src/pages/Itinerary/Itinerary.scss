@@ -10,7 +10,7 @@
     padding-top: 6rem;
 
     &__main {
-        height: 63rem;
+        height: 64rem;
         overflow-x: scroll;
     }
 
@@ -246,29 +246,6 @@
 
         &-description {
             font-size: 1.4rem;
-        }
-    }
-
-    &__btn {
-        &-wrapper {
-            display: flex;
-            padding: 1rem 1.5rem;
-            gap: 1rem;
-            width: 37rem;
-        }
-
-        &-back {
-            background-color: white;
-            font-weight: bold;
-            font-size: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(22, 22, 22, 0.1);
-            width: 17rem;
-            color: $blue;
-        }
-
-        &-save {
-            width: 17rem;
         }
     }
 }

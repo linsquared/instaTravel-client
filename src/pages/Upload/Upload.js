@@ -6,6 +6,7 @@ import axios from 'axios'
 import './Upload.scss';
 import Nav from '../../components/Nav/Nav';
 import Buttons from '../../components/Buttons/Buttons'
+import Footbar from '../../components/Footbar/Footbar';
 
 
 const Upload = ({ userId }) => {
@@ -62,7 +63,7 @@ const Upload = ({ userId }) => {
                     <Buttons name={'buttons'} value={'Done'} />
                 </div>
             </form>
-
+            <Footbar />
         </main>
     )
 }

@@ -13,21 +13,19 @@ import starDown from '../../assets/icons/stardown.png'
 import moneyUp from '../../assets/icons/moneyup.png'
 import moneyDown from '../../assets/icons/moneydown.png'
 import CityCard from '../../components/CityCard/CityCard'
+import Footbar from '../../components/Footbar/Footbar'
 
 
-const CityResults = ({ allItineraries, searchInput, setSearchInput }) => {
+const CityResults = ({ allItineraries, searchInput, setSearchInput, setLikesIinteraryList, likesItineraryList }) => {
     // unpack duration and budget selections from previous page
     const location = useLocation()
     const selectedDuration = location?.state?.selectedDuration
     const selectedBudget = location?.state?.selectedDollarOption
 
-    // console.log(allItineraries)
-
     // search item into lowercase
     const searchItem = location.pathname.split('/')[2].toLowerCase()
     const noCity = searchItem === 'city'
 
-    console.log(noCity)
     // getting the search results
     const searchResults = allItineraries.filter(item => item.city.toLowerCase().includes(searchItem))
 
@@ -39,6 +37,10 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput }) => {
     const sortHandle = () => {
         setOpenSort(!openSort)
     }
+
+    const [likeIt, setLikeIt] = useState(false)
+
+
 
     const itineraryId = useParams
     const navigate = useNavigate()
@@ -62,7 +64,6 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput }) => {
         // filter entire list by budget selection
         const filteredBudget = selectedBudget && allItineraries.filter(item => item.budget === selectedBudget)
         const filteredBudgetWithCity = selectedBudget && searchResults.filter(item => item.budget === selectedBudget)
-        console.log(noCity, !selectedBudget, !selectedDuration)
 
         // NO particular city, YES budget and YES duration
         if (noCity && selectedBudget && selectedDuration) {
@@ -190,18 +191,26 @@ const CityResults = ({ allItineraries, searchInput, setSearchInput }) => {
 
                 {sortedResults.map((result, i) => {
                     return (
-                        <CityCard key={i}
+                        <CityCard
+                            key={i}
                             img={result.city_img}
                             username={result.user_name}
                             ratings={result.ratings}
                             icon={result.user_icon}
                             city={result.city}
                             budget={result.budget}
-                            clickFunc={(e) => sendItinerary(e, result)} />
+                            clickFunc={(e) => sendItinerary(e, result)}
+                            itinerary={result}
+                            setLikesIinteraryList={setLikesIinteraryList}
+                            likesItineraryList={likesItineraryList}
+                            likeIt={likeIt}
+                            setLikeIt={setLikeIt} />
                     )
                 })
                 }
             </section>
+
+            <Footbar likesItineraryList={likesItineraryList} />
         </main>)
 }
 

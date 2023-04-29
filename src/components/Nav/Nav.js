@@ -2,7 +2,6 @@
 import { useNavigate, Link } from 'react-router-dom'
 import { useContext } from 'react'
 
-
 // styles , pages
 import './Nav.scss'
 import './Nav.scss'
@@ -12,7 +11,7 @@ import { UserContext } from '../../context/UserContext'
 
 
 const Nav = ({ setFailedAuth }) => {
-    const { user, userLogin, userLogout } = useContext(UserContext)
+    const { user, userLogout } = useContext(UserContext)
     const navigate = useNavigate()
     // navigate to login page
     const toLogin = () => {
