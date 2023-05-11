@@ -17,6 +17,7 @@ const Likes = () => {
 
     // const { user } = useContext(UserContext)
     console.log(likesItineraryList)
+    // makesure 
     return (
         <>
             <Nav />
@@ -24,6 +25,7 @@ const Likes = () => {
                 <h1 className='likes__title'>{likesItineraryList?.length === undefined ? 0 : likesItineraryList?.length} liked Itineraries</h1>
 
                 {likesItineraryList?.length === 0 || likesItineraryList?.length === undefined ? '' :
+
                     <ul className='likes__list'>
                         <li className='likes__item'>
                             <div className='likes__card' >

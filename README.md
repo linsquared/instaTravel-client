@@ -25,6 +25,12 @@ Start creating your own itinerary or browse and save your favorite itineraries
 
 ## User Flow
 
+<p align="center">
+  <img src="src/assets/images/Itinerary1.png" alt="Image 1" width="400" />
+  <img src="src/assets/images/Itinerary2.png" alt="Image 2" width="400" />
+</p>
+
+
 ### Installation
 
 1. Clone the both front-end and back-end repository: 
