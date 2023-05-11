@@ -1,10 +1,8 @@
 # InstaTravel
 
-InstaTravel is an innovative web application designed to help people who dislike planning trips. It allows users to choose from a wide selection of pre-existing itineraries submitted by other travelers on the app. In addition, it provides a platform for travelers to share their past itineraries with others, making them easily accessible and shareable.
+## Description:
+InstaTravel is an innovative web application designed to help people who dislike planning trips. It allows users to choose from a wide selection of pre-existing itineraries submitted by other travelers on the app. This app makes it easy for you to follow itineraries uploaded by your favorite bloggers, influencers, and friends. In addition, it provides a platform for travelers to share their past itineraries with others, making them easily accessible and shareable. With a diverse selection of itineraries to choose from, you can pick one that suits your interests and style. So, stop planning and start traveling!
 
-### Description:
-
-With InstaTravel, planning your next trip is a breeze. Whether you're on a budget, have a specific destination in mind, or a set duration, this app makes it easy for you to follow travel itineraries uploaded by your favorite bloggers, influencers, and friends. With a diverse selection of itineraries to choose from, you can pick one that suits your interests and style. So, stop planning and start traveling!
 
 ## Table of Content
 Features and user Flow
