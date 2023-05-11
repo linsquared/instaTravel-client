@@ -7,10 +7,10 @@ InstaTravel is an innovative web application designed to help people who dislike
 With InstaTravel, planning your next trip is a breeze. Whether you're on a budget, have a specific destination in mind, or a set duration, this app makes it easy for you to follow travel itineraries uploaded by your favorite bloggers, influencers, and friends. With a diverse selection of itineraries to choose from, you can pick one that suits your interests and style. So, stop planning and start traveling!
 
 ## Table of Content
-Features and user Flow
-Installation
-End Points
-Conclusion
+- Features and user Flow
+- Installation
+- End Points
+- Conclusion
 
 ## Features
 Select an itinerary by browsing the recommended section or a specific city
@@ -26,8 +26,18 @@ Start creating your own itinerary or browse and save your favorite itineraries
 ## User Flow
 
 <p align="center">
-  <img src="src/assets/images/Itinerary1.png" alt="Image 1" width="400" />
-  <img src="src/assets/images/itinerary2.png" alt="Image 2" width="400" />
+ <br>Home page with Trips and Users tabs. Users can explore featured trips and browse user profiles.<br><br>
+  <img src="src/assets/images/home.png" alt="screenshot of home page" width="400" />
+<br>Search by itineraries and User profiles. Users can search for specific itineraries and view other user profiles.<br><br>
+  <img src="src/assets/images/browse.png" alt="screenshot of user profile and search page" width="400" />
+<br>Signup & Login. Users can create an account and login to access personalized features.<br><br>
+<img src="src/assets/images/register.png" alt="screenshot of register page" width="400" />
+<br>View a detailed itinerary. Users can view all the details of a specific itinerary, including descriptions, activities, costs and travel tips.<br><br>
+<img src="src/assets/images/itinerary.png" alt="screenshot of itinerary page" width="400" />
+<br>User profile and profile image upload page. Users can upload a profile picture and manage their profile information.<br><br>
+<img src="src/assets/images/user.png" alt="screenshot of user home page" width="400" />
+<br>Adding a new itinerary by user. Users can create and submit their own travel itineraries to share with others.<br><br>
+<img src="src/assets/images/add.png" alt="screenshot of adding itinerary page" width="400" />
 </p>
 
 
