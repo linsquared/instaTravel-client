@@ -27,9 +27,9 @@ Start creating your own itinerary or browse and save your favorite itineraries
 
 <p align="center">
  <br>Home page with Trips and Users tabs. Users can explore featured trips and browse user profiles.<br><br>
-  <img src="src/assets/images/home.png" alt="screenshot of home page" width="400" />
+  <img src="src/assets/images/home.png" alt="screenshot of home page" />
 <br>Search by itineraries and User profiles. Users can search for specific itineraries and view other user profiles.<br><br>
-  <img src="src/assets/images/browse.png" alt="screenshot of user profile and search page" width="400" />
+  <img src="src/assets/images/browse.png" alt="screenshot of user profile and search page" width="800" />
 <br>Signup & Login. Users can create an account and login to access personalized features.<br><br>
 <img src="src/assets/images/register.png" alt="screenshot of register page" width="400" />
 <br>View a detailed itinerary. Users can view all the details of a specific itinerary, including descriptions, activities, costs and travel tips.<br><br>
