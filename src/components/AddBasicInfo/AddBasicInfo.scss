@@ -7,7 +7,7 @@
 
     &__title {
         color: $blue;
-        margin: 0 2rem 2rem 0;
+        margin: 0 2rem 1rem 0;
     }
 
     &__budget {
@@ -33,13 +33,15 @@
 
     &__textarea {
         margin: 1rem 0 1rem 0;
+        height: 7rem;
     }
 
     &__city,
     &__duration,
     &__trip-title,
     &__description,
-    &__date {
+    &__date,
+    &__upload {
         position: relative;
     }
 
@@ -60,6 +62,10 @@
             bottom: 2.7rem;
 
         }
+
+        &-photo {
+            top: 3rem;
+        }
     }
 
     &__err {
@@ -68,5 +74,13 @@
         color: rgb(173, 2, 2);
     }
 
+    &__upload {
+        width: 100%;
 
+        &--input {
+            width: 100%;
+            padding-top: 1rem;
+            margin: .5rem 0 1rem 0;
+        }
+    }
 }

@@ -65,7 +65,7 @@ const Signup = ({ error, setError, success, setSuccess, errMsg, setErrMsg }) => 
 
     }
     const backHome = () => {
-        navigate('/')
+        navigate('/upload')
     }
 
     return (

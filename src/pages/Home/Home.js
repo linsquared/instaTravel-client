@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState, useContext } from 'react'
 import axios from 'axios'
+import { UserContext } from '../../context/UserContext'
 
 // img,  pages and components
 import './Home.scss'
-import Header from '../../components/Header/Header';
-import pin from '../../assets/icons/pin.png';
 import GuestHome from '../../components/GuestHome/GuestHome'
 import UserTab from '../../components/UserTab/UserTab';
 import Nav from '../../components/Nav/Nav';
-import Buttons from '../../components/Buttons/Buttons';
-import link from '../../assets/icons/link.png'
+import Footbar from '../../components/Footbar/Footbar';
 
 
 const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUsers, searchUser, setSearchUser, searchUserHandle, userId, setUserId }) => {
+    // set context
+    const { userLogin, userLogout } = useContext(UserContext)
     // set states
-    const [user, setUser] = useState('')
     const [failedAuth, setFailedAuth] = useState(false)
-    const [userItinerary, setUserItinerary] = useState([])
 
     useEffect(() => {
         const token = sessionStorage.getItem("token");
@@ -35,9 +32,8 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
             })
             .then(res => {
                 // set current user who just logged in
-                setUser(res.data[0]);
-                // set current user's itienraries
-                setUserItinerary(allItineraries.filter(item => item.user_name === res.data[0].user_name))
+                userLogin(res.data[0])
+                setUserId(res.data[0].user_id);
             })
             .catch(err => {
                 console.log(err);
@@ -48,7 +44,7 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
     // logout func
     const handleLogout = () => {
         sessionStorage.removeItem("token");
-        setUser(null);
+        userLogout(null)
         setFailedAuth(true);
     };
 
@@ -66,136 +62,41 @@ const Home = ({ allItineraries, setSearchInput, searchInput, searchHandle, allUs
         setUsersTab(true)
     }
 
-    const navigate = useNavigate()
-
-    const { itineraryId } = useParams
-    // onclick func for each card 
-    const sendItinerary = (e, itinerary) => {
-        let detailItinerary;
-        axios.get(`http://localhost:8080/itineraries/id/${itinerary.itinerary_id}`)
-            .then(res => {
-                detailItinerary = res.data
-                navigate(`/itinerary/:${itineraryId}`, { state: { itinerary, detailItinerary } })
-
-            })
-            .catch(err => console.log(err))
-    }
-
-    // redirect to log in
-    if (failedAuth) {
-        return (
-            <main className="home">
-                <Header value={'Log in'} />
-                <div className='home__tabs'>
-                    <div className="home__title-wrapper" onClick={tripTabClicked}>
-                        <h1 className='home__title'>Trips</h1>
-                    </div>
-
-                    <div className="home__title-wrapper home__userTab" onClick={userTabClick}>
-                        <h1 className='home__title'>Users</h1>
-                    </div>
-                </div>
-                {/* // possibly an icon of the person who logged in */}
-                <GuestHome allItineraries={allItineraries}
-                    setSearchInput={setSearchInput}
-                    searchInput={searchInput}
-                    searchHandle={searchHandle}
-                    tripsTab={tripsTab} />
-
-
-                <UserTab allUsers={allUsers}
-                    usersTab={usersTab}
-                    searchUser={searchUser}
-                    setSearchUser={setSearchUser}
-                    searchUserHandle={searchUserHandle}
-                    userId={userId} setUserId={setUserId} />
-
-
-            </main>
-        )
-    }
-
-    if (user === null) {
-        return (<main>
-            <h1>Loading...</h1>
-        </main>
-        )
-
-    }
-    const currentUser = {
-        user_icon: user.user_icon,
-        user_name: user.user_name,
-        user_id: user.user_id
-    }
-
-    const addItin = () => {
-        navigate('/add', { state: { currentUser } })
-
-    }
-
     return (
-        <main className='userProfile home'>
-            <header className='userProfile__header'>
-                <Nav value={'Log out'} func={handleLogout} />
-                <div className='userProfile__username'>Hello {user.user_name}</div>
-            </header>
-
-            <section className='userProfile__info'>
-                <div className='userProfile__img-wrapper'>
-                    <img className='userProfile__img' src={user.user_icon} alt='user self icon' />
+        <main className="home">
+            <Nav setFailedAuth={setFailedAuth} />
+            <div className='home__image'></div>
+            <div className='home__tabs'>
+                <div className="home__title-wrapper" onClick={tripTabClicked}>
+                    <h1 className='home__title'>Trips</h1>
                 </div>
-                <div className='userProfile__statistics'>
-                    <div className='userProfile__itinerary'>
-                        <span className='userProfile__count'>{user.itinerary_count}</span>
-                        <span className='userProfile__text'>Itineraries</span>
-                    </div>
-                    <div className='userProfile__followers'>
-                        <span className='userProfile__count'>{user.followers}</span>
-                        <span className='userProfile__text'>Followers</span>
-                    </div>
+
+                <div className="home__title-wrapper home__userTab" onClick={userTabClick}>
+                    <h1 className='home__title'>Users</h1>
                 </div>
-            </section>
-
-            <section className='userProfile__user'>
-                <span className='userProfile__name'>{user.author}</span>
-
-                <Link href="mailto:example@example.com"><span className='userProfile__email'>
-                    <img src={link} alt='link icon' className='userProfile__link-icon' />
-                    {user.email}
-                </span></Link>
-
-            </section>
-
-            <div className='userProfile__btn-wrapper'>
-                <div className='userProfile__btn follow'><Buttons value={'Edit'} name={'buttons'} /></div>
-                <div className='userProfile__btn share'>
-                    <Buttons value={'Add'} name={'buttons-white'} btnfunc={addItin} /></div>
             </div>
-            <ul className='userProfile__card-wrapper' >
-                {userItinerary.map((user, i) => {
-                    return (
-                        <li className='userProfile__item' key={i} onClick={(e) => { sendItinerary(e, user) }}>
-                            <div className='userProfile__card' >
-                                <img src={user.city_img} alt='city image' className='userProfile__city-img' />
-                            </div>
-                            <div className='userProfile__card-text'>
-                                <div className='userProfile__card-info'>
-                                    <img src={pin} alt='pin icon' className='userProfile__pin' />
-                                    <span className='userProfile__location'>{user.city}</span>
-                                </div>
-
-                                <div className='userProfile__duration'>Duration: {user.duration} days</div>
-                            </div>
-                        </li>
-
-                    )
-                })}
+            {/* // possibly an icon of the person who logged in */}
+            <GuestHome allItineraries={allItineraries}
+                setSearchInput={setSearchInput}
+                searchInput={searchInput}
+                tripsTab={tripsTab} />
 
 
+            <UserTab
+                allItineraries={allItineraries}
+                allUsers={allUsers}
+                usersTab={usersTab}
+                searchUser={searchUser}
+                setSearchUser={setSearchUser}
+                searchUserHandle={searchUserHandle}
+                userId={userId} setUserId={setUserId}
+            />
 
-            </ul>
+            <Footbar />
+        </main>
+    )
 
-        </main>)
+
 }
 
 export default Home

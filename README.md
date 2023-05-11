@@ -1,33 +1,49 @@
 # InstaTravel
 
+
 ## Description:
 InstaTravel is an innovative web application designed to help people who dislike planning trips. It allows users to choose from a wide selection of pre-existing itineraries submitted by other travelers on the app. This app makes it easy for you to follow itineraries uploaded by your favorite bloggers, influencers, and friends. In addition, it provides a platform for travelers to share their past itineraries with others, making them easily accessible and shareable. With a diverse selection of itineraries to choose from, you can pick one that suits your interests and style. So, stop planning and start traveling!
 
-
 ## Table of Content
-Features and user Flow
-Installation
-End Points
-Conclusion
+- Features and user Flow
+- Installation
+- End Points
+- Conclusion
 
 ## Features
-Select an itinerary by browsing the recommended section or a specific city
-Select itineraries created by popular or favorite users
-Filter itineraries based on user's budget and duration
-Sort itineraires based on itinerary's rating or budget set
-Select a specific itinerary to view all the detailed activities and information included in it
-View a specific traveler's profile to access all the itineraries they have submitted
-Create an account and login into your account 
-Start creating your own itinerary or browse and save your favorite itineraries
+- Select an itinerary by browsing the recommended section or a specific city
+- Select itineraries created by popular or favorite users
+- Filter itineraries based on user's budget and duration
+- Sort itineraires based on itinerary's rating or budget set
+- Select a specific itinerary to view all the detailed activities and information included in it
+- View a specific traveler's profile to access all the itineraries they have submitted
+- Create an account and login into your account 
+- Start creating your own itinerary or browse and save your favorite itineraries
 
 
 ## User Flow
 
+<p align="left">
+ <br>Home page with Trips and Users tabs. Users can explore featured trips and browse user profiles.<br><br>
+  <img src="src/assets/images/home.png" alt="screenshot of home page" />
+<br><br>Search by itineraries and User profiles. Users can search for specific itineraries and view other user profiles.<br><br>
+  <img src="src/assets/images/browse.png" alt="screenshot of user profile and search page" />
+<br><br>Signup & Login. Users can create an account and login to access personalized features.<br><br>
+<img src="src/assets/images/register.png" alt="screenshot of register page"/>
+<br><br>View a detailed itinerary. Users can view all the details of a specific itinerary, including descriptions, activities, costs and travel tips.<br><br>
+<img src="src/assets/images/itinerary.png" alt="screenshot of itinerary page"/>
+<br><br>User profile and profile image upload page. Users can upload a profile picture and manage their profile information.<br><br>
+<img src="src/assets/images/user.png" alt="screenshot of user home page" />
+<br><br>Adding a new itinerary by user. Users can create and submit their own travel itineraries to share with others.<br><br>
+<img src="src/assets/images/add.png" alt="screenshot of adding itinerary page"/>
+</p>
+
+
 ### Installation
 
-1. Clone the both front-end and back-end repository: 
-git clone https://github.com/linsquared/instaTravel-client 
-git clone https://github.com/linsquared/instaTravel-backend
+1. Clone both front-end and back-end repository: 
+- git clone https://github.com/linsquared/instaTravel-client 
+- git clone https://github.com/linsquared/instaTravel-backend
 2. Install the dependencies: npm install
 3. Set up the database: mysql -u root -p
 4. Create database CREATE DATABASE capstone
@@ -213,23 +229,13 @@ This API may return different 400 or 404 error
 ```
 
 ## Conclusion
-Tech Stack used
-
-### Front end:
-React
-SAAS
-Axios
-
-### Back End :
-Node
-Express
-cors
-knex
-mySQL
-mySQL Workbench
+Tech Stack Front-end: [React] [SAAS] [Axios] <br>
+Tech Stack Back-end: [Node JS] [Express] [cors] [knex] [mySQL] [mySQL Workbench] [Cloudinary] [Multer]
 
 ### Lessons learned and next steps
 
-As I developed this project, I encountered a number of challenges that allowed me to strengthen the new skills I have learned over the past three months. I also learned the importance of staying flexible and adaptable. I faced undexpected challenges for this project and, by being flexible, I was better equipped to overcome these challenges and find creative solutions to problems.
+While developing this project, I encountered several challenges that allowed me to strengthen the new skills I have acquired over the past three months. It emphasized the importance of staying flexible and adaptable in the face of unexpected obstacles. By maintaining flexibility, I was able to overcome these challenges and find creative solutions.
 
-Next steps for this project would be to making my site responsive and provide more features for the app.
+
+Moving forward, there are a few key areas of focus for further development of this project. Firstly, I plan to make the site responsive, ensuring optimal user experience across different devices and screen sizes. Additionally, I aim to expand the range of features offered by the app, enhancing its functionality and usability.
+

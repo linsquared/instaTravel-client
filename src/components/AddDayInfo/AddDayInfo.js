@@ -1,5 +1,6 @@
 // core stuff
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 // style, page, components
@@ -11,43 +12,44 @@ const AddDayInfo = ({ duration, showDay, basicInfo }) => {
     const [saveTotal, setSaveTotal] = useState([])
     // // state to hold all the activities in one day together
     const [allDayAndActivities, setAllDayAndActivities] = useState([])
-
-    // state to hold itinerary id 
-    const [itineraryId, setItineraryId] = useState('')
-
+    const navigate = useNavigate()
     // post itinerary and getting itinerary id back
     const saveEntireItinerary = (e) => {
         e.preventDefault()
         axios.post('http://localhost:8080/itineraries', basicInfo)
-            .then(res => {
-                setItineraryId(res.data)
-            })
-            .catch(err => {
-                console.log(err)
-            })
-        // sending all activities and getting them back 
-        const activities = allDayAndActivities.map(item => item.activities[0])
-        axios.post('http://localhost:8080/itineraries/activity', activities)
-            .then(res => {
-                const data = res.data
+            .then(itinerary => {
+                // this is the itineraryId
+                console.log(itinerary.data)
 
-                const updatedData = allDayAndActivities.map(day => {
-                    const updatedActivities = day.activities.map(activity => {
-                        const matchingActivity = data.find(backEndActivity => backEndActivity.activity_name === activity.activity_name);
-                        return matchingActivity.activity_id;
-                    });
-                    const activityId = updatedActivities[0]; // Get the first activity_id since we only expect one activity per day
-                    return { itinerary_id: itineraryId, day: day.day, activity_id: activityId };
-                });
+                // sending all activities and getting them back 
+                const activities = allDayAndActivities.map(item => item.activities[0])
+                axios.post('http://localhost:8080/itineraries/activity', activities)
+                    .then(res => {
+                        const data = res.data
 
-                axios.post('http://localhost:8080/itineraries/activity/day', updatedData)
-                    .then(res => console.log(res))
+                        const updatedData = allDayAndActivities.map(day => {
+                            const updatedActivities = day.activities.map(activity => {
+                                const matchingActivity = data.find(backEndActivity => backEndActivity.activity_name === activity.activity_name);
+                                return matchingActivity.activity_id;
+                            });
+                            const activityId = updatedActivities[0];
+                            return { itinerary_id: itinerary.data, day: day.day, activity_id: activityId };
+                        });
+                        axios.post('http://localhost:8080/itineraries/activity/day', updatedData)
+                            .then(res => {
+
+                                console.log(res)
+                            })
+                            .catch(err => console.log(err))
+                    })
+
                     .catch(err => console.log(err))
             })
-
             .catch(err => console.log(err))
 
+        navigate(`/user/${basicInfo.user_id}`)
     }
+
 
     return (
         <form className='day'

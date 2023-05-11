@@ -14,6 +14,19 @@
         display: flex;
     }
 
+    &__image {
+        height: 33rem;
+        background-image: linear-gradient(rgba(255, 255, 255, .2), rgba(50, 97, 137, 0.3)), url('../../assets/images/suitcase.jpg');
+        background-size: 120%;
+        background-position: center;
+        position: absolute;
+        top: 2.5rem;
+        width: 37rem;
+        left: .5rem;
+        border-top-left-radius: 3.5rem;
+        border-top-right-radius: 3.5rem;
+    }
+
     &__title-wrapper {
         width: 18.4rem;
         height: 5rem;

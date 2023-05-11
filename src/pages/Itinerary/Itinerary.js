@@ -4,13 +4,13 @@ import { useLocation } from 'react-router-dom';
 // styles, pages, components
 import './Itinerary.scss';
 import Nav from '../../components/Nav/Nav';
-import fake from '../../assets/images/plan3.jpg'
 import star from '../../assets/icons/star.png'
 import like from '../../assets/icons/fullHearted.png'
 import share from '../../assets/icons/share.png'
 import days from '../../assets/icons/sun.png'
 import money from '../../assets/icons/moneyBag.png'
 import Buttons from '../../components/Buttons/Buttons';
+import Footbar from '../../components/Footbar/Footbar';
 
 const Itinerary = () => {
     // recieve itinerary info
@@ -18,10 +18,7 @@ const Itinerary = () => {
     const basicTripInfo = location.state?.itinerary
     const detailItinerary = location.state?.detailItinerary.sort((a, b) => a.day - b.day)
 
-    // go back to last page 
-    const goBack = () => {
-        window.history.go(-1);
-    }
+
     return (
         <main className='itinerary'>
             <header className='itinerary__header'>
@@ -115,13 +112,7 @@ const Itinerary = () => {
                 })
                 }
             </section>
-
-            <div className='itinerary__btn-wrapper'>
-                <div className='itinerary__btn-save'>
-                    <Buttons value={'Back'} name={'buttons-white'} btnfunc={goBack} />
-                </div>
-                <div className='itinerary__btn-save'><Buttons value={'Save'} name={'buttons'} /></div>
-            </div>
+            <Footbar />
         </main>
     )
 }

@@ -15,9 +15,6 @@ const EachDay = ({ dayValue, setAllDayAndActivities, allDayAndActivities }) => {
     // state to hold each activity with the day is on
     const [dayWithAct, setDayWithAct] = useState([])
 
-    // // state to hold the all the day together
-    // const [allDayAndActivities, setAllDayAndActivities] = useState([])
-
     // set each activity count
     const [activityCount, setActivityCount] = useState(1);
 

@@ -1,6 +1,6 @@
 // core stuff
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
 // components, pages, styles
@@ -10,17 +10,20 @@ import Home from './pages/Home/Home'
 import Signup from './pages/Signup/Signup';
 import Login from './pages/Login/Login'
 import AddItinerary from './pages/AddItinerary/AddItinerary';
-import AddBasicInfo from './components/AddBasicInfo/AddBasicInfo';
 import AddDayInfo from './components/AddDayInfo/AddDayInfo';
-import Activity from './components/Activity/Activity';
-import Header from './components/Header/Header';
 import CityResults from './pages/CityResults/CityResults';
 import UserProfile from './pages/UserProfile/UserProfile';
 import Itinerary from './pages/Itinerary/Itinerary';
 import GuestHome from './components/GuestHome/GuestHome';
 import Footbar from './components/Footbar/Footbar';
+import Upload from './pages/Upload/Upload';
+import { UserContext } from './context/UserContext';
+import Likes from './pages/Likes/Likes';
 
 function App() {
+  // retrieve user context info
+  const { user } = useContext(UserContext)
+
   // set err state
   const [error, setError] = useState('')
 
@@ -42,16 +45,15 @@ function App() {
   // user searchbar
   const [searchUser, setSearchUser] = useState('')
 
-  // searchbar form control 
-  const searchHandle = (e) => {
-    setSearchInput(e.target.value)
-  }
+  // likes itinerary list
+  const [likesItineraryList, setLikesIinteraryList] = useState([])
 
   // usersearch form control
   const searchUserHandle = (e) => {
     setSearchUser(e.target.value)
-    console.log(searchUser)
   }
+
+  // const [isPostSuccessful, setPostSuccessful] = useState(false)
 
   // select an user state
   const [userId, setUserId] = useState('')
@@ -63,7 +65,7 @@ function App() {
         setAllItineraries(res.data)
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [user])
 
   useEffect(() => {
     axios.get('http://localhost:8080/users')
@@ -71,7 +73,7 @@ function App() {
         setAllUsers(res.data)
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [user])
 
   return (
     <BrowserRouter>
@@ -80,12 +82,13 @@ function App() {
           allItineraries={allItineraries}
           searchInput={searchInput}
           setSearchInput={setSearchInput}
-          searchHandle={searchHandle}
+          // searchHandle={searchHandle}
           allUsers={allUsers}
           searchUser={searchUser}
           setSearchUser={setSearchUser}
           searchUserHandle={searchUserHandle}
-          userId={userId} setUserId={setUserId} />} />
+          userId={userId} setUserId={setUserId}
+        />} />
 
         <Route path='/register' element={<Signup
           errMsg={errMsg}
@@ -103,26 +106,33 @@ function App() {
           success={success}
           setSuccess={setSuccess} />} />
 
-        <Route path='city' element={<CityResults
+        <Route path='/city/:city' element={<CityResults
           allItineraries={allItineraries}
           searchInput={searchInput}
           setSearchInput={setSearchInput}
-          searchHandle={searchHandle} />} />
+          setLikesIinteraryList={setLikesIinteraryList}
+          likesItineraryList={likesItineraryList}
+        />} />
 
         <Route path='/user/:profileId' element={<UserProfile
           allItineraries={allItineraries}
+          allUsers={allUsers}
           userId={userId}
           setUserId={setUserId}
-          allUsers={allUsers} />} />
+        />} />
 
         <Route path='/itinerary/:itineraryId' element={<Itinerary />} />
+        <Route path='/upload' element={<Upload
+          userId={userId} />} />
+        <Route path='/likes' element={<Likes
+        // likesItineraryList={likesItineraryList}
+        />} />
 
         {/* TEMP ROUTE */}
         <Route path='add' element={<AddItinerary />} />
         <Route path='day' element={<AddDayInfo />} />
         <Route path='foot' element={<Footbar />} />
         <Route path='guest' element={<GuestHome />} />
-
 
 
       </Routes>

@@ -1,0 +1,79 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+
+.upload {
+    width: 37rem;
+    margin: 0 auto;
+    background-color: rgba(237, 245, 248, 0.957);
+    height: 80rem;
+    border-radius: 3.5rem;
+    position: relative;
+
+    &__icon {
+
+        width: 15rem;
+        height: 15rem;
+        border-radius: 50%;
+
+        &-wrapper {
+            width: 15rem;
+            height: 15rem;
+            position: absolute;
+            right: 50%;
+            transform: translateX(50%);
+            top: 15rem;
+            border-radius: 50%;
+            background-color: $background-gray;
+            background-image: url('../../assets/icons/photo.png');
+            object-position: center;
+            background-position: center;
+            background-size: 40%;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &__form {
+        text-align: center;
+        padding-top: 37rem;
+        position: relative;
+        display: flex;
+        gap: 2.5rem;
+        justify-content: center;
+    }
+
+    &__action {
+        margin-top: 1rem;
+        cursor: pointer;
+    }
+
+    &__label {
+        background-color: white;
+        font-weight: bold;
+        font-size: 1.5rem;
+        border-radius: 8px;
+        color: $blue;
+        width: 100%;
+        border: 3px solid $blue;
+        padding: .9rem;
+        cursor: pointer;
+    }
+
+    &__input {
+        background-color: rgba(237, 245, 248, 0.957);
+        border: none;
+        width: 11rem;
+        height: 4rem;
+        display: block;
+        font-size: 2rem;
+        position: absolute;
+        left: 16%;
+        top: 37rem;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    &__btn {
+        width: 9rem;
+    }
+}
