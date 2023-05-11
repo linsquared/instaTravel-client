@@ -1,5 +1,7 @@
 # InstaTravel
 
+
+## Description:
 InstaTravel is an innovative web application designed to help people who dislike planning trips. It allows users to choose from a wide selection of pre-existing itineraries submitted by other travelers on the app. This app makes it easy for you to follow itineraries uploaded by your favorite bloggers, influencers, and friends. In addition, it provides a platform for travelers to share their past itineraries with others, making them easily accessible and shareable. With a diverse selection of itineraries to choose from, you can pick one that suits your interests and style. So, stop planning and start traveling!
 
 ## Table of Content
@@ -234,4 +236,6 @@ Tech Stack Back-end: [Node JS] [Express] [cors] [knex] [mySQL] [mySQL Workbench]
 
 While developing this project, I encountered several challenges that allowed me to strengthen the new skills I have acquired over the past three months. It emphasized the importance of staying flexible and adaptable in the face of unexpected obstacles. By maintaining flexibility, I was able to overcome these challenges and find creative solutions.
 
+
 Moving forward, there are a few key areas of focus for further development of this project. Firstly, I plan to make the site responsive, ensuring optimal user experience across different devices and screen sizes. Additionally, I aim to expand the range of features offered by the app, enhancing its functionality and usability.
+
