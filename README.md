@@ -13,31 +13,31 @@ With InstaTravel, planning your next trip is a breeze. Whether you're on a budge
 - Conclusion
 
 ## Features
-Select an itinerary by browsing the recommended section or a specific city
-Select itineraries created by popular or favorite users
-Filter itineraries based on user's budget and duration
-Sort itineraires based on itinerary's rating or budget set
-Select a specific itinerary to view all the detailed activities and information included in it
-View a specific traveler's profile to access all the itineraries they have submitted
-Create an account and login into your account 
-Start creating your own itinerary or browse and save your favorite itineraries
+- Select an itinerary by browsing the recommended section or a specific city
+- Select itineraries created by popular or favorite users
+- Filter itineraries based on user's budget and duration
+- Sort itineraires based on itinerary's rating or budget set
+- Select a specific itinerary to view all the detailed activities and information included in it
+- View a specific traveler's profile to access all the itineraries they have submitted
+- Create an account and login into your account 
+- Start creating your own itinerary or browse and save your favorite itineraries
 
 
 ## User Flow
 
 <p align="center">
- <br>Home page with Trips and Users tabs. Users can explore featured trips and browse user profiles.<br><br>
+Home page with Trips and Users tabs. Users can explore featured trips and browse user profiles.<br>
   <img src="src/assets/images/home.png" alt="screenshot of home page" />
 <br>Search by itineraries and User profiles. Users can search for specific itineraries and view other user profiles.<br><br>
-  <img src="src/assets/images/browse.png" alt="screenshot of user profile and search page" width="800" />
+  <img src="src/assets/images/browse.png" alt="screenshot of user profile and search page" />
 <br>Signup & Login. Users can create an account and login to access personalized features.<br><br>
-<img src="src/assets/images/register.png" alt="screenshot of register page" width="400" />
+<img src="src/assets/images/register.png" alt="screenshot of register page"/>
 <br>View a detailed itinerary. Users can view all the details of a specific itinerary, including descriptions, activities, costs and travel tips.<br><br>
-<img src="src/assets/images/itinerary.png" alt="screenshot of itinerary page" width="400" />
+<img src="src/assets/images/itinerary.png" alt="screenshot of itinerary page"/>
 <br>User profile and profile image upload page. Users can upload a profile picture and manage their profile information.<br><br>
-<img src="src/assets/images/user.png" alt="screenshot of user home page" width="400" />
+<img src="src/assets/images/user.png" alt="screenshot of user home page" />
 <br>Adding a new itinerary by user. Users can create and submit their own travel itineraries to share with others.<br><br>
-<img src="src/assets/images/add.png" alt="screenshot of adding itinerary page" width="400" />
+<img src="src/assets/images/add.png" alt="screenshot of adding itinerary page"/>
 </p>
 
 
