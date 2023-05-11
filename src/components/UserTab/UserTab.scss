@@ -1,0 +1,89 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.userTab {
+
+    &__tab {
+        position: absolute;
+        top: 35rem;
+        padding: .6rem;
+        width: 37rem;
+    }
+
+    &__show {
+        margin-top: -7rem;
+    }
+
+    &__bar-wrapper {
+        margin-top: 7rem;
+    }
+
+    &__subtitle {
+        margin-left: 4rem;
+        margin-bottom: 1rem;
+    }
+
+    &__list {
+        overflow-x: scroll;
+        padding: 1rem 4rem 2rem 4rem;
+        height: 27rem;
+    }
+
+    &__item {
+        display: flex;
+        height: 9rem;
+        border-radius: 2rem;
+        align-items: center;
+        padding: 1.2rem;
+        justify-content: space-between;
+        background-color: rgb(199, 226, 236);
+        box-shadow: 0px 0px 10px rgba(199, 226, 236, 0.8);
+        margin-bottom: 2rem;
+    }
+
+    &__icon {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+
+
+        &-wrapper {
+            width: 6rem;
+            height: 6rem;
+        }
+    }
+
+    &__left {
+        display: flex;
+        gap: 1.2rem;
+        align-items: flex-start;
+    }
+
+    &__username {
+        font-size: 1.4rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: $blue;
+    }
+
+    &__author {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        color: black;
+    }
+
+    &__total {
+        font-size: 1.3rem;
+        color: gray;
+    }
+
+    &__count {
+        text-align: center;
+        font-size: 1.9rem;
+    }
+
+    &__followers {
+        font-size: 1.2rem;
+    }
+}

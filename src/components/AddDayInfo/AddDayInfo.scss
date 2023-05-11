@@ -1,0 +1,32 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.day {
+    width: 37rem;
+    padding: 2rem;
+    height: 65rem;
+    overflow-x: scroll;
+    background-color: $white;
+
+    &__title {
+        color: $blue;
+        margin: 0 2rem 2rem 0;
+    }
+
+    &__footer {
+        height: 10rem;
+        width: 37rem;
+        position: absolute;
+        left: 0.5rem;
+        border-bottom-left-radius: 3.5rem;
+        border-bottom-right-radius: 3.5rem;
+        background-color: $white;
+        bottom: 3.1rem;
+    }
+
+    &__btn-wrapper {
+        width: 16rem;
+        margin: 1rem auto;
+
+    }
+}

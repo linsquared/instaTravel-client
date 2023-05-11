@@ -1,0 +1,21 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.eachDay {
+    width: 34rem;
+
+    &__hide {
+        display: none;
+    }
+
+    &__title {
+        margin-bottom: 1rem;
+    }
+
+    &__btn {
+        margin: .5rem auto;
+        width: 20rem;
+    }
+
+
+}

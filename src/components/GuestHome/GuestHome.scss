@@ -1,0 +1,219 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+
+.guestHome {
+
+    &__tab {
+        position: absolute;
+        top: 35rem;
+        padding: 0 .6rem .6rem .6rem;
+        width: 37rem;
+    }
+
+    &__input {
+        border-radius: 50%;
+    }
+
+    &__filters {
+        display: flex;
+        padding: 0 4rem;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    &__criteria {
+        width: 14rem;
+        height: 5rem;
+        background-color: $white;
+        border-radius: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        border: .3rem solid $blue;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgb(218, 240, 248);
+        }
+
+        &--duration {
+            background-color: $blue;
+            border: none;
+
+            &:hover {
+                background-color: rgb(79, 176, 250);
+
+            }
+        }
+    }
+
+    &__text {
+        font-size: 1.5rem;
+        text-align: right;
+
+        &-duration {
+            color: white;
+        }
+    }
+
+    &__icons {
+        width: 2.5rem;
+    }
+
+    &__recom {
+        display: flex;
+        overflow-y: scroll;
+
+    }
+
+    &__subtitle {
+        padding: 1.5rem 4rem;
+        font-size: 1.5rem;
+        width: 100%;
+    }
+
+    &__card {
+        width: 19rem;
+        padding: 1rem;
+        border-radius: 1rem;
+        position: relative;
+        height: 18rem;
+        cursor: pointer;
+
+        &-wrapper {
+            margin-left: 4rem;
+            width: 20.5rem;
+            background-color: white;
+            border-radius: 1rem;
+            display: flex;
+            justify-content: center;
+            height: 20rem;
+        }
+    }
+
+    &__img {
+        width: 100%;
+        height: 13.5rem;
+        background-position: 150%;
+        background-size: cover;
+        border-radius: 1rem;
+    }
+
+    &__heart {
+        width: 3rem;
+        position: absolute;
+        top: 14.5rem;
+        right: 2rem;
+    }
+
+    &__pin {
+        width: 1.5rem;
+    }
+
+    &__location-info {
+        padding-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__city,
+    &__money {
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    &__location {
+        display: flex;
+        align-items: center;
+    }
+
+    &__city {
+        margin-left: .5rem;
+
+    }
+
+    &__dropdown {
+        background-color: rgb(149, 206, 249);
+        width: 27.8rem;
+        height: 19rem;
+        margin-left: 4rem;
+        // border-radius: 1rem;
+        z-index: 5;
+        position: absolute;
+        margin-top: 2rem;
+    }
+
+    &__dollar {
+        width: 2.2rem;
+    }
+
+    &__dollar-list {
+        display: flex;
+        justify-content: space-evenly;
+        padding-top: 2rem;
+    }
+
+    &__items {
+        border: .2rem solid $white;
+        box-shadow: 0px 0px 1px 2px rgb(205, 235, 245);
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        background-color: $white;
+        cursor: pointer;
+
+        &:hover {
+            border: .2rem solid rgb(203, 232, 243);
+            background-color: rgb(204, 234, 242);
+            box-shadow: 0px 0px 1px 2px rgb(203, 232, 243);
+        }
+
+        &-one {
+            width: 2.5rem;
+        }
+
+        &__dollar {
+            &:hover {
+                background-image: url('../../assets/icons/whtDollar.png');
+            }
+        }
+    }
+
+    &__duration-list {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &__day-item {
+        border: .2rem solid $white;
+        box-shadow: 0px 0px 1px 2px rgb(205, 235, 245);
+        background-color: $white;
+        border-radius: 5px;
+        width: 5rem;
+        height: 3.5rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: $blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &:hover {
+            border: .2rem solid $blue;
+            background-color: $blue;
+            color: white;
+            box-shadow: none;
+        }
+    }
+
+    &__btn-wrapper {
+        width: 10rem;
+        margin: 2rem auto;
+    }
+
+}

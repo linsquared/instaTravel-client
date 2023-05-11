@@ -1,0 +1,77 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/mixins.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+
+.login {
+    position: relative;
+    height: 78rem;
+
+    &__close {
+        width: 3.2rem;
+        height: 3.2rem;
+        position: absolute;
+        right: 2rem;
+        opacity: .6;
+        z-index: 1;
+        top: 1.5rem;
+    }
+
+    &__logo {
+        width: 22rem;
+
+        &-wrapper {
+            display: flex;
+            justify-content: center;
+            padding-top: 22rem;
+            position: relative;
+        }
+    }
+
+    &__form {
+        margin-top: 5rem;
+        padding-left: 2rem;
+    }
+
+
+    &__user-wrapper,
+    &__password {
+        width: 34rem;
+    }
+
+
+    &__nosee {
+        width: 2.3rem;
+        opacity: .2;
+        position: absolute;
+        right: 3rem;
+        top: 40.5rem;
+    }
+
+    &__btn-wrapper {
+        margin-top: 4rem;
+        width: 34rem;
+    }
+
+    &__footer {
+        text-align: center;
+        color: $label-gray;
+        font-size: 1.2rem;
+        margin: 15rem 1rem 0;
+        font-weight: 500;
+        border-top: 1px solid rgb(235, 235, 235);
+        padding-top: 5rem;
+        color: $word-grey;
+    }
+
+    &__redirect {
+        font-weight: 700;
+        color: $blue;
+    }
+
+    &__errMsg {
+        color: grey;
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+}

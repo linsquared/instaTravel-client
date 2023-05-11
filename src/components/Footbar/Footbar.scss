@@ -1,0 +1,42 @@
+@use '../../styles/global.scss' as *;
+@use '../../styles/variables.scss' as *;
+
+.footbar {
+    height: 6rem;
+    width: 34rem;
+    background-color: $footbar-blue;
+    position: absolute;
+    left: 2rem;
+    bottom: 5rem;
+    border-radius: 2rem;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__icon {
+
+        width: 2.5rem;
+        height: 2.5rem;
+
+        &--wrapper {
+            width: 4rem;
+            height: 4rem;
+            background-color: rgb(236, 245, 249);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        &--user {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        &--like {
+            padding-top: .1rem;
+        }
+    }
+}
