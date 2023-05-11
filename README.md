@@ -25,8 +25,8 @@ With InstaTravel, planning your next trip is a breeze. Whether you're on a budge
 
 ## User Flow
 
-<p align="center">
-Home page with Trips and Users tabs. Users can explore featured trips and browse user profiles.<br>
+<p align="left">
+ <br>Home page with Trips and Users tabs. Users can explore featured trips and browse user profiles.<br><br>
   <img src="src/assets/images/home.png" alt="screenshot of home page" />
 <br>Search by itineraries and User profiles. Users can search for specific itineraries and view other user profiles.<br><br>
   <img src="src/assets/images/browse.png" alt="screenshot of user profile and search page" />
